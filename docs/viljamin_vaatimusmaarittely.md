@@ -2,6 +2,7 @@
 
 # Yleistä
 
+-   Nimi: Viiteri
 -   Koodi: Python
 -   Package manager: poetry
 -   Dokumentaatio: Suomeksi
