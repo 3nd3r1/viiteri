@@ -1,0 +1,3 @@
+[run]
+source = viiteri
+omit = viiteri/**/__init__.py,viiteri/index.py
