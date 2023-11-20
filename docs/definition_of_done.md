@@ -6,6 +6,8 @@
 
 ## Staattinen analyysi
 
+-   Dokumentaatio suomeksi
+-   Koodi englanniksi
 -   Tiedostojen nimeäsin snake_case
 -   Class: Pascal, Globalit: CAPS, Metodi: snake_case, muuttujat: snake_case
 -   PyLint score täytyy olla 10
