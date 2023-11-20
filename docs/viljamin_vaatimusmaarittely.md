@@ -4,7 +4,7 @@
 
 -   Nimi: Viiteri
 -   Koodi: Python
--   Package manager: poetry
+-   Package manager: poetry tai venv (niiku web ohjelmointi ohjeissa)
 -   Dokumentaatio: Suomeksi
 -   Koodin kieli: englanniksi
 -   Checkstyle: pylint
