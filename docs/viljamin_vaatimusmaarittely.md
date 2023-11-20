@@ -1,6 +1,6 @@
 # Viljamin Vaatismusmäärittely
 
-# Yleistä
+## Yleistä
 
 -   Nimi: Viiteri
 -   Koodi: Python
@@ -27,3 +27,11 @@ Inspiraatio: [github.com/tehtavat/viikko3/web-login](https://github.com/ohjelmis
 
 -   Yksikkötestaus: unittest
 -   Integraatiotestaus: robot
+-   Tulevaisuudessa kaikkien user storyjen hyväksymiskriteerit kirjoitetaan robot formaatissa
+
+## Devaus ohjeita
+
+-   Jokaiselle taskille tai spikelle oma branch, joka myöhemmin mergetään trunkkiin pull requestillä
+-   Taskeissä täytyy olla estimoitu työmäärä ja aktuaalinen työmäärä
+-   Muistakaa tehdä pull requestit, jotka on linkitetty taskien issueihin
+-   Muistakaa merkata itsenne task-issuen assigneeksi
