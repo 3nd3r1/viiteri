@@ -2,7 +2,7 @@
 
 ## Linkit
 
-[Backlog](./backlog.md)
+[Sprint 1 Task Board](https://github.com/users/3nd3r1/projects/1/views/1)
 
 ## Seuraava tapaaminen
 
