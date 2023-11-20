@@ -11,4 +11,4 @@
 
 ## Seuraava tapaaminen
 
--   Maanantai 20.11.2023 klo 14:30
+-   Torstai 23.11.2023 klo 17:30
