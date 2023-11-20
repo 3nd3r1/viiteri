@@ -1,4 +1,5 @@
 """ tasks.py """
+# pylint:   disable-all
 
 import sys
 from invoke.tasks import task
@@ -13,8 +14,13 @@ def start(ctx):
 
 
 @task
-def test(ctx):
-    ctx.run("pytest .")
+def unittest(ctx):
+    ctx.run("pytest ./tests/unit")
+
+
+@task
+def robottest(ctx):
+    ctx.run("robot ./tests/integration")
 
 
 @task

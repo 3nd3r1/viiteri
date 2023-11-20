@@ -14,7 +14,7 @@
 
 ## Arkkitehtuuri
 
-![Arkkitehtuuri](./folder_structure.png)
+![Arkkitehtuuri](./assets/folder_structure.png)
 
 ## Testaus
 
