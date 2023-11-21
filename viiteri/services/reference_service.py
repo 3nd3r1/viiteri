@@ -1,3 +1,4 @@
+""" viiteri/services/reference_service """
 from repositories.reference_repository import ReferenceRepository as default_reference_repository
 
 class ReferenceService:
