@@ -9,8 +9,8 @@ class ReferenceService:
     def get_all_references(self):
         return self._reference_repository.get_all_references()
 
-    def create_reference(self, cite_key, fields):
-        bib_data = BibliographyData({cite_key: Entry(cite_key, fields)})        
+    def create_reference(self, cite_key, fields, cite_type='article'):
+        bib_data = BibliographyData({cite_key: Entry(cite_type, fields)})
         return self._reference_repository.create_reference(bib_data.to_string('bibtex'))
     
 reference_service = ReferenceService()
