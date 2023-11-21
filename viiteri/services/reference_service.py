@@ -7,7 +7,4 @@ class ReferenceService:
     def get_all_references(self):
         return self._reference_repository.get_all_references()
     
-    def create_reference(self, author, title, journal, year, volume):
-        return self._reference_repository.create_reference(author, title, journal, year, volume)
-    
 reference_service = ReferenceService()
