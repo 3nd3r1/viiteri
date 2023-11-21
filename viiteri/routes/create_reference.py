@@ -12,13 +12,12 @@ def render_create():
     if request.method == "GET":
         return render_template("create.html")
     if request.method == "POST":
-        author = request.form["author"]
-        title = request.form["title"]
-        journal = request.form["journal"]
-        year = request.form["year"]
-        volume = request.form["volume"]
+        cite_key = request.form["cite_key"]
+        fields = [("author", request.form["author"]), ("title", request.form["title"]),
+                  ("journal", request.form["journal"]), ("year", request.form["year"]),
+                  ("volume", request.form["volume"])]
         try:
-            reference_service.create_reference(author, title, journal, year, volume)
+            reference_service.create_reference(cite_key, fields)
             flash("Reference created successfully!")
         except Exception as error:
             flash(str(error))
