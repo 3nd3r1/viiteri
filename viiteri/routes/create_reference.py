@@ -17,7 +17,7 @@ def render_create():
                   ("journal", request.form["journal"]), ("year", request.form["year"]),
                   ("volume", request.form["volume"])]
         try:
-            reference_service.create_reference(cite_key, fields)
+            reference_service.create_reference(cite_key, fields, 'article')
             flash("Reference created successfully!")
         except Exception as error:
             flash(str(error))
