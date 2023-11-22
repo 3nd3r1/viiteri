@@ -1,3 +1,5 @@
+# pylint: disable=import-error, no-name-in-module, broad-except
+
 """ viiteri/routes/create_reference.py """
 from flask import Blueprint, render_template, redirect, request, flash
 from viiteri.services.reference_service import reference_service
