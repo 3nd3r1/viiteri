@@ -8,6 +8,6 @@ class ReferenceService:
 
     def get_all_references(self):
         """ Returns all references """
-        return self._reference_repository.get_all_references()
+        return self._reference_repository.find_all_references()
 
 reference_service = ReferenceService()
