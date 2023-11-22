@@ -1,4 +1,4 @@
-from initialize_db import initialize_database
+from viiteri.utils.initialize_db import initialize_database
 
 
 def build():
