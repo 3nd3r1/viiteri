@@ -1,8 +1,9 @@
 """ viiteri/services/reference_service """
 
+from pybtex.database import BibliographyData, Entry
+
 # pylint: disable-next=import-error, no-name-in-module
 from viiteri.repositories.article_repository import ReferenceRepository as default_repository
-from pybtex.database import BibliographyData, Entry
 
 
 class ReferenceService:
