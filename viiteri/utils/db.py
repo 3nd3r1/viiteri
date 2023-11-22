@@ -1,7 +1,9 @@
-from viiteri.app import app
+""" viiteri/utils/db.py """
+import os
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-import os
+from viiteri.app import app
+
 
 load_dotenv()
 
@@ -11,4 +13,5 @@ db = SQLAlchemy(app)
 app.app_context().push()
 
 def get_database_connection():
+    """Connects database"""
     return db
