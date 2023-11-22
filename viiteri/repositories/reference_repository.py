@@ -27,7 +27,7 @@ class ReferenceRepository:
         ))
         references = result.fetchall()
         return references
-    
+
     def delete_all(self):
         """Empties whole database"""
         cursor = self._connection.session()
