@@ -1,3 +1,5 @@
+# pylint: disable=import-error, no-name-in-module
+
 """ viiteri/routes/list_references.py """
 from flask import Blueprint, render_template
 from services.reference_service import reference_service
