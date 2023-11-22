@@ -2,7 +2,7 @@
 
 """ viiteri/services/reference_service """
 from pybtex.database import BibliographyData, Entry
-#from viiteri.repositories.article_repository import ArticleRepository as default_repository
+#from viiteri.repositories.reference_repository import ReferenceRepository as default_repository
 
 
 class ReferenceService:
@@ -13,6 +13,6 @@ class ReferenceService:
     def create_reference(self, cite_key, fields, cite_type='article'):
         """ Creates a new reference """
         bib_data = BibliographyData({cite_key: Entry(cite_type, fields)})
-        return self._reference_repository.add_article_reference(bib_data.to_string('bibtex'))
+        return self._reference_repository.add_reference(bib_data.to_string('bibtex'))
 
 reference_service = ReferenceService()

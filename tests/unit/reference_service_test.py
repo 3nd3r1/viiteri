@@ -7,7 +7,7 @@ from viiteri.services.reference_service import ReferenceService
 class ArticleRepositoryStub:
     """ Stub class for ArticleRepository """
 
-    def add_article_reference(self, _bib_data):
+    def add_reference(self, _bib_data):
         """ Stub method for add_article_reference """
         cite_key = 'zimmerman2002becoming'
         cite_type = 'article'
