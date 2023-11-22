@@ -9,12 +9,12 @@ class ReferenceRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def add_article_reference(self, article):
+    def add_reference(self, content):
         """Adds a new reference to the database."""
         cursor = self._connection.session()
         cursor.execute(
             'insert into reference_table (content) values (?);',
-            (f"{article.author}, {article.title}, {article.journal}, {article.year}, {article.volume}")
+            (content)
         )
         self._connection.commit()
 
