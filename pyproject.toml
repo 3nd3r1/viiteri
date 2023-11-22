@@ -10,6 +10,7 @@ readme = "README.md"
 python = "^3.10"
 flask = "^3.0.0"
 invoke = "^2.2.0"
+pybtex = "^0.24.0"
 
 
 [tool.poetry.group.dev.dependencies]
