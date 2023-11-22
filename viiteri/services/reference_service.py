@@ -1,11 +1,13 @@
 """ viiteri/services/reference_service """
-from repositories.reference_repository import ReferenceRepository as default_reference_repository
+from viiteri.repositories.article_repository import ArticleRepository as default_repository
 
 class ReferenceService:
-    def __init__(self, reference_repository=default_reference_repository):
+    """ Service for handling references """
+    def __init__(self, reference_repository=default_repository):
         self._reference_repository = reference_repository
 
     def get_all_references(self):
+        """ Returns all references """
         return self._reference_repository.get_all_references()
-    
+
 reference_service = ReferenceService()

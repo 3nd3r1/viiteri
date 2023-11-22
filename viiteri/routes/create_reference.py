@@ -1,6 +1,6 @@
 """ viiteri/routes/create_reference.py """
 from flask import Blueprint, render_template, redirect, request, flash
-from services.reference_service import reference_service
+from viiteri.services.reference_service import reference_service
 
 
 blueprint = Blueprint("create_reference", __name__)
@@ -21,4 +21,4 @@ def render_create():
             flash("Reference created successfully!")
         except Exception as error:
             flash(str(error))
-        return redirect("/create")
+    return redirect("/create")
