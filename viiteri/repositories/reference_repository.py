@@ -9,7 +9,7 @@ class ReferenceRepository:
     def add_reference(self, reference):
         cursor = self._connection.cursor()
         cursor.execute(
-            'insert into references (content) values (?);',
+            'insert into reference_table (content) values (?);',
             (reference) # vai reference.content ?
         )
         self._connection.commit()
@@ -17,7 +17,7 @@ class ReferenceRepository:
     def get_all_references(self):
         cursor = self._connection.cursor()
         cursor.execute(
-            'select * from references;'
+            'select * from reference_table;'
         )
         self._connection.commit()
 
