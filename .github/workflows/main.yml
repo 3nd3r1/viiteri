@@ -23,8 +23,8 @@ jobs:
             - name: Start postgresql
               run: |
                   sudo systemctl start postgresql.service
-                  psql -U postgres -c "CREATE ROLE runner;"
-                  psql -U postgres -c "CREATE DATABASE runner;"
+                  psql -h localhost -U postgres -c "CREATE ROLE runner;"
+                  psql -h localhost -U postgres -c "CREATE DATABASE runner;"
             - name: Build database
               run: poetry run invoke build
             - name: Setup chromedriver
