@@ -9,9 +9,10 @@ class Reference:
 
     def __init__(self, **kwargs):
 
-        if ("cite_key", "title", "author", "journal", "year") not in kwargs:
+        if not kwargs.keys() >= {"cite_key", "author", "title", "journal", "year"}:
             raise ValueError("Missing required arguments")
 
+        self.cite_key = kwargs["cite_key"]
         self.author = kwargs["author"]
         self.title = kwargs["title"]
         self.journal = kwargs["journal"]
@@ -30,3 +31,8 @@ class Reference:
 
     def __str__(self):
         return self.__dict__.__str__()
+
+    @classmethod
+    def from_str(cls, content):
+        """ Convert content string to Reference object """
+        return cls(**eval(content))  # pylint: disable=eval-used
