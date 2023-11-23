@@ -2,7 +2,7 @@
 
 """ viiteri/routes/list_references.py """
 from flask import Blueprint, render_template
-from services.reference_service import reference_service
+from viiteri.services.reference_service import reference_service
 
 
 blueprint = Blueprint("list_references", __name__)
