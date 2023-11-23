@@ -16,27 +16,12 @@ def add_reference():
         return render_template("add.html", submitted=submitted)
     if request.method == "POST":
         cite_key = request.form["title"][0:3] + request.form["author"].split(" ")[0][0:3]
-        fields = [("author", request.form["author"]),
-                  ("title", request.form["title"]),
-                  ("journal", request.form["journal"]),
-                  ("year", request.form["year"]),
-                  ('journal', request.form.get('journal', '')),
-                  ('year', request.form.get('year', '')),
-                  ('volume', request.form.get('volume', '')),
-                  ('number', request.form.get('number', '')),
-                  ('pages', request.form.get('pages', '')),
-                  ('month', request.form.get('month', '')),
-                  ('doi', request.form.get('doi', '')),
-                  ('note', request.form.get('note', '')),
-                  ('issn', request.form.get('issn', '')),
-                  ('zblnumber', request.form.get('zblnumber', '')),
-                  ('eprint', request.form.get('eprint', ''))]
-        fields = list(filter(lambda x: x[1] != '', fields))
         try:
-            reference_service.create_reference(cite_key, fields, 'article')
+            reference_service.create_reference(cite_key=cite_key, **request.form.to_dict())
             flash("Reference created successfully!")
             session["submitted"] = True
         except Exception as error:
             flash(str(error))
+            print(str(error))
             session["submitted"] = False
     return redirect("/add")

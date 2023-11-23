@@ -1,7 +1,7 @@
 """ viiteri/services/reference_service """
 
-from pybtex.database import BibliographyData, Entry
 from viiteri.repositories.reference_repository import reference_repository as default_repository
+from viiteri.entities.reference import Reference
 
 
 class ReferenceService:
@@ -10,14 +10,14 @@ class ReferenceService:
     def __init__(self, reference_repository=default_repository):
         self._reference_repository = reference_repository
 
-    def get_all_references(self):
+    def get_all_references(self) -> list[Reference]:
         """ Returns all references """
         return self._reference_repository.get_all_references()
 
-    def create_reference(self, cite_key, fields, cite_type='article'):
+    def create_reference(self, **kwargs):
         """ Creates a new reference """
-        bib_data = BibliographyData({cite_key: Entry(cite_type, fields)})
-        return self._reference_repository.add_reference(bib_data.to_string('bibtex'))
+        new_reference = Reference(**kwargs)
+        return self._reference_repository.add_reference(new_reference)
 
 
 reference_service = ReferenceService()

@@ -1,30 +1,30 @@
 """ tests/unit/reference_service_test.py """
 
 import unittest
-from pybtex.database import BibliographyData, Entry
+
+from viiteri.entities.reference import Reference
 from viiteri.services.reference_service import ReferenceService
 
 
 class ArticleRepositoryStub:
     """ Stub class for ArticleRepository """
 
+    def __init__(self):
+        self._references = [Reference(cite_key="petpet", author="Petteri",
+                                      title="Petterin Kirja",
+                                      journal="Petterin Kirjakokoelma", year="2003"),
+                            Reference(cite_key="petpet2", author="Petteri",
+                                      title="Petterin Kirja 2",
+                                      journal="Petterin Kirjakokoelma", year="2005")]
+
     def get_all_references(self):
         """ Returns all references """
-        return ["reference1", "reference2"]
+        return self._references
 
-    def add_reference(self, _bib_data):
+    def add_reference(self, reference):
         """ Stub method for add_article_reference """
-        cite_key = 'zimmerman2002becoming'
-        cite_type = 'article'
-        fields = [('title', 'Becoming a self-regulated learner: An overview'),
-                  ('author', 'Zimmerman, Barry J'),
-                  ('journal', 'Theory into practice'),
-                  ('volume', '41'),
-                  ('number', '2'),
-                  ('pages', '64--70'),
-                  ('year', '2002'),
-                  ('publisher', 'Taylor & Francis')]
-        return BibliographyData({cite_key: Entry(cite_type, fields)}).to_string('bibtex')
+        self._references.append(reference)
+        return reference
 
 
 class TestReferenceService(unittest.TestCase):
@@ -39,25 +39,17 @@ class TestReferenceService(unittest.TestCase):
         references = self.reference_service.get_all_references()
 
         self.assertEqual(len(references), 2)
-        self.assertEqual(references[0], "reference1")
-        self.assertEqual(references[1], "reference2")
+        self.assertEqual(references[0].cite_key, "petpet")
+        self.assertEqual(references[1].cite_key, "petpet2")
 
     def test_create_reference(self):
         """ Test that create_reference returns a valid bibtex string """
+        result = self.reference_service.create_reference(cite_key="zimmerman2002becoming",
+                                                         title=("Becoming a self-regulated learner:"
+                                                                " An overview"),
+                                                         author="Zimmerman, Barry J",
+                                                         journal="Theory into practice",
+                                                         year="2003",
+                                                         volume="41")
 
-        cite_key = 'zimmerman2002becoming'
-        cite_type = 'article'
-        fields = [('title', 'Becoming a self-regulated learner: An overview'),
-                  ('author', 'Zimmerman, Barry J'),
-                  ('journal', 'Theory into practice'),
-                  ('volume', '41'),
-                  ('number', '2'),
-                  ('pages', '64--70'),
-                  ('year', '2002'),
-                  ('publisher', 'Taylor & Francis')]
-        bib_data = BibliographyData({cite_key: Entry(cite_type, fields)})
-
-        result = self.reference_service.create_reference(
-            cite_key, fields, cite_type)
-
-        self.assertEqual(bib_data.to_string('bibtex'), result)
+        self.assertEqual(result.cite_key, "zimmerman2002becoming")
