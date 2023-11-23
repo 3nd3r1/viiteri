@@ -15,7 +15,7 @@ def add_reference():
         submitted = session.pop('submitted', False)
         return render_template("add.html", submitted=submitted)
     if request.method == "POST":
-        cite_key = request.form["cite_key"]
+        cite_key = request.form["title"][0:3] + request.form["author"].split(" ")[0][0:3]
         fields = [("author", request.form["author"]),
                   ("title", request.form["title"]),
                   ("journal", request.form["journal"]),
