@@ -1,7 +1,7 @@
 """ viiteri/utils/initialize_db.py """
 from sqlalchemy.sql import text
-from viiteri.utils.db import get_database_connection
 
+from viiteri.app import db
 
 
 def drop_table(connection):
@@ -11,6 +11,7 @@ def drop_table(connection):
         DROP TABLE IF EXISTS reference_table;
     """))
     cursor.commit()
+
 
 def create_table(connection):
     """Creates the reference table"""
@@ -23,11 +24,11 @@ def create_table(connection):
     """))
     cursor.commit()
 
+
 def initialize_database():
     """Initializes database"""
-    connection = get_database_connection()
-    drop_table(connection)
-    create_table(connection)
+    drop_table(db)
+    create_table(db)
 
 
 if __name__ == "__main__":
