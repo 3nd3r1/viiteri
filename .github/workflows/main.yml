@@ -20,6 +20,8 @@ jobs:
               run: pip install poetry
             - name: Install dependencies
               run: poetry install
+            - name: Start postgresql
+              run: sudo systemctl start postgresql.service
             - name: Build database
               run: poetry run invoke build
             - name: Setup chromedriver
