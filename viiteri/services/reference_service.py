@@ -1,13 +1,13 @@
 """ viiteri/services/reference_service """
 
 from pybtex.database import BibliographyData, Entry
-# from viiteri.repositories.article_repository import ReferenceRepository as default_repository
+from viiteri.repositories.reference_repository import reference_repository as default_repository
 
 
 class ReferenceService:
     """ Service for handling references """
 
-    def __init__(self, reference_repository=None):
+    def __init__(self, reference_repository=default_repository):
         self._reference_repository = reference_repository
 
     def get_all_references(self):

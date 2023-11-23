@@ -41,20 +41,8 @@
 
 			<h2 id="articles_title" style="display: none">All articles</h2>
 			<div id="articles" style="display: none">
-				{% for article in references %}
-				<p>Author: {{ article.author }}</p>
-				<p>Title: {{ article.title }}</p>
-				<p>Year: {{ article.year }}</p>
-				<p>Journal: {{ article.journal }}</p>
-				<p>Volume: {{ article.volume }}</p>
-				<p>Number: {{ article.number }}</p>
-				<p>Pages: {{ article.pages }}</p>
-				<p>Month: {{ article.month }}</p>
-				<p>DOI: {{ article.doi }}</p>
-				<p>Note: {{ article.note }}</p>
-				<p>ISSN: {{ article.issn }}</p>
-				<p>Zbl: {{ article.zblnumber }}</p>
-				<p>Eprint: {{ article.eprint }}</p>
+				{% for reference in references %}
+				<p>{{reference}}</p>
 				<hr />
 				{% endfor %}
 			</div>

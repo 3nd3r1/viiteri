@@ -1,12 +1,12 @@
 """ viiteri/repositories/reference_repository.py """
 # from entities.article import Article
 from sqlalchemy.sql import text
-from viiteri.utils.db import get_database_connection
-
+from viiteri.app import db
 
 
 class ReferenceRepository:
     """Handles the reference database."""
+
     def __init__(self, connection):
         self._connection = connection
 
@@ -15,7 +15,7 @@ class ReferenceRepository:
         cursor = self._connection.session()
         cursor.execute(text(
             'insert into reference_table (content) values (:content);'),
-            {"content":content}
+            {"content": content}
         )
         cursor.commit()
 
@@ -35,4 +35,4 @@ class ReferenceRepository:
         cursor.commit()
 
 
-reference_repository = ReferenceRepository(get_database_connection())
+reference_repository = ReferenceRepository(db)
