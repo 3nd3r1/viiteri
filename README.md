@@ -1,4 +1,5 @@
 # JEEOVI - README
+
 [![CI](https://github.com/3nd3r1/ohtu-miniprojekti/actions/workflows/main.yml/badge.svg)](https://github.com/3nd3r1/ohtu-miniprojekti/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/3nd3r1/ohtu-miniprojekti/graph/badge.svg?token=LB9DOS5ALB)](https://codecov.io/gh/3nd3r1/ohtu-miniprojekti)
 
@@ -13,4 +14,4 @@
 
 ## Seuraava tapaaminen
 
--   Torstai 23.11.2023 klo 17:30
+-   Perjantai 24.11.2023 klo 11:00
