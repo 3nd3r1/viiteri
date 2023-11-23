@@ -17,7 +17,7 @@ pybtex = "^0.24.0"
 gunicorn = "^21.2.0"
 
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 pylint = "^3.0.2"
 robotframework = "^6.1.1"
 coverage = "^7.3.2"
