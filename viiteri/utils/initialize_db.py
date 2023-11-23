@@ -1,7 +1,8 @@
 """ viiteri/utils/initialize_db.py """
 from sqlalchemy.sql import text
 
-from viiteri.app import db
+from viiteri.app import create_app
+from viiteri.utils.db import db
 
 
 def drop_table(connection):
@@ -32,4 +33,6 @@ def initialize_database():
 
 
 if __name__ == "__main__":
-    initialize_database()
+    app = create_app()
+    with app.app_context():
+        initialize_database()

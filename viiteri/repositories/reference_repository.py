@@ -2,7 +2,7 @@
 from sqlalchemy.sql import text
 
 from viiteri.entities.reference import Reference
-from viiteri.app import db
+from viiteri.utils.db import db
 
 
 class ReferenceRepository:

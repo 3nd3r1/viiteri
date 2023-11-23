@@ -36,7 +36,7 @@ jobs:
             - name: Start postgresql
               run: sudo systemctl start postgresql
             - name: Build database
-              run: poetry run invoke build
+              run: poetry run invoke init-db
             - name: Setup chromedriver
               uses: nanasess/setup-chromedriver@master
             - run: |

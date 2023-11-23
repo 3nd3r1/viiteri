@@ -7,6 +7,11 @@ from invoke.tasks import task
 
 @task
 def start(ctx):
+    ctx.run("gunicorn -w 4 'viiteri.app:create_app()'")
+
+
+@task
+def debug(ctx):
     if sys.platform.startswith("win"):
         ctx.run("py viiteri/index.py")
     else:
@@ -14,8 +19,8 @@ def start(ctx):
 
 
 @task
-def build(ctx):
-    ctx.run("python viiteri/utils/build.py")
+def init_db(ctx):
+    ctx.run("python viiteri/utils/initialize_db.py")
 
 
 @task
@@ -30,7 +35,7 @@ def robottest(ctx):
 
 @task
 def coverage(ctx):
-    ctx.run("coverage run --branch -m pytest .")
+    ctx.run("coverage run --branch -m pytest ./tests/unit")
 
 
 @task(coverage)
