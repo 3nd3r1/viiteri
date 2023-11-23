@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # käynnistetään Flask-palvelin taustalle
-poetry run invoke start &
+poetry run invoke debug &
 
 # odetetaan, että palvelin on valmiina ottamaan vastaan pyyntöjä
 while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:5001/ping)" != "200" ]];
