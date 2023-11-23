@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>BibTex Article Reference Management Tool</title>
+</head>
+<body>
+    <div>
+        <h1>BibTex Article Reference Management Tool</h1>
+
+        <button onclick="window.location.href='/'" style="background-color: #75ACE0; border-radius: 20px;">Home</button>
+        <button onclick="window.location.href='/submit'" style="background-color: #75ACE0; border-radius: 20px;">Submit</button>
+        <button onclick="window.location.href='/view'" style="background-color: #75ACE0; border-radius: 20px;">View</button>
+
+        <form method="POST">
+            <p><b>Mandatory fields</b></p>
+
+            <div><input type="text" class="form-field" name="author" placeholder="Author(s)" required></div>
+            <div><input type="text" class="form-field" name="title" placeholder="Title" required></div>
+            <div><input type="text" class="form-field" name="journal" placeholder="Journal" required></div>
+            <div><input type="text" class="form-field" name="year" placeholder="Year" required></div>
+            
+            <p><b>Optional fields</b></p>
+
+            <div><input type="text" class="form-field" name="volume" placeholder="Volume"></div>
+            <div><input type="text" class="form-field" name="number" placeholder="Number/Issue"></div>
+            <div><input type="text" class="form-field" name="pages" placeholder="Page(s)"></div>
+            <div><input type="text" class="form-field" name="month" placeholder="Month"></div>
+            <div><input type="text" class="form-field" name="doi" placeholder="DOI"></div>
+            <div><input type="text" class="form-field" name="note" placeholder="Additional note"></div>
+            <div><input type="text" class="form-field" name="issn" placeholder="ISSN"></div>
+            <div><input type="text" class="form-field" name="zblnumber" placeholder="Zbl number"></div>
+            <div><input type="text" class="form-field" name="eprint" placeholder="Eprint number"></div>
+
+            {% if submitted %}
+                <p>Submission successful! If you want to submit another article, press <b>Submit another article</b>.</p>
+                <div><button type="submit" id="submit_button">Submit another article</button></div>
+            {% else %}
+                <p>When you are finished filling the fields, press <b>Submit article</b> to enter the reference into the system.</p>
+                <div><button type="submit" id="submit_button">Submit article</button></div>
+            {% endif %}
+        </form>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var submit_button = document.getElementById("submit_button");
+            var form_fields = document.getElementsByClassName("form-field");
+            var form = document.forms[0];
+
+            function disableFormFields(disable) {
+                for (var i = 0; i < form_fields.length; i++) {
+                    form_fields[i].disabled = disable;
+                }
+            }
+
+            {% if submitted %}
+                disableFormFields(true);
+                submit_button.textContent = "Submit another article";
+            {% else %}
+                disableFormFields(false);
+                submit_button.textContent = "Submit article";
+            {% endif %}
+
+            submit_button.onclick = function() {
+                if (submitted) {
+                    document.location.reload(true);
+                } else {
+                    form.submit();
+                }
+            };
+        };
+    </script>
+</body>
+</html>
