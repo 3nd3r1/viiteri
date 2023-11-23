@@ -35,9 +35,9 @@ jobs:
               run: poetry install
             - name: Start postgresql
               run: |
-                  sudo systemctl start postgresql
                   psql "postgresql://postgres:postgres@localhost:5432" -c "CREATE ROLE runner;"
                   psql "postgresql://postgres:postgres@localhost:5432" -c "CREATE DATABASE runner;"
+                  sudo systemctl start postgresql
             - name: Build database
               run: poetry run invoke build
             - name: Setup chromedriver
