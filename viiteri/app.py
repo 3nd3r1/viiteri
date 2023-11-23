@@ -1,11 +1,12 @@
 """ viiteri/app.py """
 from flask import Flask
 
-from viiteri.routes import add, index
+from viiteri.routes import index, add, list_references
 
 app = Flask(__name__)
 app.register_blueprint(index.blueprint)
 app.register_blueprint(add.blueprint)
+app.register_blueprint(list_references.blueprint)
 
 
 @app.route("/ping")

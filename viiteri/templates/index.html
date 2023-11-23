@@ -1,4 +1,42 @@
-{% extends "base.html" %} 
+<!DOCTYPE html>
+<html>
+	<head>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{{ url_for('static', filename='styles.css') }}"
+		/>
+		<title>Home - Viiteri</title>
+	</head>
+	<body>
+		<div>
+			<h1>BibTex Article Reference Management Tool</h1>
 
-{% block title %}Etusivu{% endblock %} 
-{% block header%}<h2>Index</h2>{% endblock %}
+			<button
+				onclick="window.location.href='/'"
+				style="background-color: #75ace0; border-radius: 20px"
+			>
+				Home
+			</button>
+			<button
+				onclick="window.location.href='/add'"
+				style="background-color: #75ace0; border-radius: 20px"
+			>
+				Submit
+			</button>
+			<button
+				onclick="window.location.href='/list'"
+				style="background-color: #75ace0; border-radius: 20px"
+			>
+				View
+			</button>
+
+			<p>
+				This is the management tool for BibTex Article references. You
+				can save article type references and then view them. Click on
+				<b>Submit</b> to enter an article reference, and then click on
+				<b>View</b> to view all the saved references.
+			</p>
+		</div>
+	</body>
+</html>

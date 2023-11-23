@@ -14,6 +14,11 @@ def start(ctx):
 
 
 @task
+def build(ctx):
+    ctx.run("python viiteri/utils/build.py")
+
+
+@task
 def unittest(ctx):
     ctx.run("pytest ./tests/unit")
 

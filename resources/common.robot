@@ -18,7 +18,7 @@ Open And Configure Browser
     Set Selenium Speed    ${DELAY}
 
 Home Page Should Be Open
-    Title Should Be    Etusivu - Viiteri
+    Title Should Be    Home - Viiteri
 
 Go To Home Page
     Go To    ${HOME_URL}
