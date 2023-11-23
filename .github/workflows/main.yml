@@ -35,6 +35,7 @@ jobs:
               run: poetry install
             - name: Start postgresql
               run: |
+                  sudo systemctl start postgresql
                   psql "postgresql://postgres:postgres@localhost:5432" -c "CREATE ROLE runner;"
                   psql "postgresql://postgres:postgres@localhost:5432" -c "CREATE DATABASE runner;"
             - name: Build database
