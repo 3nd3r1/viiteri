@@ -2,27 +2,27 @@
 
 import unittest
 
-from viiteri.entities.references import Article
+from viiteri.entities.references import Article, Book
 from viiteri.services.reference_service import ReferenceService
 
 
-class ArticleRepositoryStub:
-    """ Stub class for ArticleRepository """
+class ReferenceRepositoryStub:
+    """ Stub class for ReferenceRepository """
 
     def __init__(self):
         self._references = [Article(cite_key="petpet", author="Petteri",
                                     title="Petterin Kirja",
                                     journal="Petterin Kirjakokoelma", year="2003"),
-                            Article(cite_key="petpet2", author="Petteri",
-                                    title="Petterin Kirja 2",
-                                    journal="Petterin Kirjakokoelma", year="2005")]
+                            Book(cite_key="petkir", author="Petteri", 
+                                 editor="Petteri", title="Petterin Kirja vol 2", 
+                                 publisher="WSOY", year="2004")]
 
     def get_all_references(self):
         """ Returns all references """
         return self._references
 
     def add_reference(self, reference):
-        """ Stub method for add_article_reference """
+        """ Stub method for add_reference """
         self._references.append(reference)
         return reference
 
@@ -31,7 +31,7 @@ class TestReferenceService(unittest.TestCase):
     """ Test class for ReferenceService """
 
     def setUp(self):
-        self.reference_service = ReferenceService(ArticleRepositoryStub())
+        self.reference_service = ReferenceService(ReferenceRepositoryStub())
 
     def test_get_all_references(self):
         """ Test get_all_references """
@@ -40,11 +40,11 @@ class TestReferenceService(unittest.TestCase):
 
         self.assertEqual(len(references), 2)
         self.assertEqual(references[0].cite_key, "petpet")
-        self.assertEqual(references[1].cite_key, "petpet2")
+        self.assertEqual(references[1].cite_key, "petkir")
 
     def test_create_reference(self):
         """ Test that create_reference returns a valid bibtex string """
-        result = self.reference_service.create_reference("article",
+        result_article = self.reference_service.create_reference("article",
                                                          cite_key="zimmerman2002becoming",
                                                          title=("Becoming a self-regulated learner:"
                                                                 " An overview"),
@@ -52,5 +52,13 @@ class TestReferenceService(unittest.TestCase):
                                                          journal="Theory into practice",
                                                          year="2003",
                                                          volume="41")
+        result_book = self.reference_service.create_reference("book",
+                                                              cite_key="CI",
+                                                              author="Duvall, Paul",
+                                                              title="Continuous Integration: Improving Software Quality and Reducing Risk",
+                                                              year="2007",
+                                                              publisher="Addison-Wesley",
+                                                              editor="editor")
 
-        self.assertEqual(result.cite_key, "zimmerman2002becoming")
+        self.assertEqual(result_article.cite_key, "zimmerman2002becoming")
+        self.assertEqual(result_book.cite_key, "CI")

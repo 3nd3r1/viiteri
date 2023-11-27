@@ -86,7 +86,7 @@ class TestReferenceEntity(unittest.TestCase):
                                        "'author': 'Petteri', "
                                        "'editor': 'Petteri', "
                                        "'title': 'Petterin Kirja vol 2', "
-                                       "'publisher': WSOY, "
+                                       "'publisher': 'WSOY', "
                                        "'year': '2004', "
                                        "'number': None, "
                                        "'volume': None, "

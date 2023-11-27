@@ -1,6 +1,6 @@
 """ viiteri/utils/reference_factory.py """
 
-from viiteri.entities.references import Article
+from viiteri.entities.references import Article, Book
 
 
 class ReferenceFactory:
@@ -8,8 +8,11 @@ class ReferenceFactory:
     @staticmethod
     def create_reference(reference_type, **kwargs):
         """ Create a reference of given type """
-        if reference_type == "article":
-            return Article(**kwargs)
+        match reference_type:
+            case "article":
+                return Article(**kwargs)
+            case "book":
+                return Book(**kwargs)
 
         raise ValueError("Unknown reference type")
 
