@@ -1,6 +1,6 @@
 """ viiteri/utils/reference_factory.py """
 
-from viiteri.entities.references import Article, Book
+from viiteri.entities.references import Article, Book, Inproceeding
 
 
 class ReferenceFactory:
@@ -13,6 +13,8 @@ class ReferenceFactory:
                 return Article(**kwargs)
             case "book":
                 return Book(**kwargs)
+            case "inproceeding":
+                return Inproceeding(**kwargs)
 
         raise ValueError("Unknown reference type")
 
