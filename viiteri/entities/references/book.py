@@ -11,7 +11,7 @@ class Book(Reference):
         if not kwargs.keys() >= {"cite_key", "author", "editor", "title", "publisher", "year"}:
             raise ValueError("Missing required arguments")
 
-        super().__init__("article", kwargs["cite_key"])
+        super().__init__("book", kwargs["cite_key"])
         self.author = kwargs["author"]
         self.editor = kwargs["editor"]
         self.title = kwargs["title"]
