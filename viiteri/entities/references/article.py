@@ -1,7 +1,7 @@
-""" viiteri/entities/reference/article.py """
+""" viiteri/entities/references/article.py """
 
 # pylint: disable=too-many-instance-attributes
-from viiteri.entities.reference import Reference
+from viiteri.entities.references import Reference
 
 
 class Article(Reference):

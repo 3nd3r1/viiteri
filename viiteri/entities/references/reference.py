@@ -1,4 +1,4 @@
-""" viiteri/entities/reference/reference.py """
+""" viiteri/entities/references/reference.py """
 from abc import ABC
 
 
