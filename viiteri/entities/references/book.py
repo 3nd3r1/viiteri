@@ -1,4 +1,4 @@
-""" viiteri/entities/reference/book.py """
+""" viiteri/entities/references/book.py """
 
 # pylint: disable=too-many-instance-attributes
 from viiteri.entities.references import Reference

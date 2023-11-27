@@ -12,8 +12,8 @@ class TestReferenceEntity(unittest.TestCase):
         self.test_article = Article(cite_key="petpet", author="Petteri",
                                     title="Petterin Kirja",
                                     journal="Petterin Kirjakokoelma", year="2003", volume="1")
-        self.test_book = Book(cite_key="petkir", author="Petteri", 
-                              editor="Petteri", title="Petterin Kirja vol 2", 
+        self.test_book = Book(cite_key="petkir", author="Petteri",
+                              editor="Petteri", title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
 
     def test_article_constructor(self):
@@ -30,7 +30,7 @@ class TestReferenceEntity(unittest.TestCase):
 
         # Test that optional fields are set
         self.assertEqual(self.test_article.volume, "1")
-    
+
     def test_book_constructor(self):
         """ Test that Book-entity is correctly instantiated """
         # Test that abstract fields are set
@@ -50,7 +50,7 @@ class TestReferenceEntity(unittest.TestCase):
         with self.assertRaises(ValueError):
             Article(cite_key="petpet", author="Petteri",
                     title="Petterin Kirja", journal="Petterin Kirjakokoelma")
-    
+
     def test_init_book_with_missing_required_arguments(self):
         """ Test that Book-entity raises ValueError with invalid arguments """
 
@@ -82,17 +82,17 @@ class TestReferenceEntity(unittest.TestCase):
         """ Test that Book entitys str method returns correct string """
         book_str = str(self.test_book)
         self.assertEqual(book_str, ("{'_type': 'book', "
-                                       "'_cite_key': 'petkir', "
-                                       "'author': 'Petteri', "
-                                       "'editor': 'Petteri', "
-                                       "'title': 'Petterin Kirja vol 2', "
-                                       "'publisher': 'WSOY', "
-                                       "'year': '2004', "
-                                       "'number': None, "
-                                       "'volume': None, "
-                                       "'pages': None, "
-                                       "'month': None, "
-                                       "'note': None, "
-                                       "'doi': None, "
-                                       "'issn': None, "
-                                       "'isbn': None}"))
+                                    "'_cite_key': 'petkir', "
+                                    "'author': 'Petteri', "
+                                    "'editor': 'Petteri', "
+                                    "'title': 'Petterin Kirja vol 2', "
+                                    "'publisher': 'WSOY', "
+                                    "'year': '2004', "
+                                    "'number': None, "
+                                    "'volume': None, "
+                                    "'pages': None, "
+                                    "'month': None, "
+                                    "'note': None, "
+                                    "'doi': None, "
+                                    "'issn': None, "
+                                    "'isbn': None}"))
