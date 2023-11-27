@@ -3,7 +3,7 @@
 import unittest
 
 from viiteri.app import create_app
-from viiteri.entities.reference import Article
+from viiteri.entities.references import Article
 from viiteri.repositories.reference_repository import reference_repository
 
 

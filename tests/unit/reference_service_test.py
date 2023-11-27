@@ -2,7 +2,7 @@
 
 import unittest
 
-from viiteri.entities.reference import Article
+from viiteri.entities.references import Article
 from viiteri.services.reference_service import ReferenceService
 
 

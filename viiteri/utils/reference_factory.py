@@ -1,6 +1,6 @@
 """ viiteri/utils/reference_factory.py """
 
-from viiteri.entities.reference import Article
+from viiteri.entities.references import Article
 
 
 class ReferenceFactory:

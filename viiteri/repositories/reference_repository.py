@@ -1,7 +1,7 @@
 """ viiteri/repositories/reference_repository.py """
 from sqlalchemy.sql import text
 
-from viiteri.entities.reference import Reference
+from viiteri.entities.references import Reference
 from viiteri.utils.reference_factory import ReferenceFactory
 from viiteri.utils.db import db
 

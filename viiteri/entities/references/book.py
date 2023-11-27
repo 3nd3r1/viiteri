@@ -1,29 +1,29 @@
-""" viiteri/entities/reference/article.py """
+""" viiteri/entities/reference/book.py """
 
 # pylint: disable=too-many-instance-attributes
-from viiteri.entities.reference import Reference
+from viiteri.entities.references import Reference
 
 
-class Article(Reference):
-    """ Class for representing 'article'-type references """
+class Book(Reference):
+    """ Class for representing 'book'-type references """
 
     def __init__(self, **kwargs):
-        if not kwargs.keys() >= {"cite_key", "author", "title", "journal", "year"}:
+        if not kwargs.keys() >= {"cite_key", "author", "editor", "title", "publisher", "year"}:
             raise ValueError("Missing required arguments")
 
         super().__init__("article", kwargs["cite_key"])
         self.author = kwargs["author"]
+        self.editor = kwargs["editor"]
         self.title = kwargs["title"]
-        self.journal = kwargs["journal"]
+        self.publisher = kwargs["publisher"]
         self.year = kwargs["year"]
 
         # Optional arguments
-        self.volume = kwargs.get("volume", None)
         self.number = kwargs.get("number", None)
+        self.volume = kwargs.get("volume", None)
         self.pages = kwargs.get("pages", None)
         self.month = kwargs.get("month", None)
-        self.doi = kwargs.get("doi", None)
         self.note = kwargs.get("note", None)
+        self.doi = kwargs.get("doi", None)
         self.issn = kwargs.get("issn", None)
-        self.zblnumber = kwargs.get("zblnumber", None)
-        self.eprint = kwargs.get("eprint", None)
+        self.isbn = kwargs.get("isbn", None)
