@@ -1,16 +1,15 @@
 """ viiteri/entities/reference/reference.py """
-from abc import ABC
+from abc import ABC, ABCMeta, abstractmethod
 
 
-class Reference(ABC):
+class Reference(ABC, metaclass=ABCMeta):
     """ Abstract class for representing references """
 
-    def __init__(self, reference_type, cite_key):
-        self._type = reference_type
+    def __init__(self, cite_key):
         self._cite_key = cite_key
 
     def __str__(self):
-        return str(self.__dict__)
+        return str({**{"_type": self.type}, **self.__dict__})
 
     # @abstractmethod
     # def format_ieee(self):
@@ -26,6 +25,6 @@ class Reference(ABC):
         return self._cite_key
 
     @property
+    @abstractmethod
     def type(self):
         """ Return reference type """
-        return self._type

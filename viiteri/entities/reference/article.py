@@ -12,7 +12,7 @@ class Article(Reference):
         if not kwargs.keys() >= {"cite_key", "author", "title", "journal", "year"}:
             raise ValueError("Missing required arguments")
 
-        super().__init__(Article.type, kwargs["cite_key"])
+        super().__init__(kwargs["cite_key"])
         self.author = kwargs["author"]
         self.title = kwargs["title"]
         self.journal = kwargs["journal"]
