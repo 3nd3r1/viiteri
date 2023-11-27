@@ -10,7 +10,7 @@ class Reference(ABC):
         self._cite_key = cite_key
 
     def __str__(self):
-        return str({**{"_type": self.type}, **self.__dict__})
+        return str(self.__dict__)
 
     # @abstractmethod
     # def format_ieee(self):
