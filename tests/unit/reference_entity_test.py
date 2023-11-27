@@ -2,7 +2,7 @@
 
 import unittest
 
-from viiteri.entities.references import Article, Book
+from viiteri.entities.references import Article, Book, Inproceeding
 
 
 class TestReferenceEntity(unittest.TestCase):
@@ -15,6 +15,9 @@ class TestReferenceEntity(unittest.TestCase):
         self.test_book = Book(cite_key="petkir", author="Petteri",
                               editor="Petteri", title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
+        self.test_inproceeding = Inproceeding(cite_key="johinp", author="John Doe",
+                                              title="An Analysis of Example", booktitle="Sample Text",
+                                              year="2002", editor="Ex Ample")
 
     def test_article_constructor(self):
         """ Test that Article entity is correctly instantiated """
@@ -44,6 +47,21 @@ class TestReferenceEntity(unittest.TestCase):
         self.assertEqual(self.test_book.publisher, "WSOY")
         self.assertEqual(self.test_book.year, "2004")
 
+    def test_inproceeding_constructor(self):
+        """ Test that Inproceeding-entity is correctly instantiated """
+        # Test that abstract fields are set
+        self.assertEqual(self.test_inproceeding.type, "inproceeding")
+        self.assertEqual(self.test_inproceeding.cite_key, "johinp")
+
+        # Test that required fields are set
+        self.assertEqual(self.test_inproceeding.author, "John Doe")
+        self.assertEqual(self.test_inproceeding.title, "An Analysis of Example")
+        self.assertEqual(self.test_inproceeding.booktitle, "Sample Text")
+        self.assertEqual(self.test_inproceeding.year, "2002")
+
+        # Test that optional fields are set
+        self.assertEqual(self.test_inproceeding.editor, "Ex Ample")
+
     def test_init_article_with_missing_required_arguments(self):
         """ Test that Article entity raises ValueError with invalid arguments """
 
@@ -58,6 +76,14 @@ class TestReferenceEntity(unittest.TestCase):
             Book(cite_key="petkir", author="Petteri",
                  editor="Petteri", publisher="WSOY",
                  year="2004")
+
+    def test_init_inproceeding_with_missing_required_arguments(self):
+        """ Test that Inproceeding-entity raises ValueError with invalid arguments  """
+
+        with self.assertRaises(ValueError):
+            Inproceeding(cite_key="johinp", author="John Doe",
+                 title="An Analysis of Example", booktitle="Sample Text",
+                 editor="Ex Ample")
 
     def test_article_str_method(self):
         """ Test that Article entitys str method returns correct string """
@@ -96,3 +122,24 @@ class TestReferenceEntity(unittest.TestCase):
                                     "'doi': None, "
                                     "'issn': None, "
                                     "'isbn': None}"))
+
+    def test_inproceeding_str_method(self):
+        """ Test that Inproceeding entitys str method returns correct string """
+        inproceeding_str = str(self.test_inproceeding)
+        self.assertEqual(inproceeding_str, ("{'_type': 'inproceeding', "
+                                    "'_cite_key': 'johinp', "
+                                    "'author': 'John Doe', "
+                                    "'title': 'An Analysis of Example', "
+                                    "'booktitle': 'Sample Text', "
+                                    "'year': '2002', "
+                                    "'editor': 'Ex Ample', "
+                                    "'volume': None, "
+                                    "'number': None, "
+                                    "'series': None, "
+                                    "'pages': None, "
+                                    "'month': None, "
+                                    "'address': None, "
+                                    "'organization': None, "
+                                    "'publisher': None, "
+                                    "'note': None, "
+                                    "'annote': None}"))
