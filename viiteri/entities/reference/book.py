@@ -4,7 +4,7 @@
 from viiteri.entities.reference import Reference
 
 
-class Article(Reference):
+class Book(Reference):
     """ Class for representing 'book'-type references """
 
     def __init__(self, **kwargs):
@@ -19,8 +19,8 @@ class Article(Reference):
         self.year = kwargs["year"]
 
         # Optional arguments
-        self.volume = kwargs.get("volume", None)
         self.number = kwargs.get("number", None)
+        self.volume = kwargs.get("volume", None)
         self.pages = kwargs.get("pages", None)
         self.month = kwargs.get("month", None)
         self.note = kwargs.get("note", None)
