@@ -1,4 +1,4 @@
-# pylint: disable=import-error, no-name-in-module, broad-except
+# pylint: disable=broad-except
 
 """ viiteri/routes/create_reference.py """
 from flask import Blueprint, render_template, redirect, request, flash, session
@@ -15,13 +15,14 @@ def add_reference():
         submitted = session.pop('submitted', False)
         return render_template("add.html", submitted=submitted)
     if request.method == "POST":
-        cite_key = request.form["title"][0:3] + request.form["author"].split(" ")[0][0:3]
+        cite_key = request.form["title"][0:3] + \
+            request.form["author"].split(" ")[0][0:3]
         try:
-            reference_service.create_reference(cite_key=cite_key, **request.form.to_dict())
+            reference_service.create_reference(
+                "article", cite_key=cite_key, **request.form.to_dict())
             flash("Reference created successfully!")
             session["submitted"] = True
         except Exception as error:
             flash(str(error))
-            print(str(error))
             session["submitted"] = False
     return redirect("/add")

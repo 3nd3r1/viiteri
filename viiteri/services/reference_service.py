@@ -2,6 +2,7 @@
 
 from viiteri.repositories.reference_repository import reference_repository as default_repository
 from viiteri.entities.reference import Reference
+from viiteri.utils.reference_factory import ReferenceFactory
 
 
 class ReferenceService:
@@ -14,9 +15,10 @@ class ReferenceService:
         """ Returns all references """
         return self._reference_repository.get_all_references()
 
-    def create_reference(self, **kwargs):
+    def create_reference(self, reference_type, **kwargs):
         """ Creates a new reference """
-        new_reference = Reference(**kwargs)
+        new_reference = ReferenceFactory.create_reference(
+            reference_type, **kwargs)
         return self._reference_repository.add_reference(new_reference)
 
 

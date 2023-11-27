@@ -1,18 +1,18 @@
-"""viiteri/entities/reference.py"""
-
+""" viiteri/entities/reference/article.py """
 
 # pylint: disable=too-many-instance-attributes
+from viiteri.entities.reference import Reference
 
-class Reference:
 
-    """Class for representing references (currently only article-type)"""
+class Article(Reference):
+    """ Class for representing 'article'-type references """
+    type = "article"
 
     def __init__(self, **kwargs):
-
         if not kwargs.keys() >= {"cite_key", "author", "title", "journal", "year"}:
             raise ValueError("Missing required arguments")
 
-        self.cite_key = kwargs["cite_key"]
+        super().__init__(Article.type, kwargs["cite_key"])
         self.author = kwargs["author"]
         self.title = kwargs["title"]
         self.journal = kwargs["journal"]
@@ -28,11 +28,3 @@ class Reference:
         self.issn = kwargs.get("issn", None)
         self.zblnumber = kwargs.get("zblnumber", None)
         self.eprint = kwargs.get("eprint", None)
-
-    def __str__(self):
-        return self.__dict__.__str__()
-
-    @classmethod
-    def from_str(cls, content):
-        """ Convert content string to Reference object """
-        return cls(**eval(content))  # pylint: disable=eval-used
