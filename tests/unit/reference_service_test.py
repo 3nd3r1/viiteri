@@ -2,7 +2,7 @@
 
 import unittest
 
-from viiteri.entities.reference import Reference
+from viiteri.entities.reference import Article
 from viiteri.services.reference_service import ReferenceService
 
 
@@ -10,12 +10,12 @@ class ArticleRepositoryStub:
     """ Stub class for ArticleRepository """
 
     def __init__(self):
-        self._references = [Reference(cite_key="petpet", author="Petteri",
-                                      title="Petterin Kirja",
-                                      journal="Petterin Kirjakokoelma", year="2003"),
-                            Reference(cite_key="petpet2", author="Petteri",
-                                      title="Petterin Kirja 2",
-                                      journal="Petterin Kirjakokoelma", year="2005")]
+        self._references = [Article(cite_key="petpet", author="Petteri",
+                                    title="Petterin Kirja",
+                                    journal="Petterin Kirjakokoelma", year="2003"),
+                            Article(cite_key="petpet2", author="Petteri",
+                                    title="Petterin Kirja 2",
+                                    journal="Petterin Kirjakokoelma", year="2005")]
 
     def get_all_references(self):
         """ Returns all references """
@@ -44,7 +44,8 @@ class TestReferenceService(unittest.TestCase):
 
     def test_create_reference(self):
         """ Test that create_reference returns a valid bibtex string """
-        result = self.reference_service.create_reference(cite_key="zimmerman2002becoming",
+        result = self.reference_service.create_reference("article",
+                                                         cite_key="zimmerman2002becoming",
                                                          title=("Becoming a self-regulated learner:"
                                                                 " An overview"),
                                                          author="Zimmerman, Barry J",

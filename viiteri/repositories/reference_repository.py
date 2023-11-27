@@ -2,6 +2,7 @@
 from sqlalchemy.sql import text
 
 from viiteri.entities.reference import Reference
+from viiteri.utils.reference_factory import ReferenceFactory
 from viiteri.utils.db import db
 
 
@@ -27,7 +28,8 @@ class ReferenceRepository:
         result = cursor.execute(text(
             'select content from reference_table;'
         ))
-        references = [Reference.from_str(content[0]) for content in result.fetchall()]
+        references = [ReferenceFactory.from_str(
+            content[0]) for content in result.fetchall()]
         return references
 
     def delete_all(self):
