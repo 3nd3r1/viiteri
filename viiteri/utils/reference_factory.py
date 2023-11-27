@@ -8,7 +8,7 @@ class ReferenceFactory:
     @staticmethod
     def create_reference(reference_type, **kwargs):
         """ Create a reference of given type """
-        if reference_type == Article.type:
+        if reference_type == "article":
             return Article(**kwargs)
 
         raise ValueError("Unknown reference type")
