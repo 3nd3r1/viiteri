@@ -16,7 +16,8 @@ class TestReferenceEntity(unittest.TestCase):
                               editor="Petteri", title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
         self.test_inproceeding = Inproceeding(cite_key="johinp", author="John Doe",
-                                              title="An Analysis of Example", booktitle="Sample Text",
+                                              title="An Analysis of Example",
+                                              booktitle="Sample Text",
                                               year="2002", editor="Ex Ample")
 
     def test_article_constructor(self):
@@ -55,7 +56,8 @@ class TestReferenceEntity(unittest.TestCase):
 
         # Test that required fields are set
         self.assertEqual(self.test_inproceeding.author, "John Doe")
-        self.assertEqual(self.test_inproceeding.title, "An Analysis of Example")
+        self.assertEqual(self.test_inproceeding.title,
+                         "An Analysis of Example")
         self.assertEqual(self.test_inproceeding.booktitle, "Sample Text")
         self.assertEqual(self.test_inproceeding.year, "2002")
 
@@ -82,8 +84,8 @@ class TestReferenceEntity(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             Inproceeding(cite_key="johinp", author="John Doe",
-                 title="An Analysis of Example", booktitle="Sample Text",
-                 editor="Ex Ample")
+                         title="An Analysis of Example", booktitle="Sample Text",
+                         editor="Ex Ample")
 
     def test_article_str_method(self):
         """ Test that Article entitys str method returns correct string """
@@ -127,19 +129,19 @@ class TestReferenceEntity(unittest.TestCase):
         """ Test that Inproceeding entitys str method returns correct string """
         inproceeding_str = str(self.test_inproceeding)
         self.assertEqual(inproceeding_str, ("{'_type': 'inproceeding', "
-                                    "'_cite_key': 'johinp', "
-                                    "'author': 'John Doe', "
-                                    "'title': 'An Analysis of Example', "
-                                    "'booktitle': 'Sample Text', "
-                                    "'year': '2002', "
-                                    "'editor': 'Ex Ample', "
-                                    "'volume': None, "
-                                    "'number': None, "
-                                    "'series': None, "
-                                    "'pages': None, "
-                                    "'month': None, "
-                                    "'address': None, "
-                                    "'organization': None, "
-                                    "'publisher': None, "
-                                    "'note': None, "
-                                    "'annote': None}"))
+                                            "'_cite_key': 'johinp', "
+                                            "'author': 'John Doe', "
+                                            "'title': 'An Analysis of Example', "
+                                            "'booktitle': 'Sample Text', "
+                                            "'year': '2002', "
+                                            "'editor': 'Ex Ample', "
+                                            "'volume': None, "
+                                            "'number': None, "
+                                            "'series': None, "
+                                            "'pages': None, "
+                                            "'month': None, "
+                                            "'address': None, "
+                                            "'organization': None, "
+                                            "'publisher': None, "
+                                            "'note': None, "
+                                            "'annote': None}"))
