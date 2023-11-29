@@ -10,12 +10,10 @@
         <img src="https://codecov.io/gh/3nd3r1/ohtu-miniprojekti/graph/badge.svg?token=LB9DOS5ALB"/>
     </a>
     <a href="https://github.com/3nd3r1/ohtu-miniprojekti/blob/main/LICENSE" alt="License">
-        <img src="https://img.shields.io/github/license/3nd3r1/ohtu-miniprojekti
-"/>
+        <img src="https://img.shields.io/github/license/3nd3r1/ohtu-miniprojekti"/>
     </a>
     <a href="https://github.com/3nd3r1/ohtu-miniprojekti/releases/latest" alt="Release">
-        <img src="https://img.shields.io/github/v/release/3nd3r1/ohtu-miniprojekti
-"/>
+        <img src="https://img.shields.io/github/v/release/3nd3r1/ohtu-miniprojekti"/>
     </a>
     
 </p>
