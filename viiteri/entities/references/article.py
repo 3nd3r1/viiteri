@@ -33,7 +33,7 @@ class Article(Reference):
         author = self.author.split(' ')
         reference = f"{self.author}, "
         if len(author) > 1:
-            reference = f"{author[0][0]}. {author[1]}"
+            reference = f"{author[0][0]}. {author[1]}, "
 
         fields = [self.title, self.journal, self.volume, self.number,
                   self.pages, self.month, self.year, self.doi]

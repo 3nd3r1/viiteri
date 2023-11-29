@@ -151,15 +151,36 @@ class TestReferenceEntity(unittest.TestCase):
     def test_article_format_ieee(self):
         """Article entity is correctly converted to IEEE format"""
         article_ieee = 'Petteri, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
+
+        article_entity = Article(cite_key="petpet", author="Petteri Petterinpoika",
+                                    title="Petterin Kirja",
+                                    journal="Petterin Kirjakokoelma", year="2003", volume="1")
+        another_article_ieee = 'P. Petterinpoika, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
+
         self.assertEqual(article_ieee, self.test_article.format_ieee())
+        self.assertEqual(another_article_ieee, article_entity.format_ieee())
 
     def test_book_format_ieee(self):
         """Book entity is correctly converted to IEEE format"""
         book_ieee = 'Petteri, Ed. Petterin Kirja vol 2, WSOY, 2004'
+
+        book_entity = Book(cite_key="petkir", author="Petteri Petterinpoika", editor="Petteri",
+                           title="Petterin Kirja vol 2", publisher="WSOY", year="2004")
+        another_book_ieee = 'P. Petterinpoika, Petterin Kirja vol 2, Petteri, WSOY, 2004'
+
         self.assertEqual(book_ieee, self.test_book.format_ieee())
+        self.assertEqual(another_book_ieee, book_entity.format_ieee())
 
     def test_inproceeding_format_ieee(self):
         """Inproceeding entity is correctly converted to IEEE format"""
         inproceeding_ieee = 'J. Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
+
+        inp_entity = Inproceeding(cite_key="johinp", author="Doe",
+                                  title="An Analysis of Example",
+                                  booktitle="Sample Text",
+                                  year="2002", editor="Ex Ample")
+        inp_ieee_surname_only = 'Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
+
         self.assertEqual(inproceeding_ieee, self.test_inproceeding.format_ieee())
+        self.assertEqual(inp_ieee_surname_only, inp_entity.format_ieee())
     
