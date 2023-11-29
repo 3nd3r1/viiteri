@@ -1,5 +1,5 @@
 """ viiteri/entities/references/reference.py """
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Reference(ABC):
@@ -12,9 +12,9 @@ class Reference(ABC):
     def __str__(self):
         return str(self.__dict__)
 
-    # @abstractmethod
-    # def format_ieee(self):
-    #    """ Return IEEE formatted reference """
+    @abstractmethod
+    def format_ieee(self):
+       """ Return IEEE formatted reference """
 
     # @abstractmethod
     # def format_bibtex(self):
