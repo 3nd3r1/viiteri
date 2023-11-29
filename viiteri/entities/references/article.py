@@ -27,3 +27,17 @@ class Article(Reference):
         self.issn = kwargs.get("issn", None)
         self.zblnumber = kwargs.get("zblnumber", None)
         self.eprint = kwargs.get("eprint", None)
+
+    def format_ieee(self):
+        """Returns the reference in IEEE format"""
+        author = self.author.split(' ')
+        reference = f"{self.author}, "
+        if len(author) > 1:
+            reference = f"{author[0][0]}. {author[1]}"
+
+        fields = [self.title, self.journal, self.volume, self.number,
+                  self.pages, self.month, self.year, self.doi]
+
+        reference += ', '.join(field for field in fields if field)
+
+        return reference
