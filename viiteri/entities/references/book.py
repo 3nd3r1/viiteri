@@ -27,3 +27,19 @@ class Book(Reference):
         self.doi = kwargs.get("doi", None)
         self.issn = kwargs.get("issn", None)
         self.isbn = kwargs.get("isbn", None)
+
+    def format_ieee(self):
+        """Returns the reference in IEEE format"""
+        author = self.author.split(' ')
+        reference = f"{self.author}, "
+        if len(author) > 1:
+            reference = f"{author[0][0]}. {author[1]}, "
+
+        fields = [self.title, self.editor, self.publisher, self.year, self.pages]
+        if self.author == self.editor:
+            reference += "Ed. "
+            fields.remove(self.editor)
+
+        reference += ', '.join(field for field in fields if field)
+
+        return reference
