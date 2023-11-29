@@ -145,3 +145,21 @@ class TestReferenceEntity(unittest.TestCase):
                                             "'publisher': None, "
                                             "'note': None, "
                                             "'annote': None}"))
+
+    # ieee format tests:
+
+    def test_article_format_ieee(self):
+        """Article entity is correctly converted to IEEE format"""
+        article_ieee = 'Petteri, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
+        self.assertEqual(article_ieee, self.test_article.format_ieee())
+
+    def test_book_format_ieee(self):
+        """Book entity is correctly converted to IEEE format"""
+        book_ieee = 'Petteri, Ed. Petterin Kirja vol 2, WSOY, 2004'
+        self.assertEqual(book_ieee, self.test_book.format_ieee())
+
+    def test_inproceeding_format_ieee(self):
+        """Inproceeding entity is correctly converted to IEEE format"""
+        inproceeding_ieee = 'J. Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
+        self.assertEqual(inproceeding_ieee, self.test_inproceeding.format_ieee())
+    
