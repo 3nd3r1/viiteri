@@ -14,7 +14,7 @@ class Reference(ABC):
 
     @abstractmethod
     def format_ieee(self):
-       """ Return IEEE formatted reference """
+        """ Return IEEE formatted reference """
 
     # @abstractmethod
     # def format_bibtex(self):
