@@ -4,13 +4,13 @@
     <br>
     <label for="formSelect">Select reference type:</label>
     <select id="formSelect" onchange="switchForm(this.value)">
-        <option value="article">Article</option>
-        <option value="book">Book</option>
+        <option value="article" {% if last_ref_type == 'article' %}selected{% endif %}>Article</option>
+        <option value="book" {% if last_ref_type == 'book' %}selected{% endif %}>Book</option>
         <!-- <option value="booklet">Booklet</option> -->
         <!-- <option value="conference">Conference</option> -->
         <!-- <option value="inbook">Inbook</option> -->
         <!-- <option value="incollection">Incollection</option> -->
-        <option value="inproceedings">Inproceedings</option>
+        <option value="inproceedings" {% if last_ref_type == 'inproceedings' %}selected{% endif %}>Inproceedings</option>
         <!-- <option value="manual">Manual</option> -->
         <!-- <option value="mastersthesis">Mastersthesis</option> -->
         <!-- <option value="misc">Misc</option> -->
@@ -35,6 +35,9 @@
         }
 
         window.onload = function() {
+            var formSelect = document.getElementById("formSelect");
+            switchForm(formSelect.value);
+
             var submit_button = document.getElementById("submit_button");
             var form_fields = document.getElementsByClassName("form-field");
             var form = document.forms[0];
