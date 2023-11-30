@@ -3,33 +3,43 @@ Resource            ../../resources/common.robot
 
 Suite Setup         Open And Configure Browser
 Suite Teardown      Close Browser
-Test Setup          Go To Add Article Page
+Test Setup          Go To Add Reference Page
 
 
 *** Test Cases ***
 Add Article Successfully
+    Select From List By Value  form_select  article
     Set Author  Pekka Mikkola
     Set Title  Maijan artikkeli
     Set Journal  Maijan artikkelikokoelma
     Set Year  2011
-    Submit Article Reference
-    Add Article Should Succeed
+    Submit Reference
+    Add Reference Should Succeed
+
+# Add Book Successfully
+#     Select From List By Value  form_select  book
+#     Set Author  Maija
+#     Set Title  Maijan kirja
+#     Set Publisher  WSOY
+#     Set Year  2000
+#     Submit Reference
+#     Add Reference Should Succeed
 
 # Add Article Unsuccessfully
 #     Set Author  Pekka Mikkola
 #     Set Title  Maijan artikkeli
 #     Set Journal  Maijan artikkelikokoelma
 #     Submit Article Reference
-#     Should Fail With Message  Please fill in this field.
-#     ^ ei toimi koska ei oo message vaan joku message box tai alert
+#     Should Fail With Alert  Please fill in this field.
+#     # ^ ei toimi koska ei oo message vaan joku message box tai alert
 
 *** Keywords ***
-Add Article Should Succeed
+Add Reference Should Succeed
     Add Page Should Be Open
 
-# Should Fail With Message
+# Should Fail With Alert
 #     [Arguments]  ${message}
-#     Page Should Contain  ${message}
+#     Alert Should Be Present  ${message}
 
 Set Author
     [Arguments]  ${author}
@@ -47,10 +57,13 @@ Set Year
     [Arguments]  ${year}
     Input Text  year  ${year}
 
-Submit Article Reference
+Set Publisher
+    [Arguments]  ${publisher}
+    Input Text  publisher  ${publisher}
+
+Submit Reference
     Click Button    Submit reference
 
-Go To Add Article Page
+Go To Add Reference Page
     Go To Add Page
     Add Page Should Be Open
-    # jotain luokkaa dropdown value should be Article
