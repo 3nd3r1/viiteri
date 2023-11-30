@@ -1,39 +1,45 @@
 {% extends "base.html" %}
 {% block title %}View{% endblock %}
 {% block content %}
-	<div>
-		<p>
-			To see all of the references in the system, press
-			<b>Show all articles</b>.
-		</p>
-		<button id="toggle_button" onclick="toggleArticles()">
-			Show all articles
-		</button>
+<div>
+    <br>
+    <button id="toggle_articles_button" onclick="toggleSection('articles')" class="view-button">Show all article references</button>
+    <div id="articles" style="display: none;">
+        <h2 class="view-text">Articles</h2>
+        <ol>
+            {% include 'listing/article_list.html' %}
+        </ol>
+    </div>
 
-		<h2 id="articles_title" style="display: none">All articles</h2>
-		<div id="articles" style="display: none">
-			{% for reference in references %}
-			<p>{{reference}}</p>
-			<hr />
-			{% endfor %}
-		</div>
-	</div>
+    <button id="toggle_books_button" onclick="toggleSection('books')" class="view-button">Show all book references</button>
+    <div id="books" style="display: none;">
+        <h2 class="view-text">Books</h2>
+        <ol>
+            {% include 'listing/book_list.html' %}
+        </ol>
+    </div>
 
-	<script>
-		function toggleArticles() {
-			var articles_ids = document.getElementById("articles");
-			var articles_title = document.getElementById("articles_title");
-			var special_button = document.getElementById("toggle_button");
+    <button id="toggle_inproceedings_button" onclick="toggleSection('inproceedings')" class="view-button">Show all inproceedings references</button>
+    <div id="inproceedings" style="display: none;">
+        <h2 class="view-text">Inproceedings</h2>
+        <ol>
+            {% include 'listing/inproceedings_list.html' %}
+        </ol>
+    </div>
+</div>
 
-			if (articles_ids.style.display === "none") {
-				articles_ids.style.display = "block";
-				articles_title.style.display = "block";
-				special_button.textContent = "Hide all articles";
-			} else {
-				articles_ids.style.display = "none";
-				articles_title.style.display = "none";
-				special_button.textContent = "Show all articles";
-			}
-		}
-	</script>
+<script>
+    function toggleSection(section_id) {
+        var section = document.getElementById(section_id);
+        var button = document.getElementById('toggle_' + section_id + '_button');
+
+        if (section.style.display === 'none') {
+            section.style.display = 'block';
+            button.textContent = 'Hide all ' + section_id;
+        } else {
+            section.style.display = 'none';
+            button.textContent = 'Show all ' + section_id;
+        }
+    }
+</script>
 {% endblock %}

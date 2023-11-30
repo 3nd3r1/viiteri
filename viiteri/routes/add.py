@@ -17,9 +17,17 @@ def add_reference():
     if request.method == "POST":
         cite_key = request.form["title"][0:3] + \
             request.form["author"].split(" ")[0][0:3]
+        ref_type = request.form.get('ref_type')
         try:
-            reference_service.create_reference(
-                "article", cite_key=cite_key, **request.form.to_dict())
+            if ref_type == "article":
+                reference_service.create_reference(
+                    "article", cite_key=cite_key, **request.form.to_dict())
+            elif ref_type == "book":
+                reference_service.create_reference(
+                    "book", cite_key=cite_key, **request.form.to_dict())
+            elif ref_type == "inproceedings":
+                reference_service.create_reference(
+                    "inproceedings", cite_key=cite_key, **request.form.to_dict())
             flash("Reference created successfully!")
             session["submitted"] = True
         except Exception as error:

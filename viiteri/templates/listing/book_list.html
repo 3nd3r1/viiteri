@@ -1,0 +1,20 @@
+{% for book in books %}
+    <li class="view-reference">
+        {{ book.author }}. <em>{{ book.title }}</em>. {{ book.publisher }},
+        {% if book.month %}{{ book.month }}.{% endif %}
+        {{ book.year }}.
+        {% if book.editor %}Edited by {{ book.editor }}.{% endif %}
+        {% if book.edition %}Eds. {{ book.edition }}.{% endif %}
+        {% if book.series %}Srs. {{ book.series }}.{% endif %}
+        {% if book.volume %} Vol. {{ book.volume }}.{% endif %}
+        {% if book.number %}No. {{ book.number }}.{% endif %}
+        {% if book.pages %}pp. {{ book.pages }}.{% endif %}
+        {% if book.address %}{{ book.address }}.{% endif %}
+        {% if book.doi %}{{ book.doi }}.{% endif %}
+        {% if book.issn %}{{ book.issn }}.{% endif %}
+        {% if book.isbn %}{{ book.isbn }}.{% endif %}
+        {% if book.note %}{{ book.note }}.{% endif %}
+        {% if book.annote %}{{ book.annote }}.{% endif %}
+    </li>
+    <hr class="view-reference-hr">
+{% endfor %}
