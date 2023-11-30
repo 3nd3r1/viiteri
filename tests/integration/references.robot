@@ -13,6 +13,7 @@ Add Article Successfully
     Set Journal  Maijan artikkelikokoelma
     Set Year  2011
     Submit Article Reference
+    Add Article Should Succeed
 
 # Add Article Unsuccessfully
 #     Set Author  Pekka Mikkola
