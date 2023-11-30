@@ -2,8 +2,8 @@
 {% block title %}Submit{% endblock %}
 {% block content %}
     <br>
-    <label for="formSelect">Select reference type:</label>
-    <select id="formSelect" onchange="switchForm(this.value)">
+    <label for="form_select">Select reference type:</label>
+    <select id="form_select" onchange="switchForm(this.value)">
         <option value="article" {% if last_ref_type == 'article' %}selected{% endif %}>Article</option>
         <option value="book" {% if last_ref_type == 'book' %}selected{% endif %}>Book</option>
         <!-- <option value="booklet">Booklet</option> -->
@@ -35,8 +35,8 @@
         }
 
         window.onload = function() {
-            var formSelect = document.getElementById("formSelect");
-            switchForm(formSelect.value);
+            var form_select = document.getElementById("form_select");
+            switchForm(form_select.value);
 
             var submit_button = document.getElementById("submit_button");
             var form_fields = document.getElementsByClassName("form-field");
@@ -46,6 +46,7 @@
                 for (var i = 0; i < form_fields.length; i++) {
                     form_fields[i].disabled = disable;
                 }
+                form_select.disabled = disable;
             }
 
             {% if submitted %}
@@ -56,7 +57,7 @@
 
             submit_button.onclick = function() {
                 if (submitted) {
-                    document.location.reload(true);
+                    disableFormFields(false);
                 } else {
                     form.submit();
                 }
