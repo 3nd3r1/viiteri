@@ -18,7 +18,7 @@ Add Article Successfully
 
 # Add Book Successfully
 #     Select From List By Value  form_select  book
-#     Set Author  Maija
+#     Set Author  Maija   <-  ei löydä kenttää, koittaa ehkä inputtaa articleen joka on piilotettu?
 #     Set Title  Maijan kirja
 #     Set Publisher  WSOY
 #     Set Year  2000
@@ -36,6 +36,7 @@ Add Article Successfully
 *** Keywords ***
 Add Reference Should Succeed
     Add Page Should Be Open
+    Page Should Contain  Reference created successfully!
 
 # Should Fail With Alert
 #     [Arguments]  ${message}
