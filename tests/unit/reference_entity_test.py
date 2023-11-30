@@ -2,7 +2,7 @@
 
 import unittest
 
-from viiteri.entities.references import Article, Book
+from viiteri.entities.references import Article, Book, Inproceedings
 
 
 class TestReferenceEntity(unittest.TestCase):
@@ -15,6 +15,10 @@ class TestReferenceEntity(unittest.TestCase):
         self.test_book = Book(cite_key="petkir", author="Petteri",
                               editor="Petteri", title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
+        self.test_inproceedings = Inproceedings(cite_key="johinp", author="John Doe",
+                                              title="An Analysis of Example",
+                                              booktitle="Sample Text",
+                                              year="2002", editor="Ex Ample")
 
     def test_article_constructor(self):
         """ Test that Article entity is correctly instantiated """
@@ -44,6 +48,22 @@ class TestReferenceEntity(unittest.TestCase):
         self.assertEqual(self.test_book.publisher, "WSOY")
         self.assertEqual(self.test_book.year, "2004")
 
+    def test_inproceedings_constructor(self):
+        """ Test that Inproceeding-entity is correctly instantiated """
+        # Test that abstract fields are set
+        self.assertEqual(self.test_inproceedings.type, "inproceedings")
+        self.assertEqual(self.test_inproceedings.cite_key, "johinp")
+
+        # Test that required fields are set
+        self.assertEqual(self.test_inproceedings.author, "John Doe")
+        self.assertEqual(self.test_inproceedings.title,
+                         "An Analysis of Example")
+        self.assertEqual(self.test_inproceedings.booktitle, "Sample Text")
+        self.assertEqual(self.test_inproceedings.year, "2002")
+
+        # Test that optional fields are set
+        self.assertEqual(self.test_inproceedings.editor, "Ex Ample")
+
     def test_init_article_with_missing_required_arguments(self):
         """ Test that Article entity raises ValueError with invalid arguments """
 
@@ -58,6 +78,14 @@ class TestReferenceEntity(unittest.TestCase):
             Book(cite_key="petkir", author="Petteri",
                  editor="Petteri", publisher="WSOY",
                  year="2004")
+
+    def test_init_inproceedings_with_missing_required_arguments(self):
+        """ Test that Inproceedings-entity raises ValueError with invalid arguments  """
+
+        with self.assertRaises(ValueError):
+            Inproceedings(cite_key="johinp", author="John Doe",
+                         title="An Analysis of Example", booktitle="Sample Text",
+                         editor="Ex Ample")
 
     def test_article_str_method(self):
         """ Test that Article entitys str method returns correct string """
@@ -96,3 +124,62 @@ class TestReferenceEntity(unittest.TestCase):
                                     "'doi': None, "
                                     "'issn': None, "
                                     "'isbn': None}"))
+
+    def test_inproceedings_str_method(self):
+        """ Test that Inproceedings entitys str method returns correct string """
+        inproceedings_str = str(self.test_inproceedings)
+        self.assertEqual(inproceedings_str, ("{'_type': 'inproceedings', "
+                                            "'_cite_key': 'johinp', "
+                                            "'author': 'John Doe', "
+                                            "'title': 'An Analysis of Example', "
+                                            "'booktitle': 'Sample Text', "
+                                            "'year': '2002', "
+                                            "'editor': 'Ex Ample', "
+                                            "'volume': None, "
+                                            "'number': None, "
+                                            "'series': None, "
+                                            "'pages': None, "
+                                            "'month': None, "
+                                            "'address': None, "
+                                            "'organization': None, "
+                                            "'publisher': None, "
+                                            "'note': None, "
+                                            "'annote': None}"))
+
+    # ieee format tests:
+
+    def test_article_format_ieee(self):
+        """Article entity is correctly converted to IEEE format"""
+        article_ieee = 'Petteri, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
+
+        article_entity = Article(cite_key="petpet", author="Petteri Petterinpoika",
+                                    title="Petterin Kirja",
+                                    journal="Petterin Kirjakokoelma", year="2003", volume="1")
+        another_article_ieee = 'P. Petterinpoika, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
+
+        self.assertEqual(article_ieee, self.test_article.format_ieee())
+        self.assertEqual(another_article_ieee, article_entity.format_ieee())
+
+    def test_book_format_ieee(self):
+        """Book entity is correctly converted to IEEE format"""
+        book_ieee = 'Petteri, Ed. Petterin Kirja vol 2, WSOY, 2004'
+
+        book_entity = Book(cite_key="petkir", author="Petteri Petterinpoika", editor="Petteri",
+                           title="Petterin Kirja vol 2", publisher="WSOY", year="2004")
+        another_book_ieee = 'P. Petterinpoika, Petterin Kirja vol 2, Petteri, WSOY, 2004'
+
+        self.assertEqual(book_ieee, self.test_book.format_ieee())
+        self.assertEqual(another_book_ieee, book_entity.format_ieee())
+
+    def test_inproceedings_format_ieee(self):
+        """Inproceedings entity is correctly converted to IEEE format"""
+        inproceedings_ieee = 'J. Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
+
+        inp_entity = Inproceedings(cite_key="johinp", author="Doe",
+                                  title="An Analysis of Example",
+                                  booktitle="Sample Text",
+                                  year="2002", editor="Ex Ample")
+        inp_ieee_surname_only = 'Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
+
+        self.assertEqual(inproceedings_ieee, self.test_inproceedings.format_ieee())
+        self.assertEqual(inp_ieee_surname_only, inp_entity.format_ieee())

@@ -7,10 +7,12 @@
 <body>
     <div>
         <h1>Viiteri BibTex Reference Management Tool</h1>
-
+        {% for message in get_flashed_messages() %}
+	    <div class="flash">{{ message }}</div>
+	    {% endfor %}
         <button onclick="window.location.href='/'" class="navigation-button">Home</button>
-        <button onclick="window.location.href='/submit'" class="navigation-button">Submit</button>
-        <button onclick="window.location.href='/view'" class="navigation-button">View</button>
+        <button onclick="window.location.href='/add'" class="navigation-button">Submit</button>
+        <button onclick="window.location.href='/list'" class="navigation-button">View</button>
     </div>
     {% block content %}{% endblock %}
 </body>

@@ -2,7 +2,7 @@
 
 import unittest
 
-from viiteri.entities.references import Article, Book
+from viiteri.entities.references import Article, Book, Inproceedings
 from viiteri.services.reference_service import ReferenceService
 
 
@@ -15,7 +15,10 @@ class ReferenceRepositoryStub:
                                     journal="Petterin Kirjakokoelma", year="2003"),
                             Book(cite_key="petkir", author="Petteri", 
                                  editor="Petteri", title="Petterin Kirja vol 2", 
-                                 publisher="WSOY", year="2004")]
+                                 publisher="WSOY", year="2004"),
+                            Inproceedings(cite_key="johinp", author="John Doe",
+                                         title="An Analysis of Example", booktitle="Sample Text",
+                                         year="2002", editor="Ex Ample")]
 
     def get_all_references(self):
         """ Returns all references """
@@ -38,9 +41,10 @@ class TestReferenceService(unittest.TestCase):
 
         references = self.reference_service.get_all_references()
 
-        self.assertEqual(len(references), 2)
+        self.assertEqual(len(references), 3)
         self.assertEqual(references[0].cite_key, "petpet")
         self.assertEqual(references[1].cite_key, "petkir")
+        self.assertEqual(references[2].cite_key, "johinp")
 
     def test_create_reference(self):
         """ Test that create_reference returns a valid bibtex string """
@@ -59,6 +63,14 @@ class TestReferenceService(unittest.TestCase):
                                                               year="2007",
                                                               publisher="Addison-Wesley",
                                                               editor="editor")
+        result_inproceedings = self.reference_service.create_reference("inproceedings",
+                                                                      cite_key="johinp",
+                                                                      author="John Doe",
+                                                                      title="An Analysis of Example",
+                                                                      booktitle="Sample Text",
+                                                                      year="2002",
+                                                                      editor="Ex Ample")
 
         self.assertEqual(result_article.cite_key, "zimmerman2002becoming")
         self.assertEqual(result_book.cite_key, "CI")
+        self.assertEqual(result_inproceedings.cite_key, "johinp")

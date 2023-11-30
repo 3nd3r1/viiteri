@@ -1,32 +1,34 @@
-""" viiteri/entities/references/book.py """
+""" viiteri/entities/references/inproceedings.py """
 
 # pylint: disable=too-many-instance-attributes
 from viiteri.entities.references import Reference
 
 
-class Book(Reference):
-    """ Class for representing 'book'-type references """
+class Inproceedings(Reference):
+    """ Class for representing 'inproceedings'-type references """
 
     def __init__(self, **kwargs):
-        if not kwargs.keys() >= {"cite_key", "author", "editor", "title", "publisher", "year"}:
+        if not kwargs.keys() >= {"cite_key", "author", "title", "booktitle", "year"}:
             raise ValueError("Missing required arguments")
 
-        super().__init__("book", kwargs["cite_key"])
+        super().__init__("inproceedings", kwargs["cite_key"])
         self.author = kwargs["author"]
-        self.editor = kwargs["editor"]
         self.title = kwargs["title"]
-        self.publisher = kwargs["publisher"]
+        self.booktitle = kwargs["booktitle"]
         self.year = kwargs["year"]
 
         # Optional arguments
-        self.number = kwargs.get("number", None)
+        self.editor = kwargs.get("editor", None)
         self.volume = kwargs.get("volume", None)
+        self.number = kwargs.get("number", None)
+        self.series = kwargs.get("series", None)
         self.pages = kwargs.get("pages", None)
         self.month = kwargs.get("month", None)
+        self.address = kwargs.get("address", None)
+        self.organization = kwargs.get("organization", None)
+        self.publisher = kwargs.get("publisher", None)
         self.note = kwargs.get("note", None)
-        self.doi = kwargs.get("doi", None)
-        self.issn = kwargs.get("issn", None)
-        self.isbn = kwargs.get("isbn", None)
+        self.annote = kwargs.get("annote", None)
 
     def format_ieee(self):
         """Returns the reference in IEEE format"""
@@ -35,10 +37,8 @@ class Book(Reference):
         if len(author) > 1:
             reference = f"{author[0][0]}. {author[1]}, "
 
-        fields = [self.title, self.editor, self.publisher, self.year, self.pages]
-        if self.author == self.editor:
-            reference += "Ed. "
-            fields.remove(self.editor)
+        fields = [self.title, self.booktitle, self.volume, self.series,
+                  self.editor, self.month, self.year, self.pages]
 
         reference += ', '.join(field for field in fields if field)
 
