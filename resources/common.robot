@@ -22,7 +22,7 @@ Home Page Should Be Open
     Title Should Be    Home - Viiteri
 
 Add Page Should Be Open
-    Title Should Be    Add - Viiteri
+    Title Should Be    Submit - Viiteri
 
 Go To Home Page
     Go To    ${HOME_URL}

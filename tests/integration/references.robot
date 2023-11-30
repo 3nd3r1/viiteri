@@ -21,6 +21,7 @@ Add Article Successfully
 #     Set Journal  Maijan artikkelikokoelma
 #     Submit Article Reference
 #     Should Fail With Message  Please fill in this field.
+#     ^ ei toimi koska ei oo message vaan joku message box tai alert
 
 *** Keywords ***
 Add Article Should Succeed
@@ -47,8 +48,9 @@ Set Year
     Input Text  year  ${year}
 
 Submit Article Reference
-    Click Button    Submit article
+    Click Button    Submit reference
 
 Go To Add Article Page
     Go To Add Page
     Add Page Should Be Open
+    # jotain luokkaa dropdown value should be Article
