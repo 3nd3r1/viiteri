@@ -16,9 +16,9 @@ class TestReferenceEntity(unittest.TestCase):
                               editor="Petteri", title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
         self.test_inproceedings = Inproceedings(cite_key="johinp", author="John Doe",
-                                              title="An Analysis of Example",
-                                              booktitle="Sample Text",
-                                              year="2002", editor="Ex Ample")
+                                                title="An Analysis of Example",
+                                                booktitle="Sample Text",
+                                                year="2002", editor="Ex Ample")
 
     def test_article_constructor(self):
         """ Test that Article entity is correctly instantiated """
@@ -84,8 +84,8 @@ class TestReferenceEntity(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             Inproceedings(cite_key="johinp", author="John Doe",
-                         title="An Analysis of Example", booktitle="Sample Text",
-                         editor="Ex Ample")
+                          title="An Analysis of Example", booktitle="Sample Text",
+                          editor="Ex Ample")
 
     def test_article_str_method(self):
         """ Test that Article entitys str method returns correct string """
@@ -129,22 +129,22 @@ class TestReferenceEntity(unittest.TestCase):
         """ Test that Inproceedings entitys str method returns correct string """
         inproceedings_str = str(self.test_inproceedings)
         self.assertEqual(inproceedings_str, ("{'_type': 'inproceedings', "
-                                            "'_cite_key': 'johinp', "
-                                            "'author': 'John Doe', "
-                                            "'title': 'An Analysis of Example', "
-                                            "'booktitle': 'Sample Text', "
-                                            "'year': '2002', "
-                                            "'editor': 'Ex Ample', "
-                                            "'volume': None, "
-                                            "'number': None, "
-                                            "'series': None, "
-                                            "'pages': None, "
-                                            "'month': None, "
-                                            "'address': None, "
-                                            "'organization': None, "
-                                            "'publisher': None, "
-                                            "'note': None, "
-                                            "'annote': None}"))
+                                             "'_cite_key': 'johinp', "
+                                             "'author': 'John Doe', "
+                                             "'title': 'An Analysis of Example', "
+                                             "'booktitle': 'Sample Text', "
+                                             "'year': '2002', "
+                                             "'editor': 'Ex Ample', "
+                                             "'volume': None, "
+                                             "'number': None, "
+                                             "'series': None, "
+                                             "'pages': None, "
+                                             "'month': None, "
+                                             "'address': None, "
+                                             "'organization': None, "
+                                             "'publisher': None, "
+                                             "'note': None, "
+                                             "'annote': None}"))
 
     # ieee format tests:
 
@@ -153,8 +153,8 @@ class TestReferenceEntity(unittest.TestCase):
         article_ieee = 'Petteri, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
 
         article_entity = Article(cite_key="petpet", author="Petteri Petterinpoika",
-                                    title="Petterin Kirja",
-                                    journal="Petterin Kirjakokoelma", year="2003", volume="1")
+                                 title="Petterin Kirja",
+                                 journal="Petterin Kirjakokoelma", year="2003", volume="1")
         another_article_ieee = 'P. Petterinpoika, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
 
         self.assertEqual(article_ieee, self.test_article.format_ieee())
@@ -176,9 +176,9 @@ class TestReferenceEntity(unittest.TestCase):
         inproceedings_ieee = 'J. Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
 
         inp_entity = Inproceedings(cite_key="johinp", author="Doe",
-                                  title="An Analysis of Example",
-                                  booktitle="Sample Text",
-                                  year="2002", editor="Ex Ample")
+                                   title="An Analysis of Example",
+                                   booktitle="Sample Text",
+                                   year="2002", editor="Ex Ample")
         inp_ieee_surname_only = 'Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
 
         self.assertEqual(inproceedings_ieee, self.test_inproceedings.format_ieee())

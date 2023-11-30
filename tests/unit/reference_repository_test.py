@@ -16,14 +16,14 @@ class TestReferenceRepository(unittest.TestCase):
 
         reference_repository.delete_all()
         self.test_article = Article(cite_key="petpet", author="Petteri",
-                                      title="Petterin Kirja",
-                                      journal="Petterin Kirjakokoelma", year="2003")
+                                    title="Petterin Kirja",
+                                    journal="Petterin Kirjakokoelma", year="2003")
         self.test_book = Book(cite_key="petkir", author="Petteri",
                               editor="Petteri", title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
         self.test_inproceedings = Inproceedings(cite_key="johinp", author="John Doe",
-                                              title="An Analysis of Example", booktitle="Sample Text",
-                                              year="2002", editor="Ex Ample")
+                                                title="An Analysis of Example", booktitle="Sample Text",
+                                                year="2002", editor="Ex Ample")
 
     def test_add_reference(self):
         """ Test adding all reference types to the repository """
