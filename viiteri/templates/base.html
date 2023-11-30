@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<title>{% block title %}{% endblock %} - Viiteri</title>
-<nav>
-	<h1>Viiteri</h1>
-	<ul>
-		<li><a href="/">Etusivu</a></li>
-	</ul>
-</nav>
-<section class="content">
-	<header>{% block header %}{% endblock %}</header>
-	{% for message in get_flashed_messages() %}
-	<div class="flash">{{ message }}</div>
-	{% endfor %} {% block content %}{% endblock %}
-</section>
+<html>
+	<head>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{{ url_for('static', filename='styles.css') }}"
+		/>
+		<title>{% block title %}{% endblock %} - Viiteri</title>
+	</head>
+	<body>
+		<div>
+			<h1>Viiteri BibTex Reference Management Tool</h1>
+			{% for message in get_flashed_messages() %}
+			<div class="flash">{{ message }}</div>
+			{% endfor %}
+			<button
+				onclick="window.location.href='/'"
+				class="navigation-button"
+			>
+				Home
+			</button>
+			<button
+				onclick="window.location.href='/add'"
+				class="navigation-button"
+			>
+				Submit
+			</button>
+			<button
+				onclick="window.location.href='/list'"
+				class="navigation-button"
+			>
+				View
+			</button>
+		</div>
+		{% block content %}{% endblock %}
+	</body>
+</html>

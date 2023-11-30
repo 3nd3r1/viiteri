@@ -1,69 +1,40 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="{{ url_for('static', filename='styles.css') }}"
-		/>
-		<title>List - Viiteri</title>
-	</head>
-	<body>
-		<div>
-			<h1>BibTex Article Reference Management Tool</h1>
+{% extends "base.html" %} {% block title %}View{% endblock %} {% block content
+%}
+<div>
+	<p>
+		To see all of the references in the system, press
+		<b>Show all references</b>.
+	</p>
+	<button id="toggle_button" onclick="toggleReferences()">
+		Show all references
+	</button>
 
-			<button
-				onclick="window.location.href='/'"
-				style="background-color: #75ace0; border-radius: 20px"
-			>
-				Home
-			</button>
-			<button
-				onclick="window.location.href='/add'"
-				style="background-color: #75ace0; border-radius: 20px"
-			>
-				Submit
-			</button>
-			<button
-				onclick="window.location.href='/list'"
-				style="background-color: #75ace0; border-radius: 20px"
-			>
-				View
-			</button>
+	<h2 id="references_title" style="display: none">All references</h2>
+	<div id="references_container" style="display: none">
+		{% for reference in references %}
+		<p>{{reference.format_ieee()}}</p>
+		<hr />
+		{% endfor %}
+	</div>
+</div>
 
-			<p>
-				To see all of the references in the system, press
-				<b>Show all articles</b>.
-			</p>
-			<button id="toggle_button" onclick="toggleArticles()">
-				Show all articles
-			</button>
+<script>
+				function toggleReferences() {
+					var references_container = document.getElementById("references_container");
+					var references_title = document.getElementById("references_title");
+					var special_button = document.getElementById("toggle_button");
 
-			<h2 id="articles_title" style="display: none">All articles</h2>
-			<div id="articles" style="display: none">
-				{% for reference in references %}
-				<p>{{reference}}</p>
-				<hr />
-				{% endfor %}
-			</div>
-		</div>
-
-		<script>
-			function toggleArticles() {
-				var articles_ids = document.getElementById("articles");
-				var articles_title = document.getElementById("articles_title");
-				var special_button = document.getElementById("toggle_button");
-
-				if (articles_ids.style.display === "none") {
-					articles_ids.style.display = "block";
-					articles_title.style.display = "block";
-					special_button.textContent = "Hide all articles";
-				} else {
-					articles_ids.style.display = "none";
-					articles_title.style.display = "none";
-					special_button.textContent = "Show all articles";
+					if (references_container.style.display === "none") {
+						references_container.style.display = "block";
+						references_title.style.display = "block";
+						special_button.textContent = "Hide all references";
+					} else {
+						references_container.style.display = "none";
+						references_title.style.display = "none";
+						special_button.textContent = "Show all references";
+					}
 				}
-			}
-		</script>
-	</body>
-</html>
+            </script>
+	</div>
+
+{% endblock %}

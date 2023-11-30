@@ -1,17 +1,17 @@
-""" viiteri/entities/references/inproceeding.py """
+""" viiteri/entities/references/inproceedings.py """
 
 # pylint: disable=too-many-instance-attributes
 from viiteri.entities.references import Reference
 
 
-class Inproceeding(Reference):
-    """ Class for representing 'inproceeding'-type references """
+class Inproceedings(Reference):
+    """ Class for representing 'inproceedings'-type references """
 
     def __init__(self, **kwargs):
         if not kwargs.keys() >= {"cite_key", "author", "title", "booktitle", "year"}:
             raise ValueError("Missing required arguments")
 
-        super().__init__("inproceeding", kwargs["cite_key"])
+        super().__init__("inproceedings", kwargs["cite_key"])
         self.author = kwargs["author"]
         self.title = kwargs["title"]
         self.booktitle = kwargs["booktitle"]
