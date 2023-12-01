@@ -5,25 +5,26 @@ Suite Setup         Open And Configure Browser
 Suite Teardown      Close Browser
 Test Setup          Go To Add Reference Page
 
+Library    XML
 
 *** Test Cases ***
 Add Article Successfully
     Select From List By Value  form_select  article
-    Set Author  Pekka Mikkola
-    Set Title  Maijan artikkeli
-    Set Journal  Maijan artikkelikokoelma
-    Set Year  2011
+    Set Author  Pekka Mikkola  article
+    Set Title  Maijan artikkeli  article
+    Set Journal  Maijan artikkelikokoelma  article
+    Set Year  2011  article
     Submit Reference
     Add Reference Should Succeed
 
-# Add Book Successfully
-#     Select From List By Value  form_select  book
-#     Set Author  Maija   <-  ei löydä kenttää, koittaa ehkä inputtaa articleen joka on piilotettu?
-#     Set Title  Maijan kirja
-#     Set Publisher  WSOY
-#     Set Year  2000
-#     Submit Reference
-#     Add Reference Should Succeed
+Add Book Successfully
+    Select From List By Value  form_select  book
+    Set Author  Maija  book
+    Set Title  Maijan kirja  book
+    Set Publisher  WSOY  book
+    Set Year  2000  book
+    Submit Reference
+    Add Reference Should Succeed
 
 # Add Article Unsuccessfully
 #     Set Author  Pekka Mikkola
@@ -36,31 +37,42 @@ Add Article Successfully
 *** Keywords ***
 Add Reference Should Succeed
     Add Page Should Be Open
-    Page Should Contain  Reference created successfully!
+    Page Should Contain    Reference created successfully!
 
 # Should Fail With Alert
 #     [Arguments]  ${message}
 #     Alert Should Be Present  ${message}
 
+Find Correct Input
+    [Arguments]  ${div_locator}  ${input_locator}
+    ${input} =  Get WebElement  ${div_locator} >> xpath://input[@name='${input_locator}']
+    Wait Until Element Is Enabled  ${input}
+    [Return]  ${input}
+
 Set Author
-    [Arguments]  ${author}
-    Input Text  author  ${author}
+    [Arguments]  ${author}  ${div_id}
+    ${input} =  Find Correct Input  ${div_id}  author
+    Input Text  ${input}  ${author}
 
 Set Title
-    [Arguments]  ${title}
-    Input Text  title  ${title}
+    [Arguments]  ${title}  ${div_id}
+    ${input} =  Find Correct Input  ${div_id}  title
+    Input Text  ${input}  ${title}
 
 Set Journal
-    [Arguments]  ${journal}
-    Input Text  journal  ${journal}
+    [Arguments]  ${journal}  ${div_id}
+    ${input} =  Find Correct Input  ${div_id}  journal
+    Input Text  ${input}  ${journal}
 
 Set Year
-    [Arguments]  ${year}
-    Input Text  year  ${year}
+    [Arguments]  ${year}  ${div_id}
+    ${input} =  Find Correct Input  ${div_id}  year
+    Input Text  ${input}  ${year}
 
 Set Publisher
-    [Arguments]  ${publisher}
-    Input Text  publisher  ${publisher}
+    [Arguments]  ${publisher}  ${div_id}
+    ${input} =  Find Correct Input  ${div_id}  publisher
+    Input Text  ${input}  ${publisher}
 
 Submit Reference
     Click Button    Submit reference
