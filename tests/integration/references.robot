@@ -5,36 +5,98 @@ Library             Dialogs
 
 Suite Setup         Open And Configure Browser
 Suite Teardown      Close Browser
-Test Setup          Go To Add Reference Page
+Test Setup          Go To Home Page
 
 
 *** Test Cases ***
+Click Home Link
+    Go To Home Page
+    Home Page Should Be Open
+
+Click Submit Link
+    Go To Add Page
+    Add Page Should Be Open
+
+Click View Link
+    Go To View Page
+    View Page Should Be Open
+    
 Add Article Successfully
+    Go To Add Page
+    Check Reference Type    article
     Select From List By Value    form_select    article
     Set Author    Pekka Mikkola    article
     Set Title    Maijan artikkeli    article
     Set Journal    Maijan artikkelikokoelma    article
     Set Year    2011    article
-    Submit Reference
+    Submit Reference    article
     Add Reference Should Succeed
 
 Add Book Successfully
+    Go To Add Page
+    Check Reference Type    article
     Select From List By Value    form_select    book
-    Set Author    Maija    book
+    Set Author    Maija Makkonen   book
     Set Title    Maijan kirja    book
     Set Publisher    WSOY    book
     Set Year    2000    book
-    Pause Execution    2s
-    Submit Reference
+    Submit Reference    book
     Add Reference Should Succeed
 
-# Add Article Unsuccessfully
-#    Set Author    Pekka Mikkola
-#    Set Title    Maijan artikkeli
-#    Set Journal    Maijan artikkelikokoelma
-#    Submit Article Reference
-#    Should Fail With Alert    Please fill in this field.
-#    # ^ ei toimi koska ei oo message vaan joku message box tai alert
+Add Inproceedings Successfully
+    Go To Add Page
+    Check Reference Type    book
+    Select From List By Value    form_select    inproceedings
+    Set Author    Maija    inproceedings
+    Set Title    Maijan inproceedings    inproceedings
+    Set Booktitle    Maijan kokoelma    inproceedings
+    Set Year    2011    inproceedings
+    Submit Reference    inproceedings
+    Add Reference Should Succeed
+
+
+Add Two References Consecutively
+    Go To Add Page
+    Check Reference Type    inproceedings
+    Select From List By Value    form_select    article
+    Set Author    Pekka Mikkola    article
+    Set Title    Maijan artikkeli    article
+    Set Journal    Maijan artikkelikokoelma    article
+    Set Year    2011    article
+    Submit Reference    article
+    Add Reference Should Succeed
+    Click Button    Submit another reference
+    Check Reference Type    article
+    Select From List By Value    form_select    book
+    Set Author    Maija Makkonen   book
+    Set Title    Maijan kirja    book
+    Set Publisher    WSOY    book
+    Set Year    2000    book
+    Submit Reference    book
+    Add Reference Should Succeed
+
+View All Added References
+    Go To View Page
+    Click Button    Show all references
+    Page Should Contain    P. Mikkola
+    Page Should Contain    Maijan artikkeli
+    Page Should Contain    Maijan artikkelikokoelma
+    Page Should Contain    2011
+    ${count} =   SeleniumLibrary.Get Element Count    xpath://div[@id='references_container']//hr
+    # Oletuksena countille, että tietokanta on tyhjä ja lasketaan hr-elementit
+    # aiempien test casejen lisäämien viitteiden perusteella
+    Should Be Equal As Integers    ${count}    5
+
+Add Article Unsuccessfully
+    Go To Add Page
+    Check Reference Type    book
+    Select From List By Value    form_select    article
+    Set Author    Pekka Mikkola    article
+    Set Title    Maijan artikkeli    article
+    Set Journal    Maijan artikkelikokoelma    article
+    Submit Reference    article
+    ${error} =    SeleniumLibrary.Get Element Attribute    xpath://div[@id='article']//input[@name='year']    validationMessage
+    Should Be Equal As Strings    ${error}    Please fill in this field.
 
 
 *** Keywords ***
@@ -42,9 +104,12 @@ Add Reference Should Succeed
     Add Page Should Be Open
     Page Should Contain    Reference created successfully!
 
-# Should Fail With Alert
-#    [Arguments]    ${message}
-#    Alert Should Be Present    ${message}
+Check Reference Type
+    # Tarkistaa, että sessio tallentaa viitteen tyypin onnistuneesti
+    [Arguments]    ${type}
+    ${select} =    Get WebElement    form_select
+    ${selected} =    Get Selected List Value    ${select}
+    Should Be Equal As Strings    ${selected}    ${type}
 
 Find Correct Input
     [Arguments]    ${div_locator}    ${input_locator}
@@ -54,33 +119,35 @@ Find Correct Input
     RETURN    ${input}
 
 Set Author
-    [Arguments]    ${author}    ${div_id}
-    ${input} =    Find Correct Input    ${div_id}    author
+    [Arguments]    ${author}    ${div_locator}
+    ${input} =    Find Correct Input    ${div_locator}    author
     Input Text    ${input}    ${author}
 
 Set Title
-    [Arguments]    ${title}    ${div_id}
-    ${input} =    Find Correct Input    ${div_id}    title
+    [Arguments]    ${title}    ${div_locator}
+    ${input} =    Find Correct Input    ${div_locator}    title
     Input Text    ${input}    ${title}
 
 Set Journal
-    [Arguments]    ${journal}    ${div_id}
-    ${input} =    Find Correct Input    ${div_id}    journal
+    [Arguments]    ${journal}    ${div_locator}
+    ${input} =    Find Correct Input    ${div_locator}    journal
     Input Text    ${input}    ${journal}
 
 Set Year
-    [Arguments]    ${year}    ${div_id}
-    ${input} =    Find Correct Input    ${div_id}    year
+    [Arguments]    ${year}    ${div_locator}
+    ${input} =    Find Correct Input    ${div_locator}    year
     Input Text    ${input}    ${year}
 
 Set Publisher
-    [Arguments]    ${publisher}    ${div_id}
-    ${input} =    Find Correct Input    ${div_id}    publisher
+    [Arguments]    ${publisher}    ${div_locator}
+    ${input} =    Find Correct Input    ${div_locator}    publisher
     Input Text    ${input}    ${publisher}
 
-Submit Reference
-    Click Button    Submit reference
+Set Booktitle
+    [Arguments]    ${booktitle}    ${div_locator}
+    ${input} =    Find Correct Input    ${div_locator}    booktitle
+    Input Text    ${input}    ${booktitle}
 
-Go To Add Reference Page
-    Go To Add Page
-    Add Page Should Be Open
+Submit Reference
+    [Arguments]    ${div_locator}
+    Click Button    xpath://div[@id='${div_locator}']//button
