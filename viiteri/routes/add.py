@@ -22,7 +22,7 @@ def add_reference():
                 request.form["author"].split(" ")[0][0:3]
             reference_service.create_reference(
                         ref_type, cite_key=cite_key, **request.form.to_dict())
-            #flash("Reference created successfully!")
+            flash("Reference created successfully!")
             session["submitted"] = True
             session["last_ref_type"] = ref_type
         except Exception as error:
