@@ -25,7 +25,7 @@ def add_reference():
             flash("Reference created successfully!")
             session["submitted"] = True
             session["last_ref_type"] = ref_type
-        except Exception as error:
+        except Exception:
             #flash(str(error))
             session["submitted"] = False
     return redirect("/add")
