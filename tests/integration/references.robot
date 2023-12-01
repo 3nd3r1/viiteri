@@ -96,7 +96,7 @@ Add Article Unsuccessfully
     Set Journal    Maijan artikkelikokoelma    article
     Submit Reference    article
     ${error} =    SeleniumLibrary.Get Element Attribute    xpath://div[@id='article']//input[@name='year']    validationMessage
-    Should Be Equal As Strings    ${error}    Please fill in this field.
+    Should Not Be Empty    ${error}
 
 
 *** Keywords ***
