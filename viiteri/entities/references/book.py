@@ -43,3 +43,21 @@ class Book(Reference):
         reference += ', '.join(field for field in fields if field)
 
         return reference
+
+    def format_bibtex(self):
+        """ Return BibTeX formatted reference """
+        return f"""@article{{{self.cite_key},
+            author = "{self.author}",
+            editor = "{self.editor}",
+            title = "{self.title}",
+            publisher = "{self.publisher}",
+            year = "{self.year}",
+            {f'number: "{self.number}",' if self.number else ""}
+            {f'volume: "{self.volume}",' if self.volume else ""}
+            {f'pages: "{self.pages}",' if self.pages else ""}
+            {f'month: "{self.month}",' if self.month else ""} 
+            {f'note: "{self.note}",' if self.note else ""} 
+            {f'doi: "{self.doi}",' if self.doi else ""}
+            {f'issn: "{self.issn}",' if self.issn else ""} 
+            {f'isbn: "{self.isbn}",' if self.isbn else ""}
+        }}"""
