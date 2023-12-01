@@ -45,17 +45,17 @@ class Article(Reference):
     def format_bibtex(self):
         """ Return BibTeX formatted reference """
         return f"""@article{{{self.cite_key},
-            author = {{{self.author}}},
-            title = {{{self.title}}},
-            journal = {{{self.journal}}},
-            year = {{{self.year}}},
-            {{"volume: {self.volume}," if self.volume else None}}
-            {{"number: {self.number}," if self.number else None}}
-            {{"pages: {self.pages}," if self.pages else None}}
-            {{"month: {self.month}," if self.month else None}} 
-            {{"doi: {self.doi}," if self.doi else None}} 
-            {{"note: {self.note}," if self.note else None}} 
-            {{"issn: {self.issn}," if self.issn else None}} 
-            {{"zblnumber: {self.zblnumber}," if self.zblnumber else None}} 
-            {{"eprint: {self.eprint}," if self.eprint else None}} 
+            author = "{self.author}",
+            title = "{self.title}",
+            journal = "{self.journal}",
+            year = "{self.year}",
+            {f'volume: "{self.volume}",' if self.volume else ""}
+            {f'number: "{self.number}",' if self.number else ""}
+            {f'pages: "{self.pages}",' if self.pages else ""}
+            {f'month: "{self.month}",' if self.month else ""} 
+            {f'doi: "{self.doi}",' if self.doi else ""}
+            {f'note: "{self.note}",' if self.note else ""} 
+            {f'issn: "{self.issn}",' if self.issn else ""} 
+            {f'zblnumber: "{self.zblnumber}",' if self.zblnumber else ""}
+            {f'eprint: "{self.eprint}",' if self.eprint else ""}
         }}"""
