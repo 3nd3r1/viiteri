@@ -41,3 +41,21 @@ class Article(Reference):
         reference += ', '.join(field for field in fields if field)
 
         return reference
+
+    def format_bibtex(self):
+        """ Return BibTeX formatted reference """
+        return f"""@article{{{self.cite_key},
+            author = {{{self.author}}},
+            title = {{{self.title}}},
+            journal = {{{self.journal}}},
+            year = {{{self.year}}},
+            {{"volume: {self.volume}," if self.volume else None}}
+            {{"number: {self.number}," if self.number else None}}
+            {{"pages: {self.pages}," if self.pages else None}}
+            {{"month: {self.month}," if self.month else None}} 
+            {{"doi: {self.doi}," if self.doi else None}} 
+            {{"note: {self.note}," if self.note else None}} 
+            {{"issn: {self.issn}," if self.issn else None}} 
+            {{"zblnumber: {self.zblnumber}," if self.zblnumber else None}} 
+            {{"eprint: {self.eprint}," if self.eprint else None}} 
+        }}"""
