@@ -8,7 +8,7 @@
 		<button id="toggle_button" onclick="toggleReferences()">
 			Show all references
 		</button>
-	
+
 		<h2 id="references_title" style="display: none">All references</h2>
 		<div id="references_container" style="display: none">
 			{% for reference in references %}
@@ -22,28 +22,26 @@
 			<hr />
 			{% endfor %}
 		</div>
-	</div>
-	
-	<script>
-					function toggleReferences() {
-						var references_container = document.getElementById("references_container");
-						var references_title = document.getElementById("references_title");
-						var special_button = document.getElementById("toggle_button");
-	
-						if (references_container.style.display === "none") {
-							references_container.style.display = "block";
-							references_title.style.display = "block";
-							special_button.textContent = "Hide all references";
-						} else {
-							references_container.style.display = "none";
-							references_title.style.display = "none";
-							special_button.textContent = "Show all references";
-						}
-					}
-				</script>
-		</div>
 		{% for reference in references %}
 		<form id="remove_reference{{ reference[0] }}" action="/remove" method="POST" onsubmit="return window.confirm('Haluatko poistaa tämän viitteen?')"></form>
 		{% endfor %}
+	</div>
+
+	<script>
+			function toggleReferences() {
+				var references_container = document.getElementById("references_container");
+				var references_title = document.getElementById("references_title");
+				var special_button = document.getElementById("toggle_button");
+				if (references_container.style.display === "none") {
+					references_container.style.display = "block";
+					references_title.style.display = "block";
+					special_button.textContent = "Hide all references";
+				} else {
+					references_container.style.display = "none";
+					references_title.style.display = "none";
+					special_button.textContent = "Show all references";
+				}
+			}
+	</script>
+
 	{% endblock %}
-	
