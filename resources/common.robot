@@ -14,7 +14,7 @@ ${ADD_URL}      ${HOME_URL}/add
 Open And Configure Browser
     ${options}    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
     Call Method    ${options}    add_argument    --no-sandbox
-    Call Method    ${options}    add_argument    --headless
+    # Call Method    ${options}    add_argument    --headless
     Open Browser    browser=chrome    options=${options}
     Set Selenium Speed    ${DELAY}
 
