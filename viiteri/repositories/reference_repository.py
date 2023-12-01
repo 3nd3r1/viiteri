@@ -30,7 +30,6 @@ class ReferenceRepository:
         ))
         references = [(content[0], ReferenceFactory.from_str(
             content[1])) for content in result.fetchall()]
-        print(references)
         return references
 
     def delete_all(self):
