@@ -1,3 +1,5 @@
+# pylint: disable=broad-except, no-member
+
 """ viiteri/routes/remove.py """
 from flask import Blueprint, redirect, request, flash
 from viiteri.services.reference_service import reference_service
