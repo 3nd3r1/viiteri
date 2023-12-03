@@ -26,11 +26,18 @@
 			>
 				Submit
 			</button>
+			<!-- Tämä voi olla myöhemmin "Search" tms. -->
 			<button
 				onclick="window.location.href='/list'"
 				class="navigation-button"
 			>
-				View
+				View Table
+			</button>
+			<button
+				onclick="window.location.href='/bibtex'"
+				class="navigation-button"
+			>
+				View BibTex
 			</button>
 		</div>
 		{% block content %}{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}View BibTex{% endblock %} {% block content
+%}
+<div>
+	<h2>All references in raw BibTex format</h2>
+
+	<button id="copy-button" onclick="copyText()">
+		Copy all to Clipboard
+	</button>
+
+    <textarea id="textarea">
+        {% for reference in references %}
+            {{ reference.format_bibtex() }}
+        {% endfor %}
+    </textarea>
+
+</div>
+
+<script>
+    window.onload = function() {
+        updateTextarea();
+    };
+
+    function updateTextarea() {
+        var references_text = document.getElementById('textarea').value;
+        document.getElementById('textarea').value = references_text;
+    }
+
+    function copyText() {
+        var text_area = document.getElementById('textarea');
+        text_area.select();
+        document.execCommand('copy');
+    }
+</script>
+
+{% endblock %}
