@@ -22,14 +22,14 @@ class ReferenceRepository:
         cursor.commit()
         return reference
 
-    def get_all_references(self) -> list[Reference]:
+    def get_all_references(self) -> list[(int, Reference)]:
         """Gets all references from the database"""
         cursor = self._connection.session()
         result = cursor.execute(text(
-            'select content from reference_table;'
+            'select id, content from reference_table;'
         ))
-        references = [ReferenceFactory.from_str(
-            content[0]) for content in result.fetchall()]
+        references = [(content[0], ReferenceFactory.from_str(
+            content[1])) for content in result.fetchall()]
         return references
 
     def delete_all(self):
