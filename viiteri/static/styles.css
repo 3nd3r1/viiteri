@@ -156,11 +156,17 @@ td {
 }
 
 .copy-button:active {
-  border-bottom-color: #a2a6ac;
+  background-image: linear-gradient(#e6e7e9, #d0d2d5);
+  border-color: #8d9096;
+  box-shadow: rgba(0, 0, 0, .2) 0 1px 2px inset;
+  transform: translateY(1px);
 }
 
 .copy-button:active:hover {
-  border-bottom-color: #a2a6ac;
+  background-image: linear-gradient(#e6e7e9, #d0d2d5);
+  border-color: #8d9096;
+  box-shadow: rgba(0, 0, 0, .2) 0 1px 2px inset;
+  transform: translateY(1px);
 }
 
 .bcopy-button:hover {
