@@ -12,7 +12,7 @@ class ReferenceRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def add_reference(self, reference: Reference):
+    def add_reference(self, reference: Reference) -> int:
         """Adds a new reference to the database."""
         cursor = self._connection.session()
         ref_id = cursor.execute(text(
