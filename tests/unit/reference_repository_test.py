@@ -27,17 +27,17 @@ class TestReferenceRepository(unittest.TestCase):
 
     def test_add_reference(self):
         """ Test adding all reference types to the repository """
-        reference_repository.add_reference(self.test_article)
-        reference_repository.add_reference(self.test_book)
-        reference_repository.add_reference(self.test_inproceedings)
+        ref_id1 = reference_repository.add_reference(self.test_article)
+        ref_id2 = reference_repository.add_reference(self.test_book)
+        ref_id3 = reference_repository.add_reference(self.test_inproceedings)
         references = reference_repository.get_all_references()
 
         self.assertEqual(len(references), 3)
 
-        # testataan, että viitteiden id:t ovat 1, 2 ja 3
-        self.assertEqual(references[0][0], 1)
-        self.assertEqual(references[1][0], 2)
-        self.assertEqual(references[2][0], 3)
+        # testataan, että viitteiden id:t ovat oikeat
+        self.assertEqual(references[0][0], ref_id1)
+        self.assertEqual(references[1][0], ref_id2)
+        self.assertEqual(references[2][0], ref_id3)
         
         # testataan, että viitteen sisältö on oikea
         self.assertEqual(references[0][1].cite_key, "petpet")
@@ -51,3 +51,18 @@ class TestReferenceRepository(unittest.TestCase):
         reference_repository.add_reference(self.test_inproceedings)
         reference_repository.delete_all()
         self.assertEqual(len(reference_repository.get_all_references()), 0)
+
+    def test_remove_reference(self):
+        """ Test removing a reference from the repository """
+        ref_id_to_remove = reference_repository.add_reference(self.test_article)
+        ref_id1 = reference_repository.add_reference(self.test_book)
+        ref_id2 = reference_repository.add_reference(self.test_inproceedings)
+        
+        reference_repository.remove_reference(ref_id_to_remove)
+        references = reference_repository.get_all_references()
+
+        self.assertEqual(len(references), 2)
+        self.assertEqual(references[0][0], ref_id1)
+        self.assertEqual(references[1][0], ref_id2)
+        self.assertEqual(references[0][1].cite_key, "petkir")
+        self.assertEqual(references[1][1].cite_key, "johinp")
