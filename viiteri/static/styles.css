@@ -1,14 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .navigation-button {
-    background-color: #75ACE0;
-    border-radius: 20px;
+  background-color: #75ACE0;
+  border-radius: 20px;
 }
 
 .navigation-button:hover {
-    background-color: #5b9ac8;
+  background-color: #5b9ac8;
 }
 
 .index-list {
@@ -74,22 +74,6 @@ td {
 
 .type-label {
   text-align: center;
-}
-
-.view-reference {
-    max-width: 80vw;
-    overflow-wrap: break-word;
-}
-
-.view-reference-hr {
-    width: 80%;
-    margin-left: 0;
-    border: none;
-    border-top: 1px solid black;
-}
-
-.view-text {
-    color: #482307
 }
 
 .submit-button {
@@ -209,4 +193,12 @@ td {
 .delete-button:focus {
   border-color: #e77600;
   box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+}
+
+#textarea {
+  width: 100%;
+  height: 2000px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }

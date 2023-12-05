@@ -12,30 +12,30 @@
             <th>Type</th>
         </tr>
         {% for reference in references %}
-            <tr class="reference-row" data-refid="{{ reference.id }}" onclick="toggleDetails(this)"
-                data-editor="{{ reference.editor | default('') }}"
-                data-journal="{{ reference.journal | default('') }}"
-                data-booktitle="{{ reference.booktitle | default('') }}"
-                data-series="{{ reference.series | default('') }}"
-                data-volume="{{ reference.volume | default('') }}"
-                data-number="{{ reference.number | default('') }}"
-                data-pages="{{ reference.pages | default('') }}"
-                data-month="{{ reference.month | default('') }}"
-                data-publisher="{{ reference.publisher | default('') }}"
-                data-organization="{{ reference.organization | default('') }}"
-                data-address="{{ reference.address | default('') }}"
-                data-isbn="{{ reference.isbn | default('') }}"
-                data-issn="{{ reference.issn | default('') }}"
-                data-doi="{{ reference.doi | default('') }}"
-                data-zbl="{{ reference.zbl | default('') }}"
-                data-eprint="{{ reference.eprint | default('') }}"
-                data-note="{{ reference.note | default('') }}"
-                data-annote="{{ reference.annote | default('') }}"
+            <tr class="reference-row" data-refid="{{ reference[0] }}" onclick="toggleDetails(this)"
+                data-editor="{{ reference[1].editor | default('') }}"
+                data-journal="{{ reference[1].journal | default('') }}"
+                data-booktitle="{{ reference[1].booktitle | default('') }}"
+                data-series="{{ reference[1].series | default('') }}"
+                data-volume="{{ reference[1].volume | default('') }}"
+                data-number="{{ reference[1].number | default('') }}"
+                data-pages="{{ reference[1].pages | default('') }}"
+                data-month="{{ reference[1].month | default('') }}"
+                data-publisher="{{ reference[1].publisher | default('') }}"
+                data-organization="{{ reference[1].organization | default('') }}"
+                data-address="{{ reference[1].address | default('') }}"
+                data-isbn="{{ reference[1].isbn | default('') }}"
+                data-issn="{{ reference[1].issn | default('') }}"
+                data-doi="{{ reference[1].doi | default('') }}"
+                data-zbl="{{ reference[1].zbl | default('') }}"
+                data-eprint="{{ reference[1].eprint | default('') }}"
+                data-note="{{ reference[1].note | default('') }}"
+                data-annote="{{ reference[1].annote | default('') }}"
             >
-                <td>{{ reference.title }}</td>
-                <td>{{ reference.author }}</td>
-                <td>{{ reference.year }}</td>
-                <td>{{ reference.type }}</td>
+                <td>{{ reference[1].title }}</td>
+                <td>{{ reference[1].author }}</td>
+                <td>{{ reference[1].year }}</td>
+                <td>{{ reference[1].type }}</td>
             </tr>
             <tr class="button-row" style="display: none;">
                 <td colspan="4" style="text-align: center;">
