@@ -183,3 +183,23 @@ class TestReferenceEntity(unittest.TestCase):
 
         self.assertEqual(inproceedings_ieee, self.test_inproceedings.format_ieee())
         self.assertEqual(inp_ieee_surname_only, inp_entity.format_ieee())
+
+    def test_article_format_bibtex(self):
+        """Article entity is correctly converted to BibTeX format"""
+        article_bibtex = """@article{petpet,
+            author = {Petteri},
+            title = {Petterin Kirja},
+            journal = {Petterin Kirjakokoelma},
+            year = {2003},
+            volume = {1},
+            number = {None},
+            pages = {None},
+            month = {None},
+            doi = {None},
+            note = {None},
+            issn = {None},
+            zblnumber = {None},
+            eprint = {None},
+        }"""
+
+        self.assertEqual(article_bibtex, self.test_article.format_bibtex())
