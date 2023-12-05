@@ -39,17 +39,20 @@
             </tr>
             <tr class="button-row" style="display: none;">
                 <td colspan="4" style="text-align: center;">
-                    <!-- Ei tarvinnut olla yksittäisen BibTexin kopiointia, mutta kaksi nappia näytti paremmalta kuin yksi. -->
-                    <!-- Tässä ei ole montaa asiaa samassa taskissa, koska on vain UI:n hahmottelua ilman toimintaa. -->
                     <!-- Tähän saisi ehkä myös edit-napin? Erittäin vaikea kuitenkin toteuttaa editointi tablen sisällä. -->
-                    <button class="copy-button" role="button">Copy BibTex to Clipboard</button>
-                    <button class="delete-button" id="del_button-{{ reference.id }}" onclick="handleDeleteButtonClick(this)">Delete Reference</button>
+                    <button class="copy-button" data-bibtex="{{ reference[1].format_bibtex() }}" onclick="handleCopyButtonClick(this)">Copy BibTex to clipboard</button>
+                    <button class="delete-button" onclick="confirmDelete({{ reference[0] }})">Delete Reference</button>
                 </td>
             </tr>
             <tr class="empty-row"></tr>
+            <form id="delete_reference_form_{{ reference[0] }}" action="/remove" method="POST" style="display: none;">
+                <input type="hidden" name="reference_id" value="{{ reference[0] }}" />
+            </form>
         {% endfor %}
     </table>
 </div>
+
+<textarea id="hidden_text_area" style="position: absolute; left: -9999px; top: -9999px;"></textarea>
 
 <script>
     function toggleDetails(row) {
@@ -120,12 +123,6 @@
             var current_row = row.nextElementSibling;
 
             while (current_row && (current_row.classList.contains('detail-row-' + ref_id) || current_row.classList.contains('button-row'))) {
-                if (current_row.classList.contains('button-row')) {
-                    var deleteButton = current_row.querySelector('.delete-button');
-                    if (deleteButton) {
-                        deleteButton.textContent = "Delete Reference";
-                    }
-                }
                 current_row.style.display = current_row.style.display === 'none' ? '' : 'none';
                 current_row = current_row.nextElementSibling;
             }
@@ -133,22 +130,22 @@
         }
     }
 
-    function handleDeleteButtonClick(button) {
-        if (button.textContent === "Delete Reference") {
-            button.textContent = "Are you sure?";
-        } else {
-            deleteFunction();
+    function handleCopyButtonClick(button) {
+        var bibtexString = button.getAttribute('data-bibtex');
+        var hidden_text_area = document.getElementById('hidden_text_area');
+
+        hidden_text_area.value = bibtexString;
+        hidden_text_area.select();
+        document.execCommand('copy');
+
+        alert('BibTeX entry successfully copied to clipboard!');
+    }
+
+    function confirmDelete(refId) {
+        if (window.confirm('Confirm you want to delete this reference?')) {
+            document.getElementById('delete_reference_form_' + refId).submit();
         }
     }
-
-    function deleteFunction() {
-        /* Tähän delete-toiminto. */
-        console.log("delete called");
-    }
-
-    /* function handleCopyButtonClick(button) {
-
-    }*/
 
 </script>
 
