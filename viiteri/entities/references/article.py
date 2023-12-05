@@ -44,19 +44,20 @@ class Article(Reference):
 
     def format_bibtex(self):
         """ Return BibTeX formatted reference """
-        return fr"""@article{{{self.cite_key},\n
-            author = "{self.author}",\n
-            title = "{self.title}",\
-            journal = "{self.journal}",\n
-            year = "{self.year}",\n
-            {fr'volume = "{self.volume}",\n' if self.volume else ""}
-            {fr'number = "{self.number}",\n' if self.number else ""}
-            {fr'pages = "{self.pages}",\n' if self.pages else ""}
-            {fr'month = "{self.month}",\n' if self.month else ""} 
-            {fr'doi = "{self.doi}",\n' if self.doi else ""}
-            {fr'note = "{self.note}",\n' if self.note else ""} 
-            {fr'issn = "{self.issn}",\n' if self.issn else ""} 
-            {fr'zblnumber = "{self.zblnumber}",\n' if self.zblnumber else ""}
-            {fr'eprint = "{self.eprint}",\n' if self.eprint else ""}
+        nl = "\n"
+        return fr"""@article{{{self.cite_key},{nl}
+            author = "{self.author}",{nl}
+            title = "{self.title}",{nl}
+            journal = "{self.journal}",{nl}
+            year = "{self.year}",{nl}
+            {fr'volume = "{self.volume}",{nl}' if self.volume else ""}
+            {fr'number = "{self.number}{nl}' if self.number else ""}
+            {fr'pages = "{self.pages}",{nl}' if self.pages else ""}
+            {fr'month = "{self.month}",{nl}' if self.month else ""} 
+            {fr'doi = "{self.doi}",{nl}' if self.doi else ""}
+            {fr'note = "{self.note}",{nl}' if self.note else ""} 
+            {fr'issn = "{self.issn}",{nl}' if self.issn else ""} 
+            {fr'zblnumber = "{self.zblnumber}",{nl}' if self.zblnumber else ""}
+            {fr'eprint = "{self.eprint}",{nl}' if self.eprint else ""}
         }}"""
         
