@@ -187,7 +187,7 @@ class TestReferenceEntity(unittest.TestCase):
     def test_article_format_bibtex(self):
         """Article entity is correctly converted to BibTeX format"""
         article_bibtex = """@article{petpet,
-            {author = "Petteri"},
+            author = "Petteri",
             title = "Petterin Kirja",
             journal = "Petterin Kirjakokoelma",
             year = "2003",
