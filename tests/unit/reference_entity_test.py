@@ -193,5 +193,10 @@ class TestReferenceEntity(unittest.TestCase):
             year = "2003",
             volume = "1",
         }"""
+        
+        print("First")
+        print(article_bibtex)
+        print("Second")
+        print(self.test_article.format_bibtex())
 
         self.assertEqual(article_bibtex, self.test_article.format_bibtex())
