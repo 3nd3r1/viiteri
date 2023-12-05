@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}View{% endblock %} {% block content
+{% extends "base.html" %} {% block title %}View Table{% endblock %} {% block content
 %}
 <div>
 	<h2>References</h2>
@@ -41,6 +41,7 @@
                 <td colspan="4" style="text-align: center;">
                     <!-- Ei tarvinnut olla yksittäisen BibTexin kopiointia, mutta kaksi nappia näytti paremmalta kuin yksi. -->
                     <!-- Tässä ei ole montaa asiaa samassa taskissa, koska on vain UI:n hahmottelua ilman toimintaa. -->
+                    <!-- Tähän saisi ehkä myös edit-napin? Erittäin vaikea kuitenkin toteuttaa editointi tablen sisällä. -->
                     <button class="copy-button" role="button">Copy BibTex to Clipboard</button>
                     <button class="delete-button" id="del_button-{{ reference.id }}" onclick="handleDeleteButtonClick(this)">Delete Reference</button>
                 </td>
@@ -51,14 +52,12 @@
 </div>
 
 <script>
-    /* Pitää tällä hetkellä klikata aluksi kahdesti. */
     function toggleDetails(row) {
         var ref_id = row.getAttribute('data-refid');
-        var next_row = row.nextElementSibling;
-        var is_detail_row = next_row && next_row.classList.contains('detail-row-' + ref_id);
+        var is_detail_row_created = row.classList.contains('detail-created-' + ref_id);
 
         /* Tämä if else koittaa olla luomasta liikaa ylimääräisiä rivejä. */
-        if (!is_detail_row) {
+        if (!is_detail_row_created) {
             /* Nämä ovat näkymättömiä jos ei referenssillä kyseistä ole. */
             var details = [
                 { label: 'Booktitle', value: row.getAttribute('data-booktitle') },
@@ -81,14 +80,16 @@
                 { label: 'Annote', value: row.getAttribute('data-annote') },
             ].filter(detail => detail.value);
 
+            var last_inserted_row = row;
+
             for (var i = 0; i < details.length; i += 4) {
                 var label_row = document.createElement('tr');
                 label_row.classList.add('reference-details', 'detail-row-' + ref_id, 'reference-details-labels');
-                label_row.style.display = 'none'; 
+                label_row.style.display = '';
 
                 var value_row = document.createElement('tr');
                 value_row.classList.add('reference-details', 'detail-row-' + ref_id, 'reference-details-values');
-                value_row.style.display = 'none'; 
+                value_row.style.display = '';
 
                 for (var j = i; j < i + 4 && j < details.length; j++) {
                     label_row.innerHTML += '<td class="type-label">' + details[j].label + '</td>';
@@ -100,21 +101,35 @@
                     value_row.innerHTML += '<td></td>';
                 }
 
-                row.parentNode.insertBefore(label_row, next_row || null);
-                row.parentNode.insertBefore(value_row, next_row || null);
+                last_inserted_row.parentNode.insertBefore(label_row, last_inserted_row.nextElementSibling);
+                last_inserted_row.parentNode.insertBefore(value_row, label_row.nextElementSibling);
+                last_inserted_row = value_row;
             }
+
+            var button_row = row.nextElementSibling;
+            while (button_row && !button_row.classList.contains('button-row')) {
+                button_row = button_row.nextElementSibling;
+            }
+            if (button_row) {
+                button_row.style.display = '';
+            }
+
+            row.classList.add('detail-created-' + ref_id);
+
         } else {
-            var are_details_visible = next_row && next_row.style.display !== 'none';
-            while (next_row && (next_row.classList.contains('detail-row-' + ref_id) || next_row.classList.contains('button-row'))) {
-                next_row.style.display = next_row.style.display === 'none' ? '' : 'none';
-                next_row = next_row.nextElementSibling;
-            }
-            if (are_details_visible) {
-                var del_button = document.getElementById('del_button-' + ref_id);
-                if (del_button) {
-                        del_button.textContent = "Delete Reference";
+            var current_row = row.nextElementSibling;
+
+            while (current_row && (current_row.classList.contains('detail-row-' + ref_id) || current_row.classList.contains('button-row'))) {
+                if (current_row.classList.contains('button-row')) {
+                    var deleteButton = current_row.querySelector('.delete-button');
+                    if (deleteButton) {
+                        deleteButton.textContent = "Delete Reference";
+                    }
                 }
+                current_row.style.display = current_row.style.display === 'none' ? '' : 'none';
+                current_row = current_row.nextElementSibling;
             }
+                
         }
     }
 
@@ -127,6 +142,7 @@
     }
 
     function deleteFunction() {
+        /* Tähän delete-toiminto. */
         console.log("delete called");
     }
 

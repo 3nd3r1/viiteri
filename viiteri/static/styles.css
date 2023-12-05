@@ -167,6 +167,8 @@ td {
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
+  min-width: 150px;
+  margin-right: 200px;
 }
 
 .copy-button:active {
@@ -191,6 +193,7 @@ td {
   background-image: linear-gradient(#ffdddd, #ffcccc);
   color: #d33a2c;
   border-color: #fabebe;
+  min-width: 150px;
 }
 
 .delete-button:hover {
@@ -206,12 +209,4 @@ td {
 .delete-button:focus {
   border-color: #e77600;
   box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
-}
-
-.button-row button {
-  margin-right: 150px;
-}
-
-.button-row button:last-child {
-  margin-right: 0;
 }
