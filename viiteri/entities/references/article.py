@@ -44,19 +44,19 @@ class Article(Reference):
 
     def format_bibtex(self):
         """ Return BibTeX formatted reference """
-        return f"""@article{{{self.cite_key},
-            author = "{self.author}",
-            title = "{self.title}",
-            journal = "{self.journal}",
-            year = "{self.year}",
-            {f'volume = "{self.volume}",' if self.volume else ""}
-            {f'number = "{self.number}",' if self.number else ""}
-            {f'pages = "{self.pages}",' if self.pages else ""}
-            {f'month = "{self.month}",' if self.month else ""} 
-            {f'doi = "{self.doi}",' if self.doi else ""}
-            {f'note = "{self.note}",' if self.note else ""} 
-            {f'issn = "{self.issn}",' if self.issn else ""} 
-            {f'zblnumber = "{self.zblnumber}",' if self.zblnumber else ""}
-            {f'eprint = "{self.eprint}",' if self.eprint else ""}
+        return fr"""@article{{{self.cite_key},\n
+            author = "{self.author}",\n
+            title = "{self.title}",\
+            journal = "{self.journal}",\n
+            year = "{self.year}",\n
+            {fr'volume = "{self.volume}",\n' if self.volume else ""}
+            {fr'number = "{self.number}",\n' if self.number else ""}
+            {fr'pages = "{self.pages}",\n' if self.pages else ""}
+            {fr'month = "{self.month}",\n' if self.month else ""} 
+            {fr'doi = "{self.doi}",\n' if self.doi else ""}
+            {fr'note = "{self.note}",\n' if self.note else ""} 
+            {fr'issn = "{self.issn}",\n' if self.issn else ""} 
+            {fr'zblnumber = "{self.zblnumber}",\n' if self.zblnumber else ""}
+            {fr'eprint = "{self.eprint}",\n' if self.eprint else ""}
         }}"""
         
