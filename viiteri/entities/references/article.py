@@ -59,3 +59,4 @@ class Article(Reference):
             {f'zblnumber = "{self.zblnumber}",' if self.zblnumber else ""}
             {f'eprint = "{self.eprint}",' if self.eprint else ""}
         }}"""
+        

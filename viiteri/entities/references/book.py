@@ -46,3 +46,4 @@ class Book(Reference):
 
     def format_bibtex(self):
         pass
+    
