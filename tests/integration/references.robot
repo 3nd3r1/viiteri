@@ -64,7 +64,6 @@ Add Two References Consecutively
     Set Year    2011    article
     Submit Reference    article
     Add Reference Should Succeed
-    Click Button    Submit another reference
     Check Reference Type    article
     Select From List By Value    form_select    book
     Set Author    Maija Makkonen    book
@@ -80,8 +79,6 @@ View All Added References
     Page Should Contain    Maijan artikkeli
     Page Should Contain    2011
     ${count} =    SeleniumLibrary.Get Element Count    xpath://tr[@class='reference-row']
-    # Oletuksena countille, että tietokanta on tyhjä ja lasketaan hr-elementit
-    # aiempien test casejen lisäämien viitteiden perusteella
     Should Be Equal As Integers    ${count}    5
 
 Add Article Unsuccessfully

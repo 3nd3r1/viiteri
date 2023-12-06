@@ -1,4 +1,5 @@
 """ viiteri/repositories/reference_repository.py """
+
 from sqlalchemy.sql import text
 
 from viiteri.entities.references import Reference
