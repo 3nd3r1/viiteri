@@ -194,3 +194,15 @@ class TestReferenceEntity(unittest.TestCase):
         volume = "1"
 }"""
         self.assertEqual(article_bibtex, self.test_article.format_bibtex())
+
+    def test_inproceedings_format_bibtex(self):
+        """Inproceedings entity is correctly converted to BibTeX format"""
+        inproceedings_bibtex = """@inproceedings{johinp,
+        author = "John Doe",
+        title = "An Analysis of Example",
+        booktitle = "Sample Text",
+        year = "2002",
+        editor = "Ex Ample"
+}"""
+
+        self.assertEqual(inproceedings_bibtex, self.test_inproceedings.format_bibtex())
