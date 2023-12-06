@@ -2,7 +2,7 @@
 
 import unittest
 
-from viiteri.entities.references import Article, Book, Inproceedings
+from viiteri.entities.references import Article, Book, Inproceedings, inproceedings
 
 
 class TestReferenceEntity(unittest.TestCase):
@@ -183,3 +183,19 @@ class TestReferenceEntity(unittest.TestCase):
 
         self.assertEqual(inproceedings_ieee, self.test_inproceedings.format_ieee())
         self.assertEqual(inp_ieee_surname_only, inp_entity.format_ieee())
+
+    def test_inproceedings_format_bibtex(self):
+        """Inproceedings entity is correctly converted to BibTeX format"""
+        inproceedings_bibtex = """@inproceedings{johinp,
+        author = "John Doe",
+        title = "An Analysis of Example",
+        booktitle = "Sample Text",
+        year = "2002",
+        editor = "Ex Ample"
+}"""
+
+        print("First")
+        print(inproceedings_bibtex)
+        print("Second")
+        print(self.test_inproceedings.format_bibtex())
+        self.assertEqual(inproceedings_bibtex, self.test_inproceedings.format_bibtex())

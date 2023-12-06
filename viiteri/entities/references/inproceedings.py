@@ -46,20 +46,24 @@ class Inproceedings(Reference):
 
     def format_bibtex(self):
         """ Return BibTeX formatted reference """
-        return f"""@article{{{self.cite_key},
-            author = "{self.author}",
-            title = "{self.title}",
-            booktitle = "{self.booktitle}",
-            year = "{self.year}",
-            {f'editor: "{self.editor}",' if self.editor else ""}
-            {f'volume: "{self.volume}",' if self.volume else ""}
-            {f'number: "{self.number}",' if self.number else ""}
-            {f'series: "{self.series}",' if self.series else ""}
-            {f'pages: "{self.pages}",' if self.pages else ""}
-            {f'month: "{self.month}",' if self.month else ""} 
-            {f'address: "{self.address}",' if self.address else ""}
-            {f'organization: "{self.organization}",' if self.organization else ""} 
-            {f'publisher: "{self.publisher}",' if self.publisher else ""} 
-            {f'note: "{self.note}",' if self.note else ""}
-            {f'annote: "{self.annote}",' if self.annote else ""}
-        }}"""
+        fields = [
+            f"{self.cite_key}",
+            f"author = \"{self.author}\"",
+            f"title = \"{self.title}\"",
+            f"booktitle = \"{self.booktitle}\"",
+            f"year = \"{self.year}\"",
+            *([f"editor = \"{self.editor}\""] if self.editor else []),
+            *([f"volume = \"{self.volume}\""] if self.volume else []),
+            *([f"number = \"{self.number}\""] if self.number else []),
+            *([f"series = \"{self.series}\""] if self.number else []),
+            *([f"pages = \"{self.pages}\""] if self.pages else []),
+            *([f"month = \"{self.month}\""] if self.month else []),
+            *([f"address = \"{self.address}\""] if self.address else []),
+            *([f"organization = \"{self.organization}\""] if self.organization else []),
+            *([f"publisher = \"{self.publisher}\""] if self.publisher else []),
+            *([f"note = \"{self.note}\""] if self.note else []),
+            *([f"annote = \"{self.annote}\""] if self.annote else []),
+        ]
+
+        bt_fields = ",\n        ".join(fields)
+        return "@inproceedings{" + bt_fields + "\n}"
