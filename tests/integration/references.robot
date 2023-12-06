@@ -20,7 +20,7 @@ Click Submit Link
 Click View Link
     Go To View Page
     View Page Should Be Open
-    
+
 Add Article Successfully
     Go To Add Page
     Check Reference Type    article
@@ -36,7 +36,7 @@ Add Book Successfully
     Go To Add Page
     Check Reference Type    article
     Select From List By Value    form_select    book
-    Set Author    Maija Makkonen   book
+    Set Author    Maija Makkonen    book
     Set Title    Maijan kirja    book
     Set Publisher    WSOY    book
     Set Year    2000    book
@@ -54,7 +54,6 @@ Add Inproceedings Successfully
     Submit Reference    inproceedings
     Add Reference Should Succeed
 
-
 Add Two References Consecutively
     Go To Add Page
     Check Reference Type    inproceedings
@@ -68,7 +67,7 @@ Add Two References Consecutively
     Click Button    Submit another reference
     Check Reference Type    article
     Select From List By Value    form_select    book
-    Set Author    Maija Makkonen   book
+    Set Author    Maija Makkonen    book
     Set Title    Maijan kirja    book
     Set Publisher    WSOY    book
     Set Year    2000    book
@@ -77,12 +76,10 @@ Add Two References Consecutively
 
 View All Added References
     Go To View Page
-    Click Button    Show all references
-    Page Should Contain    P. Mikkola
+    Page Should Contain    Pekka Mikkola
     Page Should Contain    Maijan artikkeli
-    Page Should Contain    Maijan artikkelikokoelma
     Page Should Contain    2011
-    ${count} =   SeleniumLibrary.Get Element Count    xpath://div[@id='references_container']//hr
+    ${count} =    SeleniumLibrary.Get Element Count    xpath://tr[@class='reference-row']
     # Oletuksena countille, että tietokanta on tyhjä ja lasketaan hr-elementit
     # aiempien test casejen lisäämien viitteiden perusteella
     Should Be Equal As Integers    ${count}    5
@@ -95,7 +92,9 @@ Add Article Unsuccessfully
     Set Title    Maijan artikkeli    article
     Set Journal    Maijan artikkelikokoelma    article
     Submit Reference    article
-    ${error} =    SeleniumLibrary.Get Element Attribute    xpath://div[@id='article']//input[@name='year']    validationMessage
+    ${error} =    SeleniumLibrary.Get Element Attribute
+    ...    xpath://div[@id='article']//input[@name='year']
+    ...    validationMessage
     Should Not Be Empty    ${error}
 
 
