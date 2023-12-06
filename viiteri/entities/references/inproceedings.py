@@ -1,9 +1,9 @@
 """ viiteri/entities/references/inproceedings.py """
 
-# pylint: disable=too-many-instance-attributes, duplicate-code
 from viiteri.entities.references import Reference
 
 
+# pylint: disable=duplicate-code
 class Inproceedings(Reference):
     """ Class for representing 'inproceedings'-type references """
 
@@ -45,7 +45,8 @@ class Inproceedings(Reference):
             *([f"pages = \"{self.pages}\""] if self.pages else []),
             *([f"month = \"{self.month}\""] if self.month else []),
             *([f"address = \"{self.address}\""] if self.address else []),
-            *([f"organization = \"{self.organization}\""] if self.organization else []),
+            *([f"organization = \"{self.organization}\""]
+              if self.organization else []),
             *([f"publisher = \"{self.publisher}\""] if self.publisher else []),
             *([f"note = \"{self.note}\""] if self.note else []),
             *([f"annote = \"{self.annote}\""] if self.annote else []),
@@ -53,4 +54,3 @@ class Inproceedings(Reference):
 
         bt_fields = ",\n        ".join(fields)
         return "@inproceedings{" + bt_fields + "\n}"
-    

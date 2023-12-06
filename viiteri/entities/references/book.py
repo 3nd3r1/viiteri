@@ -1,9 +1,9 @@
 """ viiteri/entities/references/book.py """
 
-# pylint: disable=too-many-instance-attributes, duplicate-code
 from viiteri.entities.references import Reference
 
 
+# pylint: disable=duplicate-code
 class Book(Reference):
     """ Class for representing 'book'-type references """
 
@@ -51,4 +51,3 @@ class Book(Reference):
 
         bt_fields = ",\n        ".join(fields)
         return "@book{" + bt_fields + "\n}"
-    
