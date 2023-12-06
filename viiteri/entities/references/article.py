@@ -1,6 +1,6 @@
 """ viiteri/entities/references/article.py """
 
-# pylint: disable=too-many-instance-attributes
+# pylint: disable=too-many-instance-attributes, duplicate-code
 from viiteri.entities.references import Reference
 
 
@@ -41,3 +41,25 @@ class Article(Reference):
         reference += ', '.join(field for field in fields if field)
 
         return reference
+
+    def format_bibtex(self):
+        """ Return BibTeX formatted reference """
+        fields = [
+            f"{self.cite_key}",
+            f"author = \"{self.author}\"",
+            f"title = \"{self.title}\"",
+            f"journal = \"{self.journal}\"",
+            f"year = \"{self.year}\"",
+            *([f"volume = \"{self.volume}\""] if self.volume else []),
+            *([f"number = \"{self.number}\""] if self.number else []),
+            *([f"pages = \"{self.pages}\""] if self.pages else []),
+            *([f"month = \"{self.month}\""] if self.month else []),
+            *([f"doi = \"{self.doi}\""] if self.doi else []),
+            *([f"note = \"{self.note}\""] if self.note else []),
+            *([f"issn = \"{self.issn}\""] if self.issn else []),
+            *([f"zblnumber = \"{self.zblnumber}\""] if self.zblnumber else []),
+            *([f"eprint = \"{self.eprint}\""] if self.eprint else []),
+        ]
+
+        bt_fields = ",\n        ".join(fields)
+        return "@article{" + bt_fields + "\n}"

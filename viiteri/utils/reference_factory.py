@@ -1,12 +1,12 @@
 """ viiteri/utils/reference_factory.py """
 
-from viiteri.entities.references import Article, Book, Inproceedings
+from viiteri.entities.references import Article, Book, Inproceedings, Reference
 
 
 class ReferenceFactory:
     """ Factory class for creating references """
     @staticmethod
-    def create_reference(reference_type, **kwargs):
+    def create_reference(reference_type, **kwargs) -> Reference:
         """ Create a reference of given type """
         match reference_type:
             case "article":

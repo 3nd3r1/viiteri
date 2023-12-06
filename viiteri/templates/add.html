@@ -48,25 +48,10 @@
             var form_select = document.getElementById("form_select");
             switchForm(form_select.value);
 
-            var submit_button = document.getElementById("submit_button");
+            var submit_button = document.getElementsByClassName("submit-button")[0];
             var form_fields = document.getElementsByClassName("form-field");
             var form = document.forms[0];
 
-
-
-            {% if submitted %}
-                disableFormFields(form_fields, true);
-            {% else %}
-                disableFormFields(form_fields, false);
-            {% endif %}
-
-            submit_button.onclick = function() {
-                if (submitted) {
-                    disableFormFields(form_fields, true);
-                } else {
-                    form.submit();
-                }
-            };
         };
     </script>
 {% endblock %}
