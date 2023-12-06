@@ -67,3 +67,4 @@ class Inproceedings(Reference):
 
         bt_fields = ",\n        ".join(fields)
         return "@inproceedings{" + bt_fields + "\n}"
+    

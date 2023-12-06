@@ -44,3 +44,4 @@ class Article(Reference):
 
     def format_bibtex(self):
         pass
+    
