@@ -39,7 +39,7 @@ Add Page Should Be Open
     Title Should Be    Submit - Viiteri
 
 List Page Should Be Open
-    Title Should Be    View - Viiteri
+    Title Should Be    View Table - Viiteri
 
 Go To Home Page
     Go To    ${HOME_URL}
