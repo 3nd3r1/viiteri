@@ -30,20 +30,6 @@ class Inproceedings(Reference):
         self.note = kwargs.get("note", None)
         self.annote = kwargs.get("annote", None)
 
-    def format_ieee(self):
-        """Returns the reference in IEEE format"""
-        author = self.author.split(' ')
-        reference = f"{self.author}, "
-        if len(author) > 1:
-            reference = f"{author[0][0]}. {author[1]}, "
-
-        fields = [self.title, self.booktitle, self.volume, self.series,
-                  self.editor, self.month, self.year, self.pages]
-
-        reference += ', '.join(field for field in fields if field)
-
-        return reference
-
     def format_bibtex(self):
         """ Return BibTeX formatted reference """
         fields = [
