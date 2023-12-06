@@ -43,3 +43,7 @@ class Book(Reference):
         reference += ', '.join(field for field in fields if field)
 
         return reference
+
+    def format_bibtex(self):
+        pass
+    
