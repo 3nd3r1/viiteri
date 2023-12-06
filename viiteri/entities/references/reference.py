@@ -29,3 +29,4 @@ class Reference(ABC):
     def type(self):
         """ Return reference type """
         return self._type
+
