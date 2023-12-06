@@ -44,20 +44,22 @@ class Article(Reference):
 
     def format_bibtex(self):
         """ Return BibTeX formatted reference """
-        nl = "\n"
-        return fr"""@article{{{self.cite_key},{nl}
-            author = "{self.author}",{nl}
-            title = "{self.title}",{nl}
-            journal = "{self.journal}",{nl}
-            year = "{self.year}",{nl}
-            {fr'volume = "{self.volume}",{nl}' if self.volume else ""}
-            {fr'number = "{self.number}{nl}' if self.number else ""}
-            {fr'pages = "{self.pages}",{nl}' if self.pages else ""}
-            {fr'month = "{self.month}",{nl}' if self.month else ""} 
-            {fr'doi = "{self.doi}",{nl}' if self.doi else ""}
-            {fr'note = "{self.note}",{nl}' if self.note else ""} 
-            {fr'issn = "{self.issn}",{nl}' if self.issn else ""} 
-            {fr'zblnumber = "{self.zblnumber}",{nl}' if self.zblnumber else ""}
-            {fr'eprint = "{self.eprint}",{nl}' if self.eprint else ""}
-        }}"""
-        
+        fields = [
+            f"{self.cite_key}",
+            f"author = \"{self.author}\"",
+            f"title = \"{self.title}\"",
+            f"journal = \"{self.journal}\"",
+            f"year = \"{self.year}\"",
+            *([f"volume = \"{self.volume}\""] if self.volume else []),
+            *([f"number = \"{self.number}\""] if self.number else []),
+            *([f"pages = \"{self.pages}\""] if self.pages else []),
+            *([f"month = \"{self.month}\""] if self.month else []),
+            *([f"doi = \"{self.doi}\""] if self.doi else []),
+            *([f"note = \"{self.note}\""] if self.note else []),
+            *([f"issn = \"{self.issn}\""] if self.issn else []),
+            *([f"zblnumber = \"{self.zblnumber}\""] if self.zblnumber else []),
+            *([f"eprint = \"{self.eprint}\""] if self.eprint else []),
+        ]
+
+        bt_fields = ",\n        ".join(fields)
+        return "@article{" + bt_fields + "\n}"
