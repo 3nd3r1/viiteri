@@ -1,6 +1,6 @@
 """ viiteri/entities/references/article.py """
 
-# pylint: disable=too-many-instance-attributes
+# pylint: disable=too-many-instance-attributes, duplicate-code
 from viiteri.entities.references import Reference
 
 

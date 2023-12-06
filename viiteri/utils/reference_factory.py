@@ -1,5 +1,3 @@
-# pylint: disable=abstract-class-instantiated
-
 """ viiteri/utils/reference_factory.py """
 
 from viiteri.entities.references import Article, Book, Inproceedings, Reference
