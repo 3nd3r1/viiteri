@@ -11,9 +11,10 @@ class TestReferenceEntity(unittest.TestCase):
     def setUp(self):
         self.test_article = Article(cite_key="petpet", author="Petteri",
                                     title="Petterin Kirja",
-                                    journal="Petterin Kirjakokoelma", year="2003", volume="1")
+                                    journal="Petterin Kirjakokoelma",
+                                    year="2003", volume="1")
         self.test_book = Book(cite_key="petkir", author="Petteri",
-                              editor="Petteri", title="Petterin Kirja vol 2",
+                              title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
         self.test_inproceedings = Inproceedings(cite_key="johinp", author="John Doe",
                                                 title="An Analysis of Example",
@@ -43,7 +44,6 @@ class TestReferenceEntity(unittest.TestCase):
 
         # Test that required fields are set
         self.assertEqual(self.test_book.author, "Petteri")
-        self.assertEqual(self.test_book.editor, "Petteri")
         self.assertEqual(self.test_book.title, "Petterin Kirja vol 2")
         self.assertEqual(self.test_book.publisher, "WSOY")
         self.assertEqual(self.test_book.year, "2004")
@@ -68,23 +68,28 @@ class TestReferenceEntity(unittest.TestCase):
         """ Test that Article entity raises ValueError with invalid arguments """
 
         with self.assertRaises(ValueError):
-            Article(cite_key="petpet", author="Petteri",
-                    title="Petterin Kirja", journal="Petterin Kirjakokoelma")
+            Article(cite_key="petpet",
+                    author="Petteri",
+                    title="Petterin Kirja",
+                    journal="Petterin Kirjakokoelma")
 
     def test_init_book_with_missing_required_arguments(self):
         """ Test that Book-entity raises ValueError with invalid arguments """
 
         with self.assertRaises(ValueError):
-            Book(cite_key="petkir", author="Petteri",
-                 editor="Petteri", publisher="WSOY",
+            Book(cite_key="petkir",
+                 author="Petteri",
+                 publisher="WSOY",
                  year="2004")
 
     def test_init_inproceedings_with_missing_required_arguments(self):
         """ Test that Inproceedings-entity raises ValueError with invalid arguments  """
 
         with self.assertRaises(ValueError):
-            Inproceedings(cite_key="johinp", author="John Doe",
-                          title="An Analysis of Example", booktitle="Sample Text",
+            Inproceedings(cite_key="johinp",
+                          author="John Doe",
+                          title="An Analysis of Example",
+                          booktitle="Sample Text",
                           editor="Ex Ample")
 
     def test_article_str_method(self):
@@ -101,10 +106,11 @@ class TestReferenceEntity(unittest.TestCase):
                                        "'pages': None, "
                                        "'month': None, "
                                        "'doi': None, "
-                                       "'note': None, "
                                        "'issn': None, "
                                        "'zblnumber': None, "
-                                       "'eprint': None}"))
+                                       "'eprint': None, "
+                                       "'note': None, "
+                                       "'annote': None}"))
 
     def test_book_str_method(self):
         """ Test that Book entitys str method returns correct string """
@@ -112,18 +118,19 @@ class TestReferenceEntity(unittest.TestCase):
         self.assertEqual(book_str, ("{'_type': 'book', "
                                     "'_cite_key': 'petkir', "
                                     "'author': 'Petteri', "
-                                    "'editor': 'Petteri', "
                                     "'title': 'Petterin Kirja vol 2', "
                                     "'publisher': 'WSOY', "
                                     "'year': '2004', "
+                                    "'editor': None, "
                                     "'number': None, "
                                     "'volume': None, "
                                     "'pages': None, "
                                     "'month': None, "
-                                    "'note': None, "
                                     "'doi': None, "
                                     "'issn': None, "
-                                    "'isbn': None}"))
+                                    "'isbn': None, "
+                                    "'note': None, "
+                                    "'annote': None}"))
 
     def test_inproceedings_str_method(self):
         """ Test that Inproceedings entitys str method returns correct string """
@@ -145,44 +152,28 @@ class TestReferenceEntity(unittest.TestCase):
                                              "'publisher': None, "
                                              "'note': None, "
                                              "'annote': None}"))
+        
+    def test_article_format_bibtex(self):
+        """Article entity is correctly converted to BibTeX format"""
+        article_bibtex = """@article{petpet,
+        author = "Petteri",
+        title = "Petterin Kirja",
+        journal = "Petterin Kirjakokoelma",
+        year = "2003",
+        volume = "1"
+}"""
+        self.assertEqual(article_bibtex, self.test_article.format_bibtex())
 
-    # ieee format tests:
+    def test_book_format_bibtex(self):
+        """Book entity is correctly converted to BibTeX format"""
+        book_bibtex = """@book{petkir,
+        author = "Petteri",
+        title = "Petterin Kirja vol 2",
+        publisher = "WSOY",
+        year = "2004"
+}"""
 
-    def test_article_format_ieee(self):
-        """Article entity is correctly converted to IEEE format"""
-        article_ieee = 'Petteri, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
-
-        article_entity = Article(cite_key="petpet", author="Petteri Petterinpoika",
-                                 title="Petterin Kirja",
-                                 journal="Petterin Kirjakokoelma", year="2003", volume="1")
-        another_article_ieee = 'P. Petterinpoika, Petterin Kirja, Petterin Kirjakokoelma, 1, 2003'
-
-        self.assertEqual(article_ieee, self.test_article.format_ieee())
-        self.assertEqual(another_article_ieee, article_entity.format_ieee())
-
-    def test_book_format_ieee(self):
-        """Book entity is correctly converted to IEEE format"""
-        book_ieee = 'Petteri, Ed. Petterin Kirja vol 2, WSOY, 2004'
-
-        book_entity = Book(cite_key="petkir", author="Petteri Petterinpoika", editor="Petteri",
-                           title="Petterin Kirja vol 2", publisher="WSOY", year="2004")
-        another_book_ieee = 'P. Petterinpoika, Petterin Kirja vol 2, Petteri, WSOY, 2004'
-
-        self.assertEqual(book_ieee, self.test_book.format_ieee())
-        self.assertEqual(another_book_ieee, book_entity.format_ieee())
-
-    def test_inproceedings_format_ieee(self):
-        """Inproceedings entity is correctly converted to IEEE format"""
-        inproceedings_ieee = 'J. Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
-
-        inp_entity = Inproceedings(cite_key="johinp", author="Doe",
-                                   title="An Analysis of Example",
-                                   booktitle="Sample Text",
-                                   year="2002", editor="Ex Ample")
-        inp_ieee_surname_only = 'Doe, An Analysis of Example, Sample Text, Ex Ample, 2002'
-
-        self.assertEqual(inproceedings_ieee, self.test_inproceedings.format_ieee())
-        self.assertEqual(inp_ieee_surname_only, inp_entity.format_ieee())
+        self.assertEqual(book_bibtex, self.test_book.format_bibtex())
 
     def test_inproceedings_format_bibtex(self):
         """Inproceedings entity is correctly converted to BibTeX format"""
@@ -194,8 +185,4 @@ class TestReferenceEntity(unittest.TestCase):
         editor = "Ex Ample"
 }"""
 
-        print("First")
-        print(inproceedings_bibtex)
-        print("Second")
-        print(self.test_inproceedings.format_bibtex())
         self.assertEqual(inproceedings_bibtex, self.test_inproceedings.format_bibtex())

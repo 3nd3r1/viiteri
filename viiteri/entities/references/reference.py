@@ -13,10 +13,6 @@ class Reference(ABC):
         return str(self.__dict__)
 
     @abstractmethod
-    def format_ieee(self):
-        """ Return IEEE formatted reference """
-
-    @abstractmethod
     def format_bibtex(self):
         """ Return BibTeX formatted reference """
 

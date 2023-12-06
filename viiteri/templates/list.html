@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}View{% endblock %} {% block content
 %}
 <div>
-	<h2>References</h2>
+	<h2>All references in a table view with options</h2>
 	
     <table>
         <tr>
@@ -40,9 +40,7 @@
             <tr class="button-row" style="display: none;">
                 <td colspan="4" style="text-align: center;">
                     <!-- Tähän saisi ehkä myös edit-napin? Erittäin vaikea kuitenkin toteuttaa editointi tablen sisällä. -->
-
-                    <!-- Muokkaa format_ieee tilalle format_bibtex kun metodi on valmis. -->
-                    <!-- <button class="copy-button" data-bibtex="{{ reference[1].format_ieee() }}" onclick="handleCopyButtonClick(this)">Copy BibTex to clipboard</button> -->
+                    <button class="copy-button" data-bibtex="{{ reference[1].format_bibtex() }}" onclick="handleCopyButtonClick(this)">Copy BibTex to clipboard</button>
                     <button class="delete-button" onclick="confirmDelete({{ reference[0] }})">Delete Reference</button>
                 </td>
             </tr>

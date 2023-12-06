@@ -169,7 +169,7 @@ td {
   transform: translateY(1px);
 }
 
-.bcopy-button:hover {
+.copy-button:hover {
   border-color: #a2a6ac #979aa1 #82858a;
 }
 
