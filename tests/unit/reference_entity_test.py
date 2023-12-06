@@ -2,7 +2,7 @@
 
 import unittest
 
-from viiteri.entities.references import Article, Book, Inproceedings, inproceedings
+from viiteri.entities.references import Article, Book, Inproceedings
 
 
 class TestReferenceEntity(unittest.TestCase):
