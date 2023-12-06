@@ -9,6 +9,7 @@ ${DELAY}        0 seconds
 ${HOME_URL}     http://${SERVER}
 ${ADD_URL}      ${HOME_URL}/add
 ${LIST_URL}     ${HOME_URL}/list
+${BIBTEX_URL}   ${HOME_URL}/bibtex
 
 
 *** Keywords ***
@@ -39,7 +40,10 @@ Add Page Should Be Open
     Title Should Be    Submit - Viiteri
 
 List Page Should Be Open
-    Title Should Be    View - Viiteri
+    Title Should Be    View Table - Viiteri
+
+Bibtex Page Should Be Open
+    Title Should Be    View Bibtex - Viiteri
 
 Go To Home Page
     Go To    ${HOME_URL}
@@ -49,3 +53,6 @@ Go To Add Page
 
 Go To List Page
     Go To    ${LIST_URL}
+
+Go To Bibtex Page
+    Go To    ${BIBTEX_URL}

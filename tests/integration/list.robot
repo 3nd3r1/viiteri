@@ -26,3 +26,14 @@ User should be able to see all added references
     Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
 
     Page Reference Count Should Be    2
+
+
+User Should Be Able To Delete A Reference
+    [Documentation]    Käyttäjänä voin poistaa lisättyjä lähdeviitteitä #5
+
+    View Whole Reference
+    Page Should Contain Whole Reference    Maijan lehti
+    ${button} =    Get WebElement    xpath://tbody/tr[@class='button-row']/td/button[@class='delete-button']
+    Click Element    ${button}
+    Handle Alert
+    Page Reference Count Should Be    1
