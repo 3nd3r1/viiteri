@@ -11,6 +11,7 @@ blueprint = Blueprint("list_references", __name__)
 @blueprint.route("/list")
 def render_list():
     """ Render listing page """
+    references = []
     try:
         references = reference_service.get_all_references()
     except DatabaseError as error:
