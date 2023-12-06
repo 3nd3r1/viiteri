@@ -1,8 +1,9 @@
-# pylint: disable=broad-except
-
 """ viiteri/routes/create_reference.py """
+
 from flask import Blueprint, render_template, redirect, request, flash, session
+
 from viiteri.services.reference_service import reference_service
+from viiteri.repositories.reference_repository import DatabaseError
 
 
 blueprint = Blueprint("add", __name__)
@@ -21,11 +22,14 @@ def add_reference():
             cite_key = request.form["title"][0:3] + \
                 request.form["author"].split(" ")[0][0:3]
             reference_service.create_reference(
-                        ref_type, cite_key=cite_key, **request.form.to_dict())
-            flash("Reference created successfully!")
+                ref_type, cite_key=cite_key, **request.form.to_dict())
+            flash("Reference created successfully!", "success")
             session["submitted"] = True
             session["last_ref_type"] = ref_type
-        except Exception:
-            #flash(str(error))
+        except DatabaseError as error:
+            flash(str(error), "error")
+            session["submitted"] = False
+        except ValueError as error:
+            flash(str(error), "error")
             session["submitted"] = False
     return redirect("/add")
