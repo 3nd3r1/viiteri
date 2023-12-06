@@ -1,6 +1,5 @@
 """ viiteri/entities/references/article.py """
 
-# pylint: disable=too-many-instance-attributes
 from viiteri.entities.references import Reference
 
 
@@ -44,4 +43,3 @@ class Article(Reference):
 
     def format_bibtex(self):
         pass
-    
