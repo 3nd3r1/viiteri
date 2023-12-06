@@ -184,6 +184,17 @@ class TestReferenceEntity(unittest.TestCase):
         self.assertEqual(inproceedings_ieee, self.test_inproceedings.format_ieee())
         self.assertEqual(inp_ieee_surname_only, inp_entity.format_ieee())
 
+    def test_article_format_bibtex(self):
+        """Article entity is correctly converted to BibTeX format"""
+        article_bibtex = """@article{petpet,
+        author = "Petteri",
+        title = "Petterin Kirja",
+        journal = "Petterin Kirjakokoelma",
+        year = "2003",
+        volume = "1"
+}"""
+        self.assertEqual(article_bibtex, self.test_article.format_bibtex())
+
     def test_inproceedings_format_bibtex(self):
         """Inproceedings entity is correctly converted to BibTeX format"""
         inproceedings_bibtex = """@inproceedings{johinp,
@@ -194,8 +205,4 @@ class TestReferenceEntity(unittest.TestCase):
         editor = "Ex Ample"
 }"""
 
-        print("First")
-        print(inproceedings_bibtex)
-        print("Second")
-        print(self.test_inproceedings.format_bibtex())
         self.assertEqual(inproceedings_bibtex, self.test_inproceedings.format_bibtex())
