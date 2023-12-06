@@ -19,13 +19,13 @@ class Book(Reference):
 
         # Optional arguments
         self.editor = kwargs.get("editor", None)
+        self.edition = kwargs.get("edition", None)
         self.volume = kwargs.get("volume", None)
         self.number = kwargs.get("number", None)
         self.pages = kwargs.get("pages", None)
         self.month = kwargs.get("month", None)
         self.series = kwargs.get("series", None)
         self.address = kwargs.get("address", None)
-        self.edition = kwargs.get("edition", None)
         self.doi = kwargs.get("doi", None)
         self.issn = kwargs.get("issn", None)
         self.isbn = kwargs.get("isbn", None)
