@@ -1,8 +1,8 @@
 """ viiteri/routes/list_references.py """
 from flask import Blueprint, render_template, flash
+from sqlalchemy.exc import SQLAlchemyError
 
 from viiteri.services.reference_service import reference_service
-from viiteri.repositories.reference_repository import DatabaseError
 
 
 blueprint = Blueprint("list_references", __name__)
@@ -14,6 +14,6 @@ def render_list():
     references = []
     try:
         references = reference_service.get_all_references()
-    except DatabaseError as error:
-        flash(str(error), "error")
+    except SQLAlchemyError:
+        flash("Database failed to get all references", "error")
     return render_template("list.html", references=references)

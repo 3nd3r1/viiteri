@@ -1,9 +1,9 @@
 """ viiteri/routes/create_reference.py """
 
 from flask import Blueprint, render_template, redirect, request, flash, session
+from sqlalchemy.exc import SQLAlchemyError
 
 from viiteri.services.reference_service import reference_service
-from viiteri.repositories.reference_repository import DatabaseError
 
 
 blueprint = Blueprint("add", __name__)
@@ -24,8 +24,8 @@ def add_reference():
                 ref_type, cite_key=cite_key, **request.form.to_dict())
             flash("Reference created successfully!", "success")
             session["last_ref_type"] = ref_type
-        except DatabaseError as error:
-            flash(str(error), "error")
+        except SQLAlchemyError:
+            flash("Database failed to add reference", "error")
         except ValueError as error:
             flash(str(error), "error")
     return redirect("/add")

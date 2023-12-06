@@ -1,7 +1,6 @@
-# pylint: disable=broad-except
-
 """ viiteri/routes/remove.py """
 from flask import Blueprint, redirect, request, flash
+from sqlalchemy.exc import SQLAlchemyError
 from viiteri.services.reference_service import reference_service
 
 
@@ -15,7 +14,7 @@ def remove_reference():
         ref_id = request.form.get("reference_id")
         try:
             reference_service.remove_reference(ref_id)
-            flash("Reference removed successfully!")
-        except Exception:
-            flash("Reference not found!")
+            flash("Reference removed successfully!", "success")
+        except SQLAlchemyError:
+            flash("Database failed to remove reference", "error")
     return redirect("/list")
