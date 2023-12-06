@@ -4,12 +4,12 @@
 	<h2>All references in raw BibTex format</h2>
 
 	<button id="copy-button" onclick="copyText()">
-		Copy all to Clipboard
+		Copy all to clipboard
 	</button>
 
     <textarea id="textarea">
         {% for reference in references %}
-            {{ reference.format_bibtex() }}
+            {{ reference[1].format_bibtex() }}
         {% endfor %}
     </textarea>
 
