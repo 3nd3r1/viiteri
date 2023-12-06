@@ -8,7 +8,7 @@ class Book(Reference):
     """ Class for representing 'book'-type references """
 
     def __init__(self, **kwargs):
-        if not kwargs.keys() >= {"cite_key", "author", "editor", "title", "publisher", "year"}:
+        if not kwargs.keys() >= {"cite_key", "author", "title", "publisher", "year"}:
             raise ValueError("Missing required arguments")
 
         super().__init__("book", kwargs["cite_key"])
