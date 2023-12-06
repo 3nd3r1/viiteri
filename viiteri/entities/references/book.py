@@ -1,6 +1,6 @@
 """ viiteri/entities/references/book.py """
 
-# pylint: disable=too-many-instance-attributes
+# pylint: disable=too-many-instance-attributes, duplicate-code
 from viiteri.entities.references import Reference
 
 
@@ -45,5 +45,24 @@ class Book(Reference):
         return reference
 
     def format_bibtex(self):
-        pass
+        """ Return BibTeX formatted reference """
+        fields = [
+            f"{self.cite_key}",
+            f"author = \"{self.author}\"",
+            f"editor = \"{self.editor}\"",
+            f"title = \"{self.title}\"",
+            f"publisher = \"{self.publisher}\"",
+            f"year = \"{self.year}\"",
+            *([f"number = \"{self.number}\""] if self.number else []),
+            *([f"volume = \"{self.volume}\""] if self.volume else []),
+            *([f"pages = \"{self.pages}\""] if self.pages else []),
+            *([f"month = \"{self.month}\""] if self.month else []),
+            *([f"note = \"{self.note}\""] if self.note else []),
+            *([f"doi = \"{self.doi}\""] if self.doi else []),
+            *([f"issn = \"{self.issn}\""] if self.issn else []),
+            *([f"isbn = \"{self.isbn}\""] if self.isbn else []),
+        ]
+
+        bt_fields = ",\n        ".join(fields)
+        return "@book{" + bt_fields + "\n}"
     
