@@ -7,13 +7,32 @@
 			href="{{ url_for('static', filename='styles.css') }}"
 		/>
 		<title>{% block title %}{% endblock %} - Viiteri</title>
+		<style>
+			.alert.success {
+				padding: 15px;
+				background-color: #1f9141;
+				color: white;
+			}
+			.alert.error {
+				padding: 15px;
+				background-color: #c92a2a;
+				color: white;
+			}
+		</style>
 	</head>
 	<body>
 		<div>
 			<h1>Viiteri BibTex Reference Management Tool</h1>
-			{% for message in get_flashed_messages() %}
+			<!-- {% for message in get_flashed_messages() %}
 			<div class="flash">{{ message }}</div>
-			{% endfor %}
+			{% endfor %} -->
+			{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div class="alert {{category}}"> {{ message }} </div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
 			<button
 				onclick="window.location.href='/'"
 				class="navigation-button"
