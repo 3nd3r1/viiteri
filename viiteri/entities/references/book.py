@@ -34,10 +34,10 @@ class Book(Reference):
         fields = [
             f"{self.cite_key}",
             f"author = \"{self.author}\"",
-            f"editor = \"{self.editor}\"",
             f"title = \"{self.title}\"",
             f"publisher = \"{self.publisher}\"",
             f"year = \"{self.year}\"",
+            *([f"editor = \"{self.editor}\""] if self.editor else []),
             *([f"number = \"{self.number}\""] if self.number else []),
             *([f"volume = \"{self.volume}\""] if self.volume else []),
             *([f"pages = \"{self.pages}\""] if self.pages else []),
