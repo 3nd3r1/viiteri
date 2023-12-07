@@ -4,12 +4,12 @@ Library     ../libraries/ReferenceRepositoryLibrary.py
 
 
 *** Variables ***
-${SERVER}       localhost:5001
-${DELAY}        0 seconds
-${HOME_URL}     http://${SERVER}
-${ADD_URL}      ${HOME_URL}/add
-${LIST_URL}     ${HOME_URL}/list
-${BIBTEX_URL}   ${HOME_URL}/bibtex
+${SERVER}               localhost:5001
+${DELAY}                0 seconds
+${HOME_URL}             http://${SERVER}
+${ADD_URL}              ${HOME_URL}/add
+${VIEW_TABLE_URL}       ${HOME_URL}/list
+${VIEW_BIBTEX_URL}      ${HOME_URL}/bibtex
 
 
 *** Keywords ***
@@ -39,10 +39,10 @@ Home Page Should Be Open
 Add Page Should Be Open
     Title Should Be    Submit - Viiteri
 
-List Page Should Be Open
+View Table Page Should Be Open
     Title Should Be    View Table - Viiteri
 
-Bibtex Page Should Be Open
+View BibTex Page Should Be Open
     Title Should Be    View BibTex - Viiteri
 
 Go To Home Page
@@ -51,8 +51,8 @@ Go To Home Page
 Go To Add Page
     Go To    ${ADD_URL}
 
-Go To List Page
-    Go To    ${LIST_URL}
+Go To View Table Page
+    Go To    ${VIEW_TABLE_URL}
 
-Go To Bibtex Page
-    Go To    ${BIBTEX_URL}
+Go To View Bibtex Page
+    Go To    ${VIEW_BIBTEX_URL}
