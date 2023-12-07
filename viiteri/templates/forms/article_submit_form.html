@@ -3,23 +3,23 @@
         <input type="hidden" name="ref_type" value="article">
         <p><b>Mandatory fields</b></p>
 
-        <div><input type="text" class="form-field" name="author" placeholder="Author(s)" required></div>
-        <div><input type="text" class="form-field" name="title" placeholder="Title" required></div>
-        <div><input type="text" class="form-field" name="journal" placeholder="Journal" required></div>
-        <div><input type="text" class="form-field" name="year" placeholder="Year" required></div>
+        <div><input type="text" class="form-field" name="author" {% if doi_data.author %} value="{{doi_data.author}}" {% endif %} placeholder="Author(s)" required ></div>
+        <div><input type="text" class="form-field" name="title" {% if doi_data.title %} value="{{doi_data.title}}" {% endif %} placeholder="Title" required></div>
+        <div><input type="text" class="form-field" name="journal" {% if doi_data.journal %} value="{{doi_data.journal}}" {% endif %} placeholder="Journal" required></div>
+        <div><input type="text" class="form-field" name="year" {% if doi_data.year %} value="{{doi_data.year}}" {% endif %} placeholder="Year" required></div>
         
         <p><b>Optional fields</b></p>
 
-        <div><input type="text" class="form-field" name="volume" placeholder="Volume"></div>
-        <div><input type="text" class="form-field" name="number" placeholder="Number/Issue"></div>
-        <div><input type="text" class="form-field" name="pages" placeholder="Page(s)"></div>
-        <div><input type="text" class="form-field" name="month" placeholder="Month"></div>
-        <div><input type="text" class="form-field" name="doi" placeholder="DOI"></div>
-        <div><input type="text" class="form-field" name="issn" placeholder="ISSN"></div>
-        <div><input type="text" class="form-field" name="zblnumber" placeholder="Zbl number"></div>
-        <div><input type="text" class="form-field" name="eprint" placeholder="Eprint number"></div>
-        <div><input type="text" class="form-field" name="note" placeholder="Additional note"></div>
-        <div><input type="text" class="form-field" name="annote" placeholder="Annote"></div>
+        <div><input type="text" class="form-field" name="volume" {% if doi_data.volume %} value="{{doi_data.volume}}" {% endif %} placeholder="Volume"></div>
+        <div><input type="text" class="form-field" name="number" {% if doi_data.number %} value="{{doi_data.number}}" {% endif %} placeholder="Number/Issue"></div>
+        <div><input type="text" class="form-field" name="pages" {% if doi_data.pages %} value="{{doi_data.pages}}" {% endif %} placeholder="Page(s)"></div>
+        <div><input type="text" class="form-field" name="month" {% if doi_data.month %} value="{{doi_data.month}}" {% endif %} placeholder="Month"></div>
+        <div><input type="text" class="form-field" name="doi" {% if doi_data.doi %} value="{{doi_data.doi}}" {% endif %} placeholder="DOI"></div>
+        <div><input type="text" class="form-field" name="issn" {% if doi_data.issn %} value="{{doi_data.issn}}" {% endif %} placeholder="ISSN"></div>
+        <div><input type="text" class="form-field" name="zblnumber" {% if doi_data.zblnumber %} value="{{doi_data.zblnumber}}" {% endif %} placeholder="Zbl number"></div>
+        <div><input type="text" class="form-field" name="eprint" {% if doi_data.eprint %} value="{{doi_data.eprint}}" {% endif %} placeholder="Eprint number"></div>
+        <div><input type="text" class="form-field" name="note" {% if doi_data.note %} value="{{doi_data.note}}" {% endif %} placeholder="Additional note"></div>
+        <div><input type="text" class="form-field" name="annote" {% if doi_data.annote %} value="{{doi_data.annote}}" {% endif %} placeholder="Annote"></div>
 
         {% include 'forms/submit_buttons.html' %}
     </form>
