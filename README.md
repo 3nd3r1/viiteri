@@ -27,7 +27,7 @@ Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten l
 
 ## Kuvakaappaus
 
-![Preview](./docs/assets/preview.png)
+![Preview](./docs/assets/preview.jpg)
 
 ## Käyttöohje
 
@@ -73,3 +73,4 @@ Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten l
 -   [Sprint 1 Task Board](https://github.com/users/3nd3r1/projects/1/views/1)
 -   [Sprint 2 Task Board](https://github.com/users/3nd3r1/projects/3/views/1)
 -   [Sprint 3 Task Board](https://github.com/users/3nd3r1/projects/4/views/1)
+-   [Sprint 4 Task Board](https://github.com/users/3nd3r1/projects/5/views/1)
