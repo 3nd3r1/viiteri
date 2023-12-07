@@ -19,10 +19,13 @@ class Book(Reference):
 
         # Optional arguments
         self.editor = kwargs.get("editor", None)
-        self.number = kwargs.get("number", None)
+        self.edition = kwargs.get("edition", None)
         self.volume = kwargs.get("volume", None)
+        self.number = kwargs.get("number", None)
         self.pages = kwargs.get("pages", None)
         self.month = kwargs.get("month", None)
+        self.series = kwargs.get("series", None)
+        self.address = kwargs.get("address", None)
         self.doi = kwargs.get("doi", None)
         self.issn = kwargs.get("issn", None)
         self.isbn = kwargs.get("isbn", None)
@@ -38,10 +41,13 @@ class Book(Reference):
             f"publisher = \"{self.publisher}\"",
             f"year = \"{self.year}\"",
             *([f"editor = \"{self.editor}\""] if self.editor else []),
-            *([f"number = \"{self.number}\""] if self.number else []),
+            *([f"edition = \"{self.edition}\""] if self.edition else []),
             *([f"volume = \"{self.volume}\""] if self.volume else []),
+            *([f"number = \"{self.number}\""] if self.number else []),
             *([f"pages = \"{self.pages}\""] if self.pages else []),
             *([f"month = \"{self.month}\""] if self.month else []),
+            *([f"series = \"{self.series}\""] if self.series else []),
+            *([f"address = \"{self.address}\""] if self.address else []),
             *([f"doi = \"{self.doi}\""] if self.doi else []),
             *([f"issn = \"{self.issn}\""] if self.issn else []),
             *([f"isbn = \"{self.isbn}\""] if self.isbn else []),
