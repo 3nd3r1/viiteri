@@ -43,7 +43,7 @@ List Page Should Be Open
     Title Should Be    View Table - Viiteri
 
 Bibtex Page Should Be Open
-    Title Should Be    View Bibtex - Viiteri
+    Title Should Be    View BibTex - Viiteri
 
 Go To Home Page
     Go To    ${HOME_URL}
