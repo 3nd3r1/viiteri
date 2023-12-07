@@ -1,5 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
+Library     RPA.Desktop
 Library     ../libraries/ReferenceRepositoryLibrary.py
 
 

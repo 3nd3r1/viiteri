@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    common.robot
+Library     Dialogs
 
 
 *** Keywords ***
@@ -20,7 +21,27 @@ View Bibtex Page Should Contain Reference
     [Arguments]    ${reference_type}    ${title}    ${author}    ${year}
     View Bibtex Page Should Be Open
     ${textbox} =    Get Text    xpath://textarea[@id='textarea']
-    Should Contain    ${textbox}    @${reference_type}{
-    Should Contain    ${textbox}    title = "${title}"
-    Should Contain    ${textbox}    author = "${author}"
-    Should Contain    ${textbox}    year = "${year}"
+    Container Should Contain Reference In Bibtex    ${textbox}    ${reference_type}    ${title}    ${author}    ${year}
+
+Click Copy All To Clipboard Button
+    View BibTex Page Should Be Open
+
+    Click Element    xpath://button[@id='copy-button']
+
+Clipboard Should Contain Reference
+    [Arguments]    ${reference_type}    ${title}    ${author}    ${year}
+    ${clipboard} =    Get Clipboard Value
+
+    Container Should Contain Reference In Bibtex
+    ...    ${clipboard}
+    ...    ${reference_type}
+    ...    ${title}
+    ...    ${author}
+    ...    ${year}
+
+Container Should Contain Reference In Bibtex
+    [Arguments]    ${container}    ${reference_type}    ${title}    ${author}    ${year}
+    Should Contain    ${container}    @${reference_type}{
+    Should Contain    ${container}    title = "${title}"
+    Should Contain    ${container}    author = "${author}"
+    Should Contain    ${container}    year = "${year}"
