@@ -1,0 +1,26 @@
+<div id="article">
+    <form method="POST">
+        <input type="hidden" name="ref_type" value="article">
+        <p><b>Mandatory fields</b></p>
+
+        <div><input type="text" class="form-field" name="author" placeholder="Author(s)" required></div>
+        <div><input type="text" class="form-field" name="title" placeholder="Title" required></div>
+        <div><input type="text" class="form-field" name="journal" placeholder="Journal" required></div>
+        <div><input type="text" class="form-field" name="year" placeholder="Year" required></div>
+        
+        <p><b>Optional fields</b></p>
+
+        <div><input type="text" class="form-field" name="volume" placeholder="Volume"></div>
+        <div><input type="text" class="form-field" name="number" placeholder="Number/Issue"></div>
+        <div><input type="text" class="form-field" name="pages" placeholder="Page(s)"></div>
+        <div><input type="text" class="form-field" name="month" placeholder="Month"></div>
+        <div><input type="text" class="form-field" name="doi" placeholder="DOI"></div>
+        <div><input type="text" class="form-field" name="issn" placeholder="ISSN"></div>
+        <div><input type="text" class="form-field" name="zblnumber" placeholder="Zbl number"></div>
+        <div><input type="text" class="form-field" name="eprint" placeholder="Eprint number"></div>
+        <div><input type="text" class="form-field" name="note" placeholder="Additional note"></div>
+        <div><input type="text" class="form-field" name="annote" placeholder="Annote"></div>
+
+        {% include 'forms/submit_buttons.html' %}
+    </form>
+</div>
