@@ -1,6 +1,8 @@
-# Retrospektiivi 2023-12-01
+# Retrospektiivit
 
-## Kehitettävää
+## Sprint 2 2023-12-01
+
+### Kehitettävää
 
 -   Pienempiä kokonaisuuksia committiin
 -   Ajankäytön parantaminen:
@@ -8,7 +10,7 @@
     -   ei jätä asioita viime minuutille
     -   torstaina vain testien tekoa
 
-## Hyvää
+### Hyvää
 
 -   Parikoodaus
 -   Kommunikaatio
