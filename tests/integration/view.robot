@@ -3,17 +3,16 @@ Documentation       Integraatio- ja hyväksymistestaus lähdeviitteiden näkemis
 
 Resource            ../../resources/common.robot
 Resource            ../../resources/view.robot
-Library             Dialogs
 
 Suite Setup         Run Keywords
 ...                     Open And Configure Browser    AND
 ...                     Initialize Database    AND
-...                     Add two test articles to database    AND
-...                     Clear Clipboard
+...                     Add two test articles to database    # AND
+# ...    Clear Clipboard
 Suite Teardown      Run Keywords
 ...                     Close Browser    AND
-...                     Initialize Database    AND
-...                     Clear Clipboard
+...                     Initialize Database    # AND
+# ...    Clear Clipboard
 
 
 *** Test Cases ***

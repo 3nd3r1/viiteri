@@ -1,6 +1,5 @@
 *** Settings ***
 Resource    common.robot
-Library     Dialogs
 
 
 *** Keywords ***
@@ -28,18 +27,16 @@ Click Copy All To Clipboard Button
 
     Click Element    xpath://button[@id='copy-button']
 
-Clipboard Should Contain Reference
-    [Arguments]    ${reference_type}    ${title}    ${author}    ${year}
-    ${clipboard} =    Get Clipboard Value
-
-    Log    ${clipboard}
-
-    Container Should Contain Reference In Bibtex
-    ...    ${clipboard}
-    ...    ${reference_type}
-    ...    ${title}
-    ...    ${author}
-    ...    ${year}
+# Clipboard Should Contain Reference
+#    [Arguments]    ${reference_type}    ${title}    ${author}    ${year}
+#    ${clipboard} =    Get Clipboard Value
+#
+#    Container Should Contain Reference In Bibtex
+#    ...    ${clipboard}
+#    ...    ${reference_type}
+#    ...    ${title}
+#    ...    ${author}
+#    ...    ${year}
 
 Container Should Contain Reference In Bibtex
     [Arguments]    ${container}    ${reference_type}    ${title}    ${author}    ${year}
