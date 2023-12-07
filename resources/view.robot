@@ -32,6 +32,8 @@ Clipboard Should Contain Reference
     [Arguments]    ${reference_type}    ${title}    ${author}    ${year}
     ${clipboard} =    Get Clipboard Value
 
+    Log    ${clipboard}
+
     Container Should Contain Reference In Bibtex
     ...    ${clipboard}
     ...    ${reference_type}

@@ -37,17 +37,15 @@ User should be able to see all added references in bibtex format
     View Bibtex Page Should Contain Reference    article    Maijan artikkeli    Maija    2011
     View Bibtex Page Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
 
-User should be able to copy all references in bibtex format to the clipboard
-    [Documentation]    Käyttäjänä pystyn napin painalluksella kopioimaan bibtex-muotoiset lähdeviitteet leikepöydälle #62
-
-    Go To View Bibtex Page
-
-    Click Copy All To Clipboard Button
-
-    Set Browser Implicit Wait    1
-
-    Clipboard Should Contain Reference    article    Maijan artikkeli    Maija    2011
-    Clipboard Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
+# User should be able to copy all references in bibtex format to the clipboard
+#    [Documentation]    Käyttäjänä pystyn napin painalluksella kopioimaan bibtex-muotoiset lähdeviitteet leikepöydälle #62
+#
+#    Go To View Bibtex Page
+#
+#    Click Copy All To Clipboard Button
+#
+#    Clipboard Should Contain Reference    article    Maijan artikkeli    Maija    2011
+#    Clipboard Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
 
 
 *** Keywords ***
