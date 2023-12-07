@@ -1,8 +1,17 @@
 """ viiteri/services/reference_service """
+
+from doi import find_doi_in_text, validate_doi
+from requests import get
+from requests.exceptions import Timeout
+from bibtexparser import loads
+
 from viiteri.repositories.reference_repository import reference_repository as default_repository
 from viiteri.entities.references import Reference
 from viiteri.utils.reference_factory import ReferenceFactory
 from viiteri.utils.filter import keyword_filter_references
+
+from subprocess import run, PIPE
+from bibtexparser import loads
 
 
 class ReferenceService:
@@ -15,17 +24,14 @@ class ReferenceService:
         """ Returns all references """
         return self._reference_repository.get_all_references()
     
-    def get_sorted_references(self, sort_type='author', reversed=False):
+    def get_sorted_references(self, sort_type, reversed='desc'):
         references = self._reference_repository.get_all_references()
         if sort_type == 'author':
-            print(type(references[2][1]))
-            print(hasattr(references[2][1], 'author'))
-            #print(references[0][1].author)
-            references.sort(key=lambda x: x[1].author, reverse=reversed)
+            references.sort(key=lambda x: x[1].author, reverse=False if reversed == 'desc' else True)
         elif sort_type == 'title':
-            references.sort(key=lambda x: x[1].title, reverse=reversed)
+            references.sort(key=lambda x: x[1].title, reverse=False if reversed == 'desc' else True)
         elif sort_type == 'year':
-            references.sort(key=lambda x: x[1].year, reverse=not reversed)
+            references.sort(key=lambda x: x[1].year, reverse=False if reversed == 'desc' else True)
         return references
 
     def get_filtered_references(self, keywords: str) -> list[tuple[int, Reference]]:
@@ -42,6 +48,41 @@ class ReferenceService:
     def remove_reference(self, ref_id: int):
         """ Removes a reference """
         return self._reference_repository.remove_reference(ref_id)
+    
+    def get_reference_by_doi(self, doi: str):
+        command = "doi2bib " + doi
+        string = run(command, shell=True, stdout=PIPE).stdout.decode('utf-8')
+        dict = loads(string).entries_dict
+        cite_key = next(iter(dict))
+        data_dict = dict[cite_key]
+        return data_dict
+
+    def get_reference_by_doi(self, doi: str):
+        """ Returns a reference dictionary, takes a DOI as input """
+        searched_doi = find_doi_in_text(doi)
+        if searched_doi:
+            doi = searched_doi
+        try:
+            validate_doi(doi)
+        except ValueError as exc:
+            raise ValueError("Invalid DOI") from exc
+
+        url = f"https://dx.doi.org/{doi}"
+        headers = {"Accept": "application/x-bibtex"}
+        try:
+            response = get(url, headers=headers, timeout=10)
+        except Timeout as exc:
+            raise TimeoutError("Request timed out") from exc
+
+        if response.status_code == 200:
+            bib_string = response.content.decode('utf-8')
+            bib_dict = loads(bib_string).entries_dict
+            cite_key = next(iter(bib_dict))
+            data_dict = bib_dict[cite_key]
+            if data_dict['ENTRYTYPE'] not in ['article', 'book', 'inproceedings']:
+                raise ValueError(f"Unsupported reference type {data_dict['ENTRYTYPE']}")
+            return data_dict
+        raise ValueError("Failed to find reference")
 
 
 reference_service = ReferenceService()
