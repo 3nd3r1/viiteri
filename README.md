@@ -1,5 +1,3 @@
-
-
 # <p align="center"><img src="./docs/assets/logo.png"></p>
 
 <p align="center">
@@ -37,14 +35,14 @@ Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten l
    Jos sinulla ei ole Poetrya asennettuna, asenna se Poetryn virallisilta verkkosivuilta: [Poetry Installation](https://python-poetry.org/docs/).
 
 2. **Kloonaa Viiteri Repositorio:**
-   - Avaa komentokehote tai pääte ja suorita seuraava komento:
-   ```
-   git clone https://github.com/your-username/viiteri.git
-   ```
-   - Siirry luotuun hakemistoon
-   ```
-   cd viiteri
-   ```
+    - Avaa komentokehote tai pääte ja suorita seuraava komento:
+    ```
+    git clone https://github.com/your-username/viiteri.git
+    ```
+    - Siirry luotuun hakemistoon
+    ```
+    cd viiteri
+    ```
 3. **Asenna Riippuvuudet Poetryn Avulla**
     - Asenna riippuvuudet suorittamalla komento:
     ```
@@ -67,11 +65,10 @@ Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten l
     http://localhost:5001
     ```
 
-
-
 ## Kehitys
 
 -   [Definition of Done](./docs/definition_of_done.md)
 -   [Product Backlog](https://github.com/users/3nd3r1/projects/2/views/1)
 -   [Sprint 1 Task Board](https://github.com/users/3nd3r1/projects/1/views/1)
 -   [Sprint 2 Task Board](https://github.com/users/3nd3r1/projects/3/views/1)
+-   [Sprint 3 Task Board](https://github.com/users/3nd3r1/projects/4/views/1)
