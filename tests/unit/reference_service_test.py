@@ -101,3 +101,23 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(references[0].author, "John Doe")
         self.assertEqual(references[1].author, "Petteri")
         self.assertEqual(references[2].author, "Petteri")
+        
+    def test_get_filtered_references(self):
+        self.reference_service.create_reference("article", cite_key="kirart", author="Kirsi",
+                                                title="Testikirja",
+                                                journal="Testikokoelma", year="2000")
+        self.reference_service.create_reference("article", cite_key="timart", author="Timo",
+                                                title="Testikirja 2",
+                                                journal="Testikokoelma", year="2000")
+        self.reference_service.create_reference("book", cite_key="kirboo", author="Kirsi",
+                                                editor="Kirsi", title="Kirsin kirja",
+                                                publisher="WSOY", year="2002")
+        self.reference_service.create_reference("book", cite_key="timboo", author="Timo",
+                                                editor="Timo", title="Timon kirja",
+                                                publisher="WSOY", year="2002")
+        
+        test_query = "kirsi timo&2000" #kirsi tai timo, ja 2000
+        references = self.reference_service.get_filtered_references(test_query)
+        self.assertEqual(len(references), 2)
+        self.assertEqual(references[0].cite_key, "kirart")
+        self.assertEqual(references[1].cite_key, "timart")
