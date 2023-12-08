@@ -1,8 +1,8 @@
 """ viiteri/services/reference_service """
-
 from viiteri.repositories.reference_repository import reference_repository as default_repository
 from viiteri.entities.references import Reference
 from viiteri.utils.reference_factory import ReferenceFactory
+from viiteri.utils.filter import keyword_filter_references
 
 
 class ReferenceService:
@@ -27,6 +27,11 @@ class ReferenceService:
         elif sort_type == 'year':
             references.sort(key=lambda x: x[1].year, reverse=not reversed)
         return references
+
+    def get_filtered_references(self, keywords: str) -> list[tuple[int, Reference]]:
+        """ Returns references based on keyword search"""
+        return keyword_filter_references(
+            keywords, self._reference_repository.get_all_references())
 
     def create_reference(self, reference_type, **kwargs) -> int:
         """ Creates a new reference """
