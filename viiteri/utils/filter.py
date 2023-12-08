@@ -26,20 +26,19 @@ def keyword_filter_references(
     filtered_refs: list[tuple[int, Reference]] = []
     for ref in refs:
         fits: bool = False
-        (_, ref_content) = ref
         for i, token in enumerate(tokens):
             (token_type, _) = token
             match token_type:
                 case Token.AND:
                     (_, token_content) = tokens[i + 1]
-                    if token_content in str(ref_content):
+                    if token_content in str(ref):
                         fits = True
                         continue
                     fits = False
                     break
                 case Token.OR:
                     (_, token_content) = tokens[i + 1]
-                    if token_content in str(ref_content):
+                    if token_content in str(ref):
                         fits = True
                 case _:
                     continue
