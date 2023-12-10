@@ -99,6 +99,62 @@ class TestReferenceService(unittest.TestCase):
         references = self.reference_service.get_all_references() 
         self.assertEqual(len(references), 0)
 
+    def test_get_reference_by_doi(self):
+        """ Test that get_reference_by_doi works with a valid DOI and supported reference-type """
+        reference_example_1 = self.reference_service.get_reference_by_doi("https://dl.acm.org/doi/10.1145/2380552.2380613")
+        reference_example_2 = self.reference_service.get_reference_by_doi("10.1146/annurev-statistics-031017-100307")
+        self.assertEqual(reference_example_1['year'], "2012")
+        self.assertEqual(reference_example_1['month'], "October")
+        self.assertEqual(reference_example_2['author'], "Held, Leonhard and Ott, Manuela")
+        self.assertEqual(reference_example_2['issn'], "2326-831X")
+    
+    def test_get_reference_by_doi_raises_error_with_invalid_doi(self):
+        """ Test that get_reference_by_doi raises error with invalid doi """
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("https://doi.org/3.1415926535")
+        self.assertEqual(str(error.exception), "Invalid DOI")
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("10.114/annurev-statistics-031017-100307")
+        self.assertEqual(str(error.exception), "Invalid DOI")
+
+    def test_get_reference_by_doi_raises_error_with_unsupported_reference_type(self):
+        """ Test that get_reference_by_doi raises error with valid doi and unsupported reference type """
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("10.17077/etd.g638o927")
+        self.assertEqual(str(error.exception), "Unsupported reference type phdthesis")
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("https://doi.org/10.1007/0-387-21645-6_7")
+        self.assertEqual(str(error.exception), "Unsupported reference type inbook")
+
+
+    def test_get_reference_by_doi(self):
+        """ Test that get_reference_by_doi works with a valid DOI and supported reference-type """
+        reference_example_1 = self.reference_service.get_reference_by_doi("https://dl.acm.org/doi/10.1145/2380552.2380613")
+        reference_example_2 = self.reference_service.get_reference_by_doi("10.1146/annurev-statistics-031017-100307")
+        self.assertEqual(reference_example_1['year'], "2012")
+        self.assertEqual(reference_example_1['month'], "October")
+        self.assertEqual(reference_example_2['author'], "Held, Leonhard and Ott, Manuela")
+        self.assertEqual(reference_example_2['issn'], "2326-831X")
+    
+    def test_get_reference_by_doi_raises_error_with_invalid_doi(self):
+        """ Test that get_reference_by_doi raises error with invalid doi """
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("https://doi.org/3.1415926535")
+        self.assertEqual(str(error.exception), "Invalid DOI")
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("10.114/annurev-statistics-031017-100307")
+        self.assertEqual(str(error.exception), "Invalid DOI")
+
+    def test_get_reference_by_doi_raises_error_with_unsupported_reference_type(self):
+        """ Test that get_reference_by_doi raises error with valid doi and unsupported reference type """
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("10.17077/etd.g638o927")
+        self.assertEqual(str(error.exception), "Unsupported reference type phdthesis")
+        with self.assertRaises(ValueError) as error:
+            self.reference_service.get_reference_by_doi("https://doi.org/10.1007/0-387-21645-6_7")
+        self.assertEqual(str(error.exception), "Unsupported reference type inbook")
+
+
     def test_get_sorted_references(self):
         """ Test get_all_references """
 
