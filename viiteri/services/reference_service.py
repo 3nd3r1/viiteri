@@ -30,7 +30,7 @@ class ReferenceService:
         return self._reference_repository.remove_reference(ref_id)
 
     def get_reference_by_doi(self, doi: str):
-        """ Returns a reference dictionary, takes a doi as input """
+        """ Returns a reference dictionary, takes a DOI as input """
         searched_doi = find_doi_in_text(doi)
         if searched_doi:
             doi = searched_doi

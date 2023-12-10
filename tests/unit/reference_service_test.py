@@ -103,7 +103,7 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(reference_example_2['issn'], "2326-831X")
     
     def test_get_reference_by_doi_raises_error_with_invalid_doi(self):
-        """ Test that get_reference_by_doi raises error with invalid doi """
+        """ Test that get_reference_by_doi raises error with invalid DOI """
         with self.assertRaises(ValueError) as error:
             self.reference_service.get_reference_by_doi("https://doi.org/3.1415926535")
         self.assertEqual(str(error.exception), "Invalid DOI")
@@ -112,7 +112,7 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(str(error.exception), "Invalid DOI")
 
     def test_get_reference_by_doi_raises_error_with_unsupported_reference_type(self):
-        """ Test that get_reference_by_doi raises error with valid doi and unsupported reference type """
+        """ Test that get_reference_by_doi raises error with valid DOI and unsupported reference type """
         with self.assertRaises(ValueError) as error:
             self.reference_service.get_reference_by_doi("10.17077/etd.g638o927")
         self.assertEqual(str(error.exception), "Unsupported reference type phdthesis")
