@@ -2,6 +2,9 @@
 
 import unittest
 
+from unittest.mock import patch, MagicMock
+from requests.exceptions import Timeout
+
 from viiteri.entities.references import Article, Book, Inproceedings
 from viiteri.services.reference_service import ReferenceService
 
@@ -126,6 +129,25 @@ class TestReferenceService(unittest.TestCase):
             self.reference_service.get_reference_by_doi("https://doi.org/10.1007/0-387-21645-6_7")
         self.assertEqual(str(error.exception), "Unsupported reference type inbook")
 
+    @patch('viiteri.services.reference_service.get')
+    def test_get_reference_by_doi_failed_to_find_reference(self, mock_get):
+        mock_response = MagicMock()
+        mock_response.status_code = 404
+        mock_get.return_value = mock_response
+
+        with self.assertRaises(ValueError) as context:
+            self.reference_service.get_reference_by_doi("https://dl.acm.org/doi/10.1145/2380552.2380613")
+
+        self.assertEqual(str(context.exception), "Failed to find reference")
+
+    @patch('viiteri.services.reference_service.get')
+    def test_get_reference_by_doi_timeout(self, mock_get):
+        mock_get.side_effect = Timeout
+
+        with self.assertRaises(TimeoutError) as context:
+            self.reference_service.get_reference_by_doi("https://dl.acm.org/doi/10.1145/2380552.2380613")
+
+        self.assertEqual(str(context.exception), "Request timed out")
 
     def test_get_reference_by_doi(self):
         """ Test that get_reference_by_doi works with a valid DOI and supported reference-type """

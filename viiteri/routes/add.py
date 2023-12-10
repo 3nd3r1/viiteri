@@ -22,8 +22,8 @@ def add_reference():
                 last_ref_type = doi_data['ENTRYTYPE']
             except ValueError as error:
                 flash(str(error), "error")
-            except TimeoutError:
-                flash("The request timed out", "error")
+            except TimeoutError as error:
+                flash(str(error), "error")
         return render_template("add.html", last_ref_type=last_ref_type, doi_data=doi_data)
     if request.method == "POST":
         ref_type = request.form.get("ref_type")

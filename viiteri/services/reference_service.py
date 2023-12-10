@@ -65,7 +65,7 @@ class ReferenceService:
         try:
             response = get(url, headers=headers, timeout=10)
         except Timeout as exc:
-            raise TimeoutError from exc
+            raise TimeoutError("Request timed out") from exc
 
         if response.status_code == 200:
             bib_string = response.content.decode('utf-8')
