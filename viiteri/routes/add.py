@@ -15,11 +15,15 @@ def add_reference():
     if request.method == "GET":
         doi = request.args.get("doi_fill")
         doi_data = None
-        if doi:
-            doi_data = reference_service.get_reference_by_doi(doi)
         last_ref_type = session.get("last_ref_type", "article")
         if doi:
-            last_ref_type = doi_data['ENTRYTYPE']
+            try:
+                doi_data = reference_service.get_reference_by_doi(doi)
+                last_ref_type = doi_data['ENTRYTYPE']
+            except ValueError as error:
+                flash(str(error), "error")
+            except TimeoutError:
+                flash("The request timed out", "error")
         return render_template("add.html", last_ref_type=last_ref_type, doi_data=doi_data)
     if request.method == "POST":
         ref_type = request.form.get("ref_type")
