@@ -12,6 +12,7 @@ blueprint = Blueprint("list_references", __name__)
 def render_list():
     """ Render listing page """
     search_query = request.args.get('search')
+    references = []
     try:
         if search_query:
             references = reference_service.get_filtered_references(search_query)
