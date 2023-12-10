@@ -39,17 +39,18 @@ th {
 td {
   word-wrap: break-word;
   max-width: 200px;
+  text-align: center;
 }
 
 .reference-details {
   background-color: #f9f9f9;
 }
 
-.reference-details-labels td {
+.reference-details-labels {
   font-weight: bold;
 }
 
-.reference-details-values td {
+.reference-details-values {
   background-color: white;
 }
 
@@ -70,10 +71,6 @@ td {
   border-top: 2px solid black;
   height: 10px;
   pointer-events: none;
-}
-
-.type-label {
-  text-align: center;
 }
 
 .submit-button {
