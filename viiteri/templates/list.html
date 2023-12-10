@@ -2,7 +2,12 @@
 %}
 <div>
 	<h2>All references in a table view with options</h2>
-	
+	<form action="/list" method="get">
+        <input type="text" name="search" placeholder="Search for references...">
+        <button type="submit">Search</button>
+        <a href="/list"><button type="button">Clear</button></a>
+    </form>
+    <br>
     <table>
         <tr>
             <!-- En ole järjestyksestä ihan varma, mutta näytti kutakuinkin sopivalta. -->
