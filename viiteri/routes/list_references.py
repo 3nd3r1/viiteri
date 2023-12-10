@@ -13,7 +13,7 @@ def render_list():
     """ Render listing page """
     sort_type = request.args.get('sort')
     sort_order = request.args.get('order', 'asc')
-
+    references = []
     try:
         if sort_type:
             references = reference_service.get_sorted_references(sort_type, sort_order)
