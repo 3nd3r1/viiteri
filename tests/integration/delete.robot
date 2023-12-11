@@ -22,7 +22,7 @@ User should be able to delete a reference
 
     Go To View Table Page
 
-    Click Delete Reference    Peten artikkeli    Petteri Orpo    2001
+    Click Delete Reference    Peten artikkeli    Petteri Orpo    2001    Peten lehti
     Handle Alert
 
     Reference Deletion Should Be Confirmed

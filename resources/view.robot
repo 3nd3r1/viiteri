@@ -10,6 +10,18 @@ View Table Page Should Contain Reference
     Page Should Contain    ${author}
     Page Should Contain    ${year}
 
+View Table Page Should Contain Extended Reference Details
+    [Documentation]    View Table näkymän refaktorointi #106
+
+    [Arguments]    ${title}    ${author}    ${year}    ${journal}    ${detailsbutton}    ${deletebutton}
+    View Table Page Should Be Open
+    Page Should Contain    ${title}
+    Page Should Contain    ${author}
+    Page Should Contain    ${year}
+    Page Should Contain    ${journal}
+    Page Should Contain Element    ${detailsbutton}
+    Page Should Contain Element    ${deletebutton}
+
 View Table Page Reference Count Should Be
     [Arguments]    ${count}
     View Table Page Should Be Open
