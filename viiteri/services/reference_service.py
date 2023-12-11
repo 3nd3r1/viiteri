@@ -11,9 +11,22 @@ class ReferenceService:
     def __init__(self, reference_repository=default_repository):
         self._reference_repository = reference_repository
 
-    def get_all_references(self) -> list[(int, Reference)]:
+    def get_all_references(self) -> list[tuple[int, Reference]]:
         """ Returns all references """
         return self._reference_repository.get_all_references()
+    
+    def get_sorted_references(self, sort_type='author', reversed=False):
+        references = self._reference_repository.get_all_references()
+        if sort_type == 'author':
+            print(type(references[2][1]))
+            print(hasattr(references[2][1], 'author'))
+            #print(references[0][1].author)
+            references.sort(key=lambda x: x[1].author, reverse=reversed)
+        elif sort_type == 'title':
+            references.sort(key=lambda x: x[1].title, reverse=reversed)
+        elif sort_type == 'year':
+            references.sort(key=lambda x: x[1].year, reverse=not reversed)
+        return references
 
     def create_reference(self, reference_type, **kwargs) -> int:
         """ Creates a new reference """

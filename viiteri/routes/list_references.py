@@ -13,7 +13,7 @@ def render_list():
     """ Render listing page """
     references = []
     try:
-        references = reference_service.get_all_references()
+        references = reference_service.get_sorted_references()
     except SQLAlchemyError:
         flash("Database failed to get all references", "error")
     return render_template("list.html", references=references)

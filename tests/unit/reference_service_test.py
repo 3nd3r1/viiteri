@@ -92,3 +92,12 @@ class TestReferenceService(unittest.TestCase):
         self.reference_service.remove_reference(0)
         references = self.reference_service.get_all_references()
         self.assertEqual(len(references), 0)
+
+    def test_get_sorted_references(self):
+        """ Test get_all_references """
+
+        references = self.reference_service.get_sorted_references()
+
+        self.assertEqual(references[0].author, "John Doe")
+        self.assertEqual(references[1].author, "Petteri")
+        self.assertEqual(references[2].author, "Petteri")
