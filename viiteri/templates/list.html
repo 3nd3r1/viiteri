@@ -12,26 +12,30 @@
             <th>Type</th>
         </tr>
         {% for reference in references %}
-            <tr class="reference-row" data-refid="{{ reference[0] }}" onclick="toggleDetails(this, {{ reference[1] }})"
-                data-editor="{{ reference[1].editor | default('') }}"
-                data-edition="{{ reference[1].edition | default('') }}"
-                data-journal="{{ reference[1].journal | default('') }}"
-                data-booktitle="{{ reference[1].booktitle | default('') }}"
-                data-series="{{ reference[1].series | default('') }}"
-                data-volume="{{ reference[1].volume | default('') }}"
-                data-number="{{ reference[1].number | default('') }}"
-                data-pages="{{ reference[1].pages | default('') }}"
-                data-month="{{ reference[1].month | default('') }}"
-                data-publisher="{{ reference[1].publisher | default('') }}"
-                data-organization="{{ reference[1].organization | default('') }}"
-                data-address="{{ reference[1].address | default('') }}"
-                data-isbn="{{ reference[1].isbn | default('') }}"
-                data-issn="{{ reference[1].issn | default('') }}"
-                data-doi="{{ reference[1].doi | default('') }}"
-                data-zbl="{{ reference[1].zblnumber | default('') }}"
-                data-eprint="{{ reference[1].eprint | default('') }}"
-                data-note="{{ reference[1].note | default('') }}"
-                data-annote="{{ reference[1].annote | default('') }}"
+            <tr class="reference-row" data-refid="{{ reference[0] }}" onclick="toggleDetails(this)"
+                data_citekey="{{ reference[1].citekey }}"
+                data-title="{{ reference[1].title }}"
+                data-author="{{ reference[1].author }}"
+                data-year="{{ reference[1].year }}"
+                data-editor="{{ reference[1].editor | default('',true) }}"
+                data-edition="{{ reference[1].edition | default('',true) }}"
+                data-journal="{{ reference[1].journal | default('',true) }}"
+                data-booktitle="{{ reference[1].booktitle | default('',true) }}"
+                data-series="{{ reference[1].series | default('',true) }}"
+                data-volume="{{ reference[1].volume | default('',true) }}"
+                data-number="{{ reference[1].number | default('',true) }}"
+                data-pages="{{ reference[1].pages | default('',true) }}"
+                data-month="{{ reference[1].month | default('',true) }}"
+                data-publisher="{{ reference[1].publisher | default('',true) }}"
+                data-organization="{{ reference[1].organization | default('',true) }}"
+                data-address="{{ reference[1].address | default('',true) }}"
+                data-isbn="{{ reference[1].isbn | default('',true) }}"
+                data-issn="{{ reference[1].issn | default('',true) }}"
+                data-doi="{{ reference[1].doi | default('',true) }}"
+                data-zbl="{{ reference[1].zblnumber | default('',true) }}"
+                data-eprint="{{ reference[1].eprint | default('',true) }}"
+                data-note="{{ reference[1].note | default('',true) }}"
+                data-annote="{{ reference[1].annote | default('',true) }}"
             >
                 <td class="basic-info">{{ reference[1].title }}</td>
                 <td class="basic-info">{{ reference[1].author }}</td>
@@ -57,7 +61,7 @@
 <textarea id="hidden_text_area" style="position: absolute; left: -9999px; top: -9999px;"></textarea>
 
 <script>
-    function toggleDetails(element, reference) {
+    function toggleDetails(element) {
         var row;
         if (element.matches('.details-button')) {
             row = findCorrectTableRow(element.closest('.button-row'), '.reference-row');
@@ -65,6 +69,7 @@
         else {
             row = element;
         }
+
 
         var ref_id = row.getAttribute('data-refid');
         var is_detail_row_created = row.classList.contains('detail-created-' + ref_id);
@@ -75,9 +80,9 @@
 
             /* Nämä ovat näkymättömiä jos ei referenssillä kyseistä ole. */
             var details = [
-                { label: 'Title', value: reference.title },
-                { label: 'Author', value: reference.author },
-                { label: 'Year', value: reference.year },
+                { label: 'Title', value: row.getAttribute('data-title') },
+                { label: 'Author', value: row.getAttribute('data-author')},
+                { label: 'Year', value: row.getAttribute('data-year') },
                 { label: 'Booktitle', value: row.getAttribute('data-booktitle') },
                 { label: 'Editor', value: row.getAttribute('data-editor') },
                 { label: 'Edition', value: row.getAttribute('data-edition') },
