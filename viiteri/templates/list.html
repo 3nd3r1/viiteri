@@ -45,7 +45,7 @@
             <tr class="button-row" style="display: none;">
                 <td colspan="4" style="text-align: center;">
                     <!-- Tähän saisi ehkä myös edit-napin? Erittäin vaikea kuitenkin toteuttaa editointi tablen sisällä. -->
-                    <button class="details-button" onclick="toggleDetails(this, {{ reference[1] }})">Hide details</button>
+                    <button class="details-button" onclick="toggleDetails(this)">Hide details</button>
                     <button class="copy-button" data-bibtex="{{ reference[1].format_bibtex() }}" onclick="handleCopyButtonClick(this)">Copy BibTex to clipboard</button>
                     <button class="delete-button" onclick="confirmDelete({{ reference[0] }})">Delete Reference</button>
                 </td>
@@ -69,7 +69,6 @@
         else {
             row = element;
         }
-
 
         var ref_id = row.getAttribute('data-refid');
         var is_detail_row_created = row.classList.contains('detail-created-' + ref_id);
