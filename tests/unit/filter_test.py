@@ -14,4 +14,3 @@ class TestFilter(unittest.TestCase):
         ]
         result = lex_keywords(self.query_string)
         self.assertEqual(result, expected)
-
