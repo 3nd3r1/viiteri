@@ -90,7 +90,7 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(len(references), 1)
         self.assertEqual(references[0].cite_key, "johinp")
         self.reference_service.remove_reference(0)
-        references = self.reference_service.get_all_references()
+        references = self.reference_service.get_all_references() 
         self.assertEqual(len(references), 0)
 
     def test_get_sorted_references(self):
@@ -116,8 +116,8 @@ class TestReferenceService(unittest.TestCase):
                                                 editor="Timo", title="Timon kirja",
                                                 publisher="WSOY", year="2002")
         
-        test_query = "kirsi timo&2000" #kirsi tai timo, ja 2000
+        test_query = "kirsi,timo,&2000" #kirsi tai timo, ja 2000
         references = self.reference_service.get_filtered_references(test_query)
         self.assertEqual(len(references), 2)
-        self.assertEqual(references[0].cite_key, "kirart")
-        self.assertEqual(references[1].cite_key, "timart")
+        self.assertEqual(references[0][1].cite_key, "kirart")
+        self.assertEqual(references[0][1].cite_key, "timart")

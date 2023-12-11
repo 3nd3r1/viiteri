@@ -7,10 +7,8 @@ class Token(Enum):
     Enum to differentiate between different kinds of 
     user input commands in keywords.
     """
-    KEYWORD = 1
     OR      = 2
     AND     = 3
-
 
 def keyword_filter_references(
         keywords: str, refs: list[tuple[int, Reference]]
@@ -20,31 +18,14 @@ def keyword_filter_references(
     in their string representation. Currently works on the principle 
     that OR (" ") specifies weak keywords, any one of which is enough 
     for a positive result. AND ("&") specifies strong keywords that have 
-    to be present for a positive result.
+    to be present for a positive result. 
     """
     tokens = lex_keywords(keywords)
     filtered_refs: list[tuple[int, Reference]] = []
-    for ref in refs:
-        fits: bool = False
-        for i, token in enumerate(tokens):
-            (token_type, _) = token
-            match token_type:
-                case Token.AND:
-                    (_, token_content) = tokens[i + 1]
-                    if token_content in str(ref):
-                        fits = True
-                        continue
-                    fits = False
-                    break
-                case Token.OR:
-                    (_, token_content) = tokens[i + 1]
-                    if token_content in str(ref):
-                        fits = True
-                case _:
-                    continue
-        if fits:
-            filtered_refs.append(ref)
-
+    for ref_id, ref in refs:
+        ref_str = ref_dict_to_str(ref.__dict__)
+        if is_match(tokens, ref_str.lower()):
+            filtered_refs.append((ref_id, ref))
     return filtered_refs
 
 def lex_keywords(keywords: str) -> list[tuple[Token, str]]:
@@ -52,26 +33,33 @@ def lex_keywords(keywords: str) -> list[tuple[Token, str]]:
     Goes through the keyword string, and separates and labels
     the different possible commands.
     """
-    token_list = []
-    token_cursor = 0
-    token_found = False
-    if keywords[0] != "&":
-        token_list.append((Token.OR, "OR"))
-    for i, _ in enumerate(keywords):
-        if token_found: # Skip over the operator token
-            token_found = False
-            continue
-
-        if keywords[i] == " ":
-            token_list.append((Token.KEYWORD, keywords[token_cursor:i].lower()))
-            token_list.append((Token.OR, "OR"))
-            token_cursor = i + 1
-        elif keywords[i] == "&":
-            token_list.append((Token.KEYWORD, keywords[token_cursor:i].lower()))
-            token_list.append((Token.AND, "AND"))
-            token_cursor = i + 1
+    tokens = []
+    split_keywords = keywords.split(",")
+    for kw in split_keywords:
+        clean_kw = kw.strip()
+        if clean_kw[0] == "&":
+            tokens.append((Token.AND, clean_kw[1:].lower()))
         else:
-            continue
+            tokens.append((Token.OR, clean_kw.lower()))
+    return tokens
 
-    token_list.append((Token.KEYWORD, keywords[token_cursor:].lower()))
-    return token_list
+def ref_dict_to_str(ref_dict: dict) -> str:
+    """
+    Translates a Reference entity into a comparable string format.
+    """
+    values = [str(value) for value in ref_dict.values() if value is not None]
+    return " ".join(values)
+
+def is_match(tokens: list[tuple[Token, str]], ref_str: str) -> bool:
+    """
+    Checks whether a given string adheres to the conditions set by a list of tokens.
+    """
+    if len(tokens) == 1:
+        return tokens[0][1] in ref_str
+    match: bool = False
+    for token_t, token_v in tokens:
+        if token_t == Token.AND:
+            match = match and (token_v in ref_str)
+        else:
+            match = match or (token_v in ref_str)
+    return match
