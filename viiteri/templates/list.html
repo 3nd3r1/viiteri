@@ -119,6 +119,7 @@
                 var value_cell = document.createElement('td');
                 value_cell.className = 'reference-details-values';
                 value_cell.textContent = basic_info[i].value;
+                value_cell.colSpan = "3";
 
                 info_row.appendChild(label_cell);
                 info_row.appendChild(value_cell);
@@ -139,6 +140,7 @@
                 var value_cell = document.createElement('td');
                 value_cell.className = 'reference-details-values';
                 value_cell.textContent = details[i].value;
+                value_cell.colSpan = "3";
 
                 details_row.appendChild(label_cell);
                 details_row.appendChild(value_cell);
