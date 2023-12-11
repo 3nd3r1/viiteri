@@ -23,7 +23,7 @@ class ReferenceRepository:
         cursor.commit()
         return ref_id
 
-    def get_all_references(self) -> list[(int, Reference)]:
+    def get_all_references(self) -> list[tuple[int, Reference]]:
         """Gets all references from the database"""
         cursor = self._connection.session()
         result = cursor.execute(text(
