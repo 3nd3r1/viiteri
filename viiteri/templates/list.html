@@ -68,22 +68,16 @@
 
         var ref_id = row.getAttribute('data-refid');
         var is_detail_row_created = row.classList.contains('detail-created-' + ref_id);
-        var basic_info_cells = row.getElementsByClassName('basic-info');
 
         /* Tämä if else koittaa olla luomasta liikaa ylimääräisiä rivejä. */
         if (!is_detail_row_created) {
-            for (var i = 0; i < basic_info_cells.length; i++) {
-                basic_info_cells[i].style.display = 'none';
-            }
-
-            var basic_info = [
-                { label: 'Title', value: reference.title },
-                { label: 'Author', value: reference.author },
-                { label: 'Year', value: reference.year },
-            ];
+            row.style.display = 'none';
 
             /* Nämä ovat näkymättömiä jos ei referenssillä kyseistä ole. */
             var details = [
+                { label: 'Title', value: reference.title },
+                { label: 'Author', value: reference.author },
+                { label: 'Year', value: reference.year },
                 { label: 'Booktitle', value: row.getAttribute('data-booktitle') },
                 { label: 'Editor', value: row.getAttribute('data-editor') },
                 { label: 'Edition', value: row.getAttribute('data-edition') },
@@ -106,27 +100,6 @@
             ].filter(detail => detail.value);
 
             var last_inserted_row = row;
-
-            for (var i = 0; i < basic_info.length; i++) {
-                var info_row = document.createElement('tr');
-                info_row.classList.add('reference-details', 'detail-row-' + ref_id);
-                info_row.style.display = '';
-
-                var label_cell = document.createElement('td');
-                label_cell.className = 'reference-details-labels';
-                label_cell.textContent = basic_info[i].label;
-
-                var value_cell = document.createElement('td');
-                value_cell.className = 'reference-details-values';
-                value_cell.textContent = basic_info[i].value;
-                value_cell.colSpan = "3";
-
-                info_row.appendChild(label_cell);
-                info_row.appendChild(value_cell);
-
-                last_inserted_row.parentNode.insertBefore(info_row, last_inserted_row.nextElementSibling);
-                last_inserted_row = info_row;
-            }
 
             for (var i = 0; i < details.length; i++) {
                 var details_row = document.createElement('tr');
@@ -167,9 +140,7 @@
                 current_row = current_row.nextElementSibling;
             }
 
-            for (var i = 0; i < basic_info_cells.length; i++) {
-                basic_info_cells[i].style.display = basic_info_cells[i].style.display === 'none' ? '' : 'none';
-            }
+            row.style.display = row.style.display === 'none' ? '' : 'none';
         }
     }
 
