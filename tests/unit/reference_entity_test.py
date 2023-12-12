@@ -4,21 +4,22 @@ import unittest
 
 from viiteri.entities.references import Article, Book, Inproceedings
 
+
 class TestReferenceEntity(unittest.TestCase):
     """ Test class for Reference - entities """
 
     def setUp(self):
         self.test_article = Article(cite_key="petpet", author="Petteri",
-                                    title="Petterin Kirja",
-                                    journal="Petterin Kirjakokoelma",
-                                    year="2003", volume="1")
+                                    title="Petterin Artikkeli",
+                                    journal="Petterin Lehti",
+                                    year=2003, volume="1")
         self.test_book = Book(cite_key="petkir", author="Petteri",
-                              title="Petterin Kirja vol 2",
-                              publisher="WSOY", year="2004")
+                              title="Petterin Kirja",
+                              publisher="WSOY", year=2004)
         self.test_inproceedings = Inproceedings(cite_key="johinp", author="John Doe",
                                                 title="An Analysis of Example",
                                                 booktitle="Sample Text",
-                                                year="2002", editor="Ex Ample")
+                                                year=2002, editor="Ex Ample")
 
     def test_article_constructor(self):
         """ Test that Article entity is correctly instantiated """
@@ -28,9 +29,9 @@ class TestReferenceEntity(unittest.TestCase):
 
         # Test that required fields are set
         self.assertEqual(self.test_article.author, "Petteri")
-        self.assertEqual(self.test_article.title, "Petterin Kirja")
-        self.assertEqual(self.test_article.journal, "Petterin Kirjakokoelma")
-        self.assertEqual(self.test_article.year, "2003")
+        self.assertEqual(self.test_article.title, "Petterin Artikkeli")
+        self.assertEqual(self.test_article.journal, "Petterin Lehti")
+        self.assertEqual(self.test_article.year, 2003)
 
         # Test that optional fields are set
         self.assertEqual(self.test_article.volume, "1")
@@ -43,9 +44,9 @@ class TestReferenceEntity(unittest.TestCase):
 
         # Test that required fields are set
         self.assertEqual(self.test_book.author, "Petteri")
-        self.assertEqual(self.test_book.title, "Petterin Kirja vol 2")
+        self.assertEqual(self.test_book.title, "Petterin Kirja")
         self.assertEqual(self.test_book.publisher, "WSOY")
-        self.assertEqual(self.test_book.year, "2004")
+        self.assertEqual(self.test_book.year, 2004)
 
     def test_inproceedings_constructor(self):
         """ Test that Inproceeding-entity is correctly instantiated """
@@ -58,7 +59,7 @@ class TestReferenceEntity(unittest.TestCase):
         self.assertEqual(self.test_inproceedings.title,
                          "An Analysis of Example")
         self.assertEqual(self.test_inproceedings.booktitle, "Sample Text")
-        self.assertEqual(self.test_inproceedings.year, "2002")
+        self.assertEqual(self.test_inproceedings.year, 2002)
 
         # Test that optional fields are set
         self.assertEqual(self.test_inproceedings.editor, "Ex Ample")
@@ -69,8 +70,8 @@ class TestReferenceEntity(unittest.TestCase):
         with self.assertRaises(ValueError):
             Article(cite_key="petpet",
                     author="Petteri",
-                    title="Petterin Kirja",
-                    journal="Petterin Kirjakokoelma")
+                    title="Petterin Artikkeli",
+                    journal="Petterin Lehti")
 
     def test_init_book_with_missing_required_arguments(self):
         """ Test that Book-entity raises ValueError with invalid arguments """
@@ -79,7 +80,7 @@ class TestReferenceEntity(unittest.TestCase):
             Book(cite_key="petkir",
                  author="Petteri",
                  publisher="WSOY",
-                 year="2004")
+                 year=2004)
 
     def test_init_inproceedings_with_missing_required_arguments(self):
         """ Test that Inproceedings-entity raises ValueError with invalid arguments  """
@@ -97,9 +98,9 @@ class TestReferenceEntity(unittest.TestCase):
         self.assertEqual(article_str, ("{'_type': 'article', "
                                        "'_cite_key': 'petpet', "
                                        "'author': 'Petteri', "
-                                       "'title': 'Petterin Kirja', "
-                                       "'journal': 'Petterin Kirjakokoelma', "
-                                       "'year': '2003', "
+                                       "'title': 'Petterin Artikkeli', "
+                                       "'journal': 'Petterin Lehti', "
+                                       "'year': 2003, "
                                        "'volume': '1', "
                                        "'number': None, "
                                        "'pages': None, "
@@ -117,9 +118,9 @@ class TestReferenceEntity(unittest.TestCase):
         self.assertEqual(book_str, ("{'_type': 'book', "
                                     "'_cite_key': 'petkir', "
                                     "'author': 'Petteri', "
-                                    "'title': 'Petterin Kirja vol 2', "
+                                    "'title': 'Petterin Kirja', "
                                     "'publisher': 'WSOY', "
-                                    "'year': '2004', "
+                                    "'year': 2004, "
                                     "'editor': None, "
                                     "'edition': None, "
                                     "'volume': None, "
@@ -142,7 +143,7 @@ class TestReferenceEntity(unittest.TestCase):
                                              "'author': 'John Doe', "
                                              "'title': 'An Analysis of Example', "
                                              "'booktitle': 'Sample Text', "
-                                             "'year': '2002', "
+                                             "'year': 2002, "
                                              "'editor': 'Ex Ample', "
                                              "'volume': None, "
                                              "'number': None, "
@@ -154,37 +155,43 @@ class TestReferenceEntity(unittest.TestCase):
                                              "'publisher': None, "
                                              "'note': None, "
                                              "'annote': None}"))
-        
+
     def test_article_format_bibtex(self):
         """Article entity is correctly converted to BibTeX format"""
-        article_bibtex = """@article{petpet,
-        author = "Petteri",
-        title = "Petterin Kirja",
-        journal = "Petterin Kirjakokoelma",
-        year = "2003",
-        volume = "1"
-}"""
+        article_bibtex = (
+            "@article{petpet,\n"
+            "    author = \"Petteri\",\n"
+            "    title = \"Petterin Artikkeli\",\n"
+            "    journal = \"Petterin Lehti\",\n"
+            "    year = 2003,\n"
+            "    volume = \"1\"\n"
+            "}"
+        )
         self.assertEqual(article_bibtex, self.test_article.format_bibtex())
 
     def test_book_format_bibtex(self):
         """Book entity is correctly converted to BibTeX format"""
-        book_bibtex = """@book{petkir,
-        author = "Petteri",
-        title = "Petterin Kirja vol 2",
-        publisher = "WSOY",
-        year = "2004"
-}"""
+        book_bibtex = (
+            "@book{petkir,\n"
+            "    author = \"Petteri\",\n"
+            "    title = \"Petterin Kirja\",\n"
+            "    publisher = \"WSOY\",\n"
+            "    year = 2004\n"
+            "}"
+        )
 
         self.assertEqual(book_bibtex, self.test_book.format_bibtex())
 
     def test_inproceedings_format_bibtex(self):
         """Inproceedings entity is correctly converted to BibTeX format"""
-        inproceedings_bibtex = """@inproceedings{johinp,
-        author = "John Doe",
-        title = "An Analysis of Example",
-        booktitle = "Sample Text",
-        year = "2002",
-        editor = "Ex Ample"
-}"""
+        inproceedings_bibtex = (
+            "@inproceedings{johinp,\n"
+            "    author = \"John Doe\",\n"
+            "    title = \"An Analysis of Example\",\n"
+            "    booktitle = \"Sample Text\",\n"
+            "    year = 2002,\n"
+            "    editor = \"Ex Ample\"\n"
+            "}"
+        )
 
         self.assertEqual(inproceedings_bibtex, self.test_inproceedings.format_bibtex())

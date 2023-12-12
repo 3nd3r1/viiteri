@@ -8,11 +8,9 @@ Suite Setup         Run Keywords
 ...                     Open And Configure Browser    AND
 ...                     Initialize Database    AND
 ...                     Add two test articles to database    # AND
-# ...    Clear Clipboard
 Suite Teardown      Run Keywords
 ...                     Close Browser    AND
 ...                     Initialize Database    # AND
-# ...    Clear Clipboard
 
 
 *** Test Cases ***
@@ -35,16 +33,6 @@ User should be able to see all added references in bibtex format
 
     View Bibtex Page Should Contain Reference    article    Maijan artikkeli    Maija    2011
     View Bibtex Page Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
-
-# User should be able to copy all references in bibtex format to the clipboard
-#    [Documentation]    Käyttäjänä pystyn napin painalluksella kopioimaan bibtex-muotoiset lähdeviitteet leikepöydälle #62
-#
-#    Go To View Bibtex Page
-#
-#    Click Copy All To Clipboard Button
-#
-#    Clipboard Should Contain Reference    article    Maijan artikkeli    Maija    2011
-#    Clipboard Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
 
 
 *** Keywords ***
