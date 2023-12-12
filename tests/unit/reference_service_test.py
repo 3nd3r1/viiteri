@@ -222,14 +222,42 @@ class TestReferenceService(unittest.TestCase):
 
         self.assertEqual(str(context.exception), "Request timed out")
 
-    def test_get_sorted_references(self):
-        """ Test get_all_references """
+    def test_sort_by_author(self):
+        """ Test get_sorted_references with sort_type author """
 
-        references = self.reference_service.get_sorted_references()
+        references = self.reference_service.get_sorted_references('author')
 
-        self.assertEqual(references[0].author, "John Doe")
-        self.assertEqual(references[1].author, "Petteri")
-        self.assertEqual(references[2].author, "Petteri")
+        self.assertEqual(references[0][1].cite_key, "johinp")
+        self.assertEqual(references[1][1].cite_key, "petpet")
+        self.assertEqual(references[2][1].cite_key, "petkir")
+    
+    def test_sort_by_title(self):
+        """ Test get_sorted_references with sort_type title """
+
+        references = self.reference_service.get_sorted_references('title')
+
+        self.assertEqual(references[0][1].cite_key, "johinp")
+        self.assertEqual(references[1][1].cite_key, "petpet")
+        self.assertEqual(references[2][1].cite_key, "petkir")
+    
+    def test_sort_by_year(self):
+        """ Test get_sorted_references with sort_type year """
+
+        references = self.reference_service.get_sorted_references('year')
+
+        self.assertEqual(references[0][1].cite_key, "johinp")
+        self.assertEqual(references[1][1].cite_key, "petpet")
+        self.assertEqual(references[2][1].cite_key, "petkir")
+    
+    def test_sort_ascending_order(self):
+        """ Test get_sorted_references in ascending order """
+
+        references = self.reference_service.get_sorted_references('year', 'asc')
+
+        self.assertEqual(references[0][1].cite_key, "petkir")
+        self.assertEqual(references[1][1].cite_key, "petpet")
+        self.assertEqual(references[2][1].cite_key, "johinp")
+        
     def test_get_reference_by_doi(self):
         """ Test that get_reference_by_doi works with a valid DOI and supported reference-type """
         reference_example_1 = self.reference_service.get_reference_by_doi("https://dl.acm.org/doi/10.1145/2380552.2380613")
