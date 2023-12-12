@@ -4,7 +4,6 @@ import unittest
 
 from viiteri.entities.references import Article, Book, Inproceedings
 
-
 class TestReferenceEntity(unittest.TestCase):
     """ Test class for Reference - entities """
 
