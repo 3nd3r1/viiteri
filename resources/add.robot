@@ -37,6 +37,10 @@ Set DOI
 
     Submit Form    ${doi-form}
 
+Setting DOI Should Fail Rejected With Message
+    [Arguments]    ${message}
+    Notification should be visible with message and type    ${message}    error
+
 Set Field
     [Arguments]    ${reference_type}    ${field_name}    ${value}
     ${input} =    Get WebElement    xpath://div[@id='${reference_type}']//input[@name='${field_name}']
