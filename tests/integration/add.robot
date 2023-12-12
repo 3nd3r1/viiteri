@@ -59,3 +59,15 @@ User Should Not Be Able to Add An Article Without Required Fields
     Submit Reference    article
     Reference Addition Should Be Rejected With Invalid Field    article    year
     Reference Count In Database Should Be    0
+
+User Should Be Able To Add An Article With A Valid DOI
+    [Documentation]    Käyttäjänä pystyn lisäämään lähdeviitteen DOI-viitteen avulla #64
+    Go To Add Page
+
+    Set DOI    https://doi.org/10.1016/j.elerap.2011.05.004
+
+    Selected Reference Type Should Be    article
+
+    Submit Reference    article
+    Reference Addition Should Be Confirmed
+    Reference Count In Database Should Be    1
