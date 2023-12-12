@@ -19,7 +19,7 @@ View Table Page Reference Count Should Be
 View Bibtex Page Should Contain Reference
     [Arguments]    ${reference_type}    ${title}    ${author}    ${year}
     View Bibtex Page Should Be Open
-    ${textbox} =    Get Text    xpath://textarea[@id='textarea']
+    ${textbox} =    Get Text    xpath://pre[@id='bibtex-output']
     Container Should Contain Reference In Bibtex    ${textbox}    ${reference_type}    ${title}    ${author}    ${year}
 
 Click Copy All To Clipboard Button
@@ -27,20 +27,9 @@ Click Copy All To Clipboard Button
 
     Click Element    xpath://button[@id='copy-button']
 
-# Clipboard Should Contain Reference
-#    [Arguments]    ${reference_type}    ${title}    ${author}    ${year}
-#    ${clipboard} =    Get Clipboard Value
-#
-#    Container Should Contain Reference In Bibtex
-#    ...    ${clipboard}
-#    ...    ${reference_type}
-#    ...    ${title}
-#    ...    ${author}
-#    ...    ${year}
-
 Container Should Contain Reference In Bibtex
     [Arguments]    ${container}    ${reference_type}    ${title}    ${author}    ${year}
     Should Contain    ${container}    @${reference_type}{
     Should Contain    ${container}    title = "${title}"
     Should Contain    ${container}    author = "${author}"
-    Should Contain    ${container}    year = "${year}"
+    Should Contain    ${container}    year = ${year}
