@@ -20,7 +20,7 @@ class ReferenceService:
         """ Returns all references """
         return self._reference_repository.get_all_references()
     
-    def get_sorted_references(self, sort_type, reversed='desc'):
+    def get_sorted_references(self, sort_type=None, reversed='desc'):
         references = self._reference_repository.get_all_references()
         if sort_type == 'author':
             references.sort(key=lambda x: x[1].author, reverse=False if reversed == 'desc' else True)
