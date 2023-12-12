@@ -13,8 +13,18 @@ blueprint = Blueprint("add", __name__)
 def add_reference():
     """ Render page for adding a new reference """
     if request.method == "GET":
+        doi = request.args.get("doi_fill")
+        doi_data = None
         last_ref_type = session.get("last_ref_type", "article")
-        return render_template("add.html", last_ref_type=last_ref_type)
+        if doi:
+            try:
+                doi_data = reference_service.get_reference_by_doi(doi)
+                last_ref_type = doi_data['ENTRYTYPE']
+            except ValueError as error:
+                flash(str(error), "error")
+            except TimeoutError as error:
+                flash(str(error), "error")
+        return render_template("add.html", last_ref_type=last_ref_type, doi_data=doi_data)
     if request.method == "POST":
         ref_type = request.form.get("ref_type")
         try:
