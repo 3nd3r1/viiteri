@@ -2,13 +2,34 @@
 %}
 <div>
 	<h2>All references in a table view with options</h2>
-	
+	<form action="/list" method="get">
+        <input type="text" name="search" placeholder="Search for references...">
+        <button type="submit">Search</button>
+        <a href="/list"><button type="button">Clear</button></a>
+    </form>
+    <br>
     <table>
         <tr>
-            <th class="sortable-header"><a href="?sort=title&order={{ 'desc' if request.args.get('sort') == 'title' and request.args.get('order') != 'desc' else 'asc' }}">Title ↕</a></th>
-            <th class="sortable-header"><a href="?sort=author&order={{ 'desc' if request.args.get('sort') == 'author' and request.args.get('order') != 'desc' else 'asc' }}">Author ↕</a></th>
-            <th class="sortable-header"><a href="?sort=year&order={{ 'desc' if request.args.get('sort') == 'year' and request.args.get('order') != 'desc' else 'asc' }}">Year ↕</a></th>
-            <th class="sortable-header"><a href="?sort=type&order={{ 'desc' if request.args.get('sort') == 'type' and request.args.get('order') != 'desc' else 'asc' }}">Type ↕</a></th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=title&order={{ 'desc' if request.args.get('sort') == 'title' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Title ↕
+                </a>
+            </th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=author&order={{ 'desc' if request.args.get('sort') == 'author' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Author ↕
+                </a>
+            </th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=year&order={{ 'desc' if request.args.get('sort') == 'year' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Year ↕
+                </a>
+            </th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=type&order={{ 'desc' if request.args.get('sort') == 'type' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Type ↕
+                </a>
+            </th>
         </tr>
         {% for reference in references %}
             <tr class="reference-row" data-refid="{{ reference[0] }}" onclick="toggleDetails(this)"
