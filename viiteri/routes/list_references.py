@@ -15,10 +15,7 @@ def render_list():
     sort_order = request.args.get('order', 'asc')
 
     try:
-        if search_query:
-            references = reference_service.get_references(sort_type, sort_order, search_query)
-        else:
-            references = reference_service.get_references(sort_type, sort_order)
+        references = reference_service.get_references(sort_type, sort_order, search_query)
     except SQLAlchemyError:
         flash("Database failed to get all references", "error")
         references = []
