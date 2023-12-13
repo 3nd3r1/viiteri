@@ -1,5 +1,3 @@
-#pylint: disable=no-member
-
 """ viiteri/routes/list_references.py """
 from flask import Blueprint, render_template, flash, request
 from sqlalchemy.exc import SQLAlchemyError
