@@ -35,3 +35,4 @@ Ryhmä kehitti kommunikaatiotaan, joskin sen puute oli edelleen suurin syy ilmen
 
 ## Mitä opittiin, mitä olisi haluttu oppia, mikä tuntui turhalta
 
+Projektin aikana opimme paljon ohjelmistotuotannon käytännön ongelmista ja niiden ratkaisusta. Teorian soveltaminen käytännössä paransi myös sen ymmärrystä. Erityisesti kommunikaatio parani projektin myötä, kun opimme hiljalleen ymmärtämään läpinäkyvyyden periaatteen tärkeyden, sekä keinoja sen toteuttamiseen. Ohjelman ja sen osien suunnittelussa on vielä paljon opittavaa, vaikka ryhmä siitä suoriutuikin kunniallisesti. Lisäksi opimme lukuisia pieniä käytännön seikkoja muun muassa siitä, mitkä ominaisuudet kannattaa toteuttaa samassa branchissa.
