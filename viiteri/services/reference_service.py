@@ -23,11 +23,13 @@ class ReferenceService:
     def get_sorted_references(self, sort_type=None, reversed='desc'):
         references = self._reference_repository.get_all_references()
         if sort_type == 'author':
-            references.sort(key=lambda x: x[1].author, reverse=False if reversed == 'desc' else True)
+            references.sort(key=lambda x: x[1].author.lower(), reverse=False if reversed == 'desc' else True)
         elif sort_type == 'title':
-            references.sort(key=lambda x: x[1].title, reverse=False if reversed == 'desc' else True)
+            references.sort(key=lambda x: x[1].title.lower(), reverse=False if reversed == 'desc' else True)
         elif sort_type == 'year':
             references.sort(key=lambda x: x[1].year, reverse=False if reversed == 'desc' else True)
+        elif sort_type == "type":
+            references.sort(key=lambda x: x[1].type, reverse=False if reversed == 'desc' else True)
         return references
 
     def get_filtered_references(self, keywords: str) -> list[tuple[int, Reference]]:
