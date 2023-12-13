@@ -30,9 +30,26 @@ User Should Be Able To Search For References
     [Documentation]    As a user, I should be able to search for references and see the results.
     Go To View Table Page
 
-    Input And Submit Search Term    pet
+    Input And Submit Search Term    pete
 
-    Verify Search Results Contains    Peten artikkeli    Petteri Orpo    2001
+    View Table Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
+
+User Should Be Able To Or Search For References
+    [Documentation]    As a user, I should be able to search for references and see the results.
+    Go To View Table Page
+
+    Input And Submit Search Term    pete, maija
+
+    View Table Page Should Contain Reference    Maijan artikkeli    Maija    2011
+    View Table Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
+
+User Should Be Able To And Search For References
+    [Documentation]    As a user, I should be able to search for references and see the results.
+    Go To View Table Page
+
+    Input And Submit Search Term    pete, &orpo
+
+    View Table Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
 
 User should be able to see all added references in bibtex format
     [Documentation]    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet bibtex-muodossa. #60
@@ -54,9 +71,3 @@ Input And Submit Search Term
     [Arguments]    ${searchTerm}
     Input Text    name=search    ${searchTerm}
     Click Button    xpath=//button[contains(text(),'Search')]
-
-Verify Search Results Contains
-    [Arguments]    ${title}    ${author}    ${year}
-    Element Should Contain    css=.reference-row    ${title}
-    Element Should Contain    css=.reference-row    ${author}
-    Element Should Contain    css=.reference-row    ${year}
