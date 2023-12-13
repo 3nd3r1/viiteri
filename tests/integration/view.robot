@@ -3,16 +3,15 @@ Documentation       Integraatio- ja hyväksymistestaus lähdeviitteiden näkemis
 
 Resource            ../../resources/common.robot
 Resource            ../../resources/view.robot
+Library             RPA.Desktop
 
 Suite Setup         Run Keywords
 ...                     Open And Configure Browser    AND
 ...                     Initialize Database    AND
-...                     Add two test articles to database    # AND
-# ...    Clear Clipboard
+...                     Add two test articles to database
 Suite Teardown      Run Keywords
 ...                     Close Browser    AND
-...                     Initialize Database    # AND
-# ...    Clear Clipboard
+...                     Initialize Database
 
 
 *** Test Cases ***
@@ -36,15 +35,19 @@ User should be able to see all added references in bibtex format
     View Bibtex Page Should Contain Reference    article    Maijan artikkeli    Maija    2011
     View Bibtex Page Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
 
-# User should be able to copy all references in bibtex format to the clipboard
-#    [Documentation]    Käyttäjänä pystyn napin painalluksella kopioimaan bibtex-muotoiset lähdeviitteet leikepöydälle #62
-#
-#    Go To View Bibtex Page
-#
-#    Click Copy All To Clipboard Button
-#
-#    Clipboard Should Contain Reference    article    Maijan artikkeli    Maija    2011
-#    Clipboard Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
+User should be able to click on a reference to open an expanded view of the reference details, which are presented in a neat format
+    [Documentation]    Käyttäjänä pystyn klikkaamaan lähdeviitelistauksesta yksittäistä viitettä
+    ...    avatakseni suuremman näkymän viitteen tietoihin, joka on siistissä muodossa #65
+
+    Go To View Table Page
+
+    Click Reference    Maijan artikkeli    Maija    2011
+
+    View Table Page Should Contain Extended Reference Details With Fields
+    ...    Title=Maijan artikkeli
+    ...    Author=Maija
+    ...    Year=2011
+    ...    Journal=Maijan lehti
 
 
 *** Keywords ***
