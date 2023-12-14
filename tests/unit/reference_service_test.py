@@ -222,6 +222,14 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(references[1][1].cite_key, "petpet")
         self.assertEqual(references[2][1].cite_key, "petkir")
 
+    def test_sort_by_type(self):
+        """ Test get_references with sort_type type """
+        references = self.reference_service.get_references('type', 'asc', '')
+
+        self.assertEqual(references[0][1].type, "article")
+        self.assertEqual(references[1][1].type, "book")
+        self.assertEqual(references[2][1].type, "inproceedings")
+
     def test_sort_descending_order(self):
         """ Test get_references in descending order """
 
