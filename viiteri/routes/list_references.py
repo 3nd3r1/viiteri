@@ -10,6 +10,7 @@ blueprint = Blueprint("list_references", __name__)
 
 @blueprint.route("/list")
 def render_list():
+    """ Render listing page """
     search_query = request.args.get('search', '').strip()
     sort_type = request.args.get('sort')
     sort_order = request.args.get('order', 'asc')

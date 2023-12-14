@@ -6,7 +6,7 @@
         <div><input type="text" class="form-field" name="author" {% if doi_data.author %} value="{{doi_data.author}}" {% endif %} placeholder="Author(s)" required></div>
         <div><input type="text" class="form-field" name="title" {% if doi_data.title %} value="{{doi_data.title}}" {% endif %} placeholder="Title" required></div>
         <div><input type="text" class="form-field" name="booktitle" {% if doi_data.booktitle %} value="{{doi_data.booktitle}}" {% endif %} placeholder="Conf. Proc. Book Title" required></div>
-        <div><input type="text" class="form-field" name="year" {% if doi_data.year %} value="{{doi_data.year}}" {% endif %} placeholder="Year" required></div>
+        <div><input type="number" class="form-field" name="year" {% if doi_data.year %} value="{{doi_data.year}}" {% endif %} placeholder="Year" required></div>
         
         <p><b>Optional fields</b></p>
 
