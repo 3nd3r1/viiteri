@@ -11,21 +11,12 @@
     <select id="form_select" onchange="switchForm(this.value)">
         <option value="article" {% if last_ref_type == "article" %}selected{% endif %}>Article</option>
         <option value="book" {% if last_ref_type == "book" %}selected{% endif %}>Book</option>
-        <!-- <option value="booklet">Booklet</option> -->
-        <!-- <option value="conference">Conference</option> -->
-        <!-- <option value="inbook">Inbook</option> -->
-        <!-- <option value="incollection">Incollection</option> -->
         <option value="inproceedings" {% if last_ref_type == "inproceedings" %}selected{% endif %}>Inproceedings</option>
-        <!-- <option value="manual">Manual</option> -->
-        <!-- <option value="mastersthesis">Mastersthesis</option> -->
-        <!-- <option value="misc">Misc</option> -->
-        <!-- <option value="phdthesis">Phdthesis</option> -->
-        <!-- <option value="proceedings">Proceedings</option> -->
-        <!-- <option value="techreport">Techreport</option> -->
-        <!-- <option value="unpublished">Unpublished</option> -->
     </select>
 
-    {% include 'forms_handler.html' %}
+    {% include 'forms/article_submit_form.html' %}
+    {% include 'forms/book_submit_form.html' %}
+    {% include 'forms/inproceedings_submit_form.html' %}
 
     <script>
         function disableFormFields(form_fields, disable) {
@@ -36,9 +27,7 @@
             }
         function switchForm(selectedForm) {
             var forms = ['article', 'book', 'inproceedings'];
-            /* Final version: var forms = ['article', 'book', 'booklet', 'conference', 'inbook', 
-            'incollection', 'inproceedings', 'manual', 'mastersthesis', 'misc', 'phdthesis', 
-            'proceedings', 'techreport', 'unpublished']; */
+
             forms.forEach(function(formId) {
                 formDoc = document.getElementById(formId);
                 formDoc.style.display = 'none';

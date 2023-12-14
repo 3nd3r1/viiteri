@@ -21,9 +21,9 @@ View Table Page Should Contain Extended Reference Details With Fields
 
 View Table Page Should Contain Reference Details Row With
     [Arguments]    ${field}    ${value}
-    ${detail_row_locator} =    Set Variable    xpath://tr[starts-with(@class,'reference-details')]
-    Page Should Contain Element    ${detail_row_locator}//td[@class='reference-details-labels' and text()='${field}']
-    Page Should Contain Element    ${detail_row_locator}//td[@class='reference-details-values' and text()='${value}']
+    ${detail_row_locator} =    Set Variable    xpath://td[@class='expanded-row-content']//table//tbody//tr
+    Element Should Be Visible    ${detail_row_locator}//td//strong[text()='${field}']
+    Element Should Be Visible    ${detail_row_locator}//td[text()='${value}']
 
 View Table Page Reference Count Should Be
     [Arguments]    ${count}

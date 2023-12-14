@@ -1,180 +1,102 @@
-{% extends "base.html" %} {% block title %}View Table{% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title %}View Table{% endblock %} {% block
+content %}
 <div>
 	<h2>All references in a table view with options</h2>
 	<form action="/list" method="get">
-        <input type="text" name="search" placeholder="Search for references...">
-        <button type="submit">Search</button>
-        <a href="/list"><button type="button">Clear</button></a>
-    </form>
-    <br>
-    <table>
-        <tr>
-            <!-- En ole järjestyksestä ihan varma, mutta näytti kutakuinkin sopivalta. -->
-            <th>Title</th>
-            <th>Author</th>
-            <th>Year</th>
-            <th>Type</th>
-        </tr>
-        {% for reference in references %}
-            <tr class="reference-row" data-refid="{{ reference[0] }}" onclick="toggleDetails(this)"
-                data-citekey="{{ reference[1].citekey }}"
-                data-title="{{ reference[1].title }}"
-                data-author="{{ reference[1].author }}"
-                data-year="{{ reference[1].year }}"
-                data-editor="{{ reference[1].editor | default('',true) }}"
-                data-edition="{{ reference[1].edition | default('',true) }}"
-                data-journal="{{ reference[1].journal | default('',true) }}"
-                data-booktitle="{{ reference[1].booktitle | default('',true) }}"
-                data-series="{{ reference[1].series | default('',true) }}"
-                data-volume="{{ reference[1].volume | default('',true) }}"
-                data-number="{{ reference[1].number | default('',true) }}"
-                data-pages="{{ reference[1].pages | default('',true) }}"
-                data-month="{{ reference[1].month | default('',true) }}"
-                data-publisher="{{ reference[1].publisher | default('',true) }}"
-                data-organization="{{ reference[1].organization | default('',true) }}"
-                data-address="{{ reference[1].address | default('',true) }}"
-                data-isbn="{{ reference[1].isbn | default('',true) }}"
-                data-issn="{{ reference[1].issn | default('',true) }}"
-                data-doi="{{ reference[1].doi | default('',true) }}"
-                data-zbl="{{ reference[1].zblnumber | default('',true) }}"
-                data-eprint="{{ reference[1].eprint | default('',true) }}"
-                data-note="{{ reference[1].note | default('',true) }}"
-                data-annote="{{ reference[1].annote | default('',true) }}"
-            >
-                <td class="basic-info">{{ reference[1].title }}</td>
-                <td class="basic-info">{{ reference[1].author }}</td>
-                <td class="basic-info">{{ reference[1].year }}</td>
-                <td class="basic-info">{{ reference[1].type }}</td>
-            </tr>
-            <tr class="button-row" style="display: none;">
-                <td colspan="4" style="text-align: center;">
-                    <!-- Tähän saisi ehkä myös edit-napin? Erittäin vaikea kuitenkin toteuttaa editointi tablen sisällä. -->
-                    <button class="details-button" onclick="toggleDetails(this)">Hide details</button>
-                    <button class="copy-button" data-bibtex="{{ reference[1].format_bibtex() }}" onclick="handleCopyButtonClick(this)">Copy BibTex to clipboard</button>
-                    <button class="delete-button" onclick="confirmDelete({{ reference[0] }})">Delete Reference</button>
-                </td>
-            </tr>
-            <tr class="empty-row"></tr>
-            <form id="delete_reference_form_{{ reference[0] }}" action="/remove" method="POST" style="display: none;">
-                <input type="hidden" name="reference_id" value="{{ reference[0] }}" />
-            </form>
-        {% endfor %}
-    </table>
+		<input
+			type="text"
+			name="search"
+			placeholder="Search for references..."
+		/>
+		<button type="submit">Search</button>
+		<a href="/list"><button type="button">Clear</button></a>
+	</form>
+	<br />
+	<table class="view-table">
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Year</th>
+			<th>Type</th>
+		</tr>
+		{% for reference in references %}
+		<tr
+			class="reference-row"
+			onclick="toggleDetails(this)"
+			data-title="{{ reference[1].title }}"
+			data-author="{{ reference[1].author }}"
+			data-year="{{ reference[1].year }}"
+		>
+			<td class="basic-info">{{ reference[1].title }}</td>
+			<td class="basic-info">{{ reference[1].author }}</td>
+			<td class="basic-info">{{ reference[1].year }}</td>
+			<td class="basic-info">{{ reference[1].type }}</td>
+			<td class="expanded-row-content hide">
+				<table>
+					{% for field, value in reference[1].fields %}
+					<tr>
+						<td><strong>{{field.capitalize()}}</strong></td>
+						<td>{{value}}</td>
+					</tr>
+					{% endfor %}
+					<tr>
+						<td colspan="2">
+							<div style="display: flex; flex-wrap: wrap">
+								<button
+									class="button copy-button"
+									data-bibtex="{{ reference[1].format_bibtex() }}"
+									onclick="handleCopyButtonClick(this)"
+								>
+									Copy BibTex to clipboard
+								</button>
+								<form
+									id="delete_reference_form_{{ reference[0] }}"
+									action="/remove"
+									onsubmit="return window.confirm('Confirm you want to delete this reference?')"
+									method="POST"
+								>
+									<input
+										type="hidden"
+										style="display: none"
+										name="reference_id"
+										value="{{ reference[0] }}"
+									/>
+									<input
+										type="submit"
+										class="button delete-button"
+										value="Delete Reference"
+									/>
+								</form>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		{% endfor %}
+	</table>
 </div>
 
-<textarea id="hidden_text_area" style="position: absolute; left: -9999px; top: -9999px;"></textarea>
-
 <script>
-    function toggleDetails(element) {
-        var row;
-        if (element.matches('.details-button')) {
-            row = findCorrectTableRow(element.closest('.button-row'), '.reference-row');
-        }
-        else {
-            row = element;
-        }
+	function toggleDetails(row) {
+		row.getElementsByClassName("expanded-row-content")[0].classList.toggle(
+			"hide"
+		);
+	}
 
-        var ref_id = row.getAttribute('data-refid');
-        var is_detail_row_created = row.classList.contains('detail-created-' + ref_id);
-
-        /* Tämä if else koittaa olla luomasta liikaa ylimääräisiä rivejä. */
-        if (!is_detail_row_created) {
-            row.style.display = 'none';
-
-            /* Nämä ovat näkymättömiä jos ei referenssillä kyseistä ole. */
-            var details = [
-                { label: 'Title', value: row.getAttribute('data-title') },
-                { label: 'Author', value: row.getAttribute('data-author')},
-                { label: 'Year', value: row.getAttribute('data-year') },
-                { label: 'Booktitle', value: row.getAttribute('data-booktitle') },
-                { label: 'Editor', value: row.getAttribute('data-editor') },
-                { label: 'Edition', value: row.getAttribute('data-edition') },
-                { label: 'Journal', value: row.getAttribute('data-journal') },
-                { label: 'Series', value: row.getAttribute('data-series') },
-                { label: 'Volume', value: row.getAttribute('data-volume') },
-                { label: 'Number', value: row.getAttribute('data-number') },
-                { label: 'Pages', value: row.getAttribute('data-pages') },
-                { label: 'Month', value: row.getAttribute('data-month') },
-                { label: 'Publisher', value: row.getAttribute('data-publisher') },
-                { label: 'Organization', value: row.getAttribute('data-organization') },
-                { label: 'Address', value: row.getAttribute('data-address') },
-                { label: 'ISBN', value: row.getAttribute('data-isbn') },
-                { label: 'ISSN', value: row.getAttribute('data-issn') },
-                { label: 'DOI', value: row.getAttribute('data-doi') },
-                { label: 'Zbl', value: row.getAttribute('data-zbl') },
-                { label: 'Eprint', value: row.getAttribute('data-eprint') },
-                { label: 'Note', value: row.getAttribute('data-note') },
-                { label: 'Annote', value: row.getAttribute('data-annote') },
-            ].filter(detail => detail.value);
-
-            var last_inserted_row = row;
-
-            for (var i = 0; i < details.length; i++) {
-                var details_row = document.createElement('tr');
-                details_row.classList.add('reference-details', 'detail-row-' + ref_id);
-                details_row.style.display = '';
-
-                var label_cell = document.createElement('td');
-                label_cell.className = 'reference-details-labels';
-                label_cell.textContent = details[i].label;
-
-                var value_cell = document.createElement('td');
-                value_cell.className = 'reference-details-values';
-                value_cell.textContent = details[i].value;
-                value_cell.colSpan = "3";
-
-                details_row.appendChild(label_cell);
-                details_row.appendChild(value_cell);
-
-                last_inserted_row.parentNode.insertBefore(details_row, last_inserted_row.nextElementSibling);
-                last_inserted_row = details_row;
-            }
-
-            var button_row = row.nextElementSibling;
-            while (button_row && !button_row.classList.contains('button-row')) {
-                button_row = button_row.nextElementSibling;
-            }
-            if (button_row) {
-                button_row.style.display = '';
-            }
-
-            row.classList.add('detail-created-' + ref_id);
-
-        } else {
-            var current_row = row.nextElementSibling;
-
-            while (current_row && (current_row.classList.contains('detail-row-' + ref_id) || current_row.classList.contains('button-row'))) {
-                current_row.style.display = current_row.style.display === 'none' ? '' : 'none';
-                current_row = current_row.nextElementSibling;
-            }
-
-            row.style.display = row.style.display === 'none' ? '' : 'none';
-        }
-    }
-
-    function findCorrectTableRow(row, selector) {
-        var sibling = row.previousElementSibling;
-        while (sibling) {
-            if (sibling.matches(selector)) return sibling;
-            sibling = sibling.previousElementSibling
-        }
-    }
-
-    function handleCopyButtonClick(button) {
-        var bibtexString = button.getAttribute('data-bibtex');
-        var hidden_text_area = document.getElementById('hidden_text_area');
-
-        hidden_text_area.value = bibtexString;
-        hidden_text_area.select();
-        document.execCommand('copy');
-    }
-
-    function confirmDelete(refId) {
-        if (window.confirm('Confirm you want to delete this reference?')) {
-            document.getElementById('delete_reference_form_' + refId).submit();
-        }
-    }
+	function handleCopyButtonClick(button) {
+		var bibtexString = button.getAttribute("data-bibtex");
+		navigator.clipboard.writeText(bibtexString).then(
+			function () {
+				alert("Copied BibTex to clipboard!");
+			},
+		).catch(
+			function (error) {
+				console.log(error)
+			}
+		);
+	}
 
 </script>
 

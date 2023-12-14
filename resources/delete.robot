@@ -8,7 +8,7 @@ Get Delete Button Locator
     [Arguments]    ${title}    ${author}    ${year}
     ${reference_row_locator} =    Get Reference Row Locator    ${title}    ${author}    ${year}
     ${delete_button_locator} =    Set Variable
-    ...    ${reference_row_locator}/following-sibling::tr[@class='button-row']//td//button[@class='delete-button']
+    ...    ${reference_row_locator}//td//table//tbody//tr//td//div//form//input[@class="button delete-button"]
     RETURN    ${delete_button_locator}
 
 Click Delete Reference
