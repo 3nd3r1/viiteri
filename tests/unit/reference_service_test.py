@@ -238,3 +238,12 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(references[0][1].cite_key, "petkir")
         self.assertEqual(references[1][1].cite_key, "petpet")
         self.assertEqual(references[2][1].cite_key, "johinp")
+
+    def get_references_without_sorttype(self):
+        """ Test get_references without sort_type """
+
+        references = self.reference_service.get_references('', 'desc', '')
+
+        self.assertEqual(references[0][1].cite_key, "petpet")
+        self.assertEqual(references[1][1].cite_key, "petkir")
+        self.assertEqual(references[2][1].cite_key, "johinp")
