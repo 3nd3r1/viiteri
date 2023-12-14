@@ -28,15 +28,15 @@ User should be able to see all added references in table format
     Search Page Reference Count Should Be    2
 
 User Should Be Able To Search For References
-    [Documentation]    As a user, I should be able to search for references and see the results.
+    [Documentation]    Käyttäjänä voin rajoittaa lähdeviitteitä avainsanan avulla #4
     Go To Search Page
 
     Input And Submit Search Term    pete
 
     Search Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
 
-User Should Be Able To Or Search For References
-    [Documentation]    As a user, I should be able to search for references and see the results.
+User Should Be Able To Search For References Using Or Operator
+    [Documentation]    Käyttäjänä voin rajoittaa lähdeviitteitä avainsanan avulla #4
     Go To Search Page
 
     Input And Submit Search Term    pete, maija
@@ -44,8 +44,8 @@ User Should Be Able To Or Search For References
     Search Page Should Contain Reference    Maijan artikkeli    Maija    2011
     Search Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
 
-User Should Be Able To And Search For References
-    [Documentation]    As a user, I should be able to search for references and see the results.
+User Should Be Able To Search For References Using And Operator
+    [Documentation]    Käyttäjänä voin rajoittaa lähdeviitteitä avainsanan avulla #4
     Go To Search Page
 
     Input And Submit Search Term    pete, &orpo
@@ -54,6 +54,7 @@ User Should Be Able To And Search For References
 
 User should be able to see all added references in bibtex format
     [Documentation]    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet bibtex-muodossa. #60
+    ...    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet oikein sisennetyssä bibtex muodossa #99
 
     Go To Raw BibTex Page
 
