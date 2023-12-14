@@ -24,7 +24,23 @@ class ReferenceService:
     def get_filtered_references(self, keywords: str) -> list[tuple[int, Reference]]:
         """ Returns references based on keyword search"""
         return keyword_filter_references(
-            keywords, self._reference_repository.get_all_references())
+            keywords, self._reference_repository.get_all_references())\
+            if keywords != '' else self._reference_repository.get_all_references()
+
+    def get_references(self, sort_type: str, order: str, keywords: str):
+        """ Returns references """
+        references = self.get_filtered_references(keywords)
+        if sort_type == 'author':
+            references.sort(key=lambda x: x[1].author.lower(),
+                            reverse=order == 'desc')
+        elif sort_type == 'title':
+            references.sort(key=lambda x: x[1].title.lower(),
+                            reverse=order == 'desc')
+        elif sort_type == 'year':
+            references.sort(key=lambda x: x[1].year, reverse=order == 'desc')
+        elif sort_type == "type":
+            references.sort(key=lambda x: x[1].type, reverse=order == 'desc')
+        return references
 
     def create_reference(self, reference_type, **kwargs) -> int:
         """ Creates a new reference """
@@ -59,7 +75,8 @@ class ReferenceService:
             cite_key = next(iter(bib_dict))
             data_dict = bib_dict[cite_key]
             if data_dict['ENTRYTYPE'] not in ['article', 'book', 'inproceedings']:
-                raise ValueError(f"Unsupported reference type {data_dict['ENTRYTYPE']}")
+                raise ValueError(
+                    f"Unsupported reference type {data_dict['ENTRYTYPE']}")
             return data_dict
         raise ValueError("Failed to find reference")
 

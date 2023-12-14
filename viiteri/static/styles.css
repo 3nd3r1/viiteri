@@ -95,6 +95,20 @@ body {
 
 /* list.html css */
 
+.sortable-header a {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+	padding: 5px 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+  }
+  
+.sortable-header a:hover {
+	background-color: #e8e8e8;
+}
+
 .button {
 	background-image: linear-gradient(#f7f8fa, #e7e9ec);
 	border-color: #adb1b8 #a2a6ac #8d9096;
