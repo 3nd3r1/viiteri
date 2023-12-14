@@ -20,6 +20,20 @@ body {
   font-size: 10px;
 }
 
+.sortable-header a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}
+
+.sortable-header a:hover {
+  background-color: #e8e8e8;
+}
+
 table {
   table-layout: fixed;
   border-collapse: collapse;

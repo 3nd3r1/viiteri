@@ -10,11 +10,26 @@
     <br>
     <table>
         <tr>
-            <!-- En ole järjestyksestä ihan varma, mutta näytti kutakuinkin sopivalta. -->
-            <th>Title</th>
-            <th>Author</th>
-            <th>Year</th>
-            <th>Type</th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=title&order={{ 'desc' if request.args.get('sort') == 'title' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Title ↕
+                </a>
+            </th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=author&order={{ 'desc' if request.args.get('sort') == 'author' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Author ↕
+                </a>
+            </th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=year&order={{ 'desc' if request.args.get('sort') == 'year' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Year ↕
+                </a>
+            </th>
+            <th class="sortable-header">
+                <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=type&order={{ 'desc' if request.args.get('sort') == 'type' and request.args.get('order') != 'desc' else 'asc' }}">
+                    Type ↕
+                </a>
+            </th>
         </tr>
         {% for reference in references %}
             <tr class="reference-row" data-refid="{{ reference[0] }}" onclick="toggleDetails(this)"
