@@ -32,6 +32,9 @@ Ryhmä kehitti kommunikaatiotaan, joskin sen puute oli edelleen suurin syy ilmen
 
 ## Mikä sujui hyvin, mitä pitäisi parantaa?
 
+Hyvän ryhmähengen avulla parannusta tapahtui koko ajan läpi miniprojektin. Kuten jo kirjoitettu, alussa oli takeltelua, mutta työtahdin selkeytyessä ja toisten auttamisella prosessi helpottui. Mitä pitemmälle näitä sprinttejä päästiin, sitä paremmin ryhmä toimi, joten on tosiaan hyvä, että on neljä sprinttiä kolmen sijaan. Eri aluepiirien hoitaminen levittäytyi myös tasaisemmin eri henkilöille sprinttien myötä kokemuksen ja ymmärryksen karttuessa.
+
+Parannettavaa oli synergia eri taskien välillä, eli ei pelkästään yleinen kommunikointi siitä mitä tekee ja missä vaiheessa on, mutta myös hyvin sidoksissa olevien taskien tekijöiden kannattaa olla erittäin tarkkana siitä, että he ovat jatkuvasti kommunikoinnissa osiensa yhteensopivuudesta. Toista taskia tekevä voi kaiken lisäksi huomata seikkoja ei pelkästään osien toiminnasta erikseen, mutta myös molempien osien yhteistoiminnasta, joita toinen ei sattumoisin pannut merkille. Tämän saralla on ollut onnistumisia, mutta kehitettävääkin on yhä. Lisäksi kaikenlaisia vinkkejä voi antaa paljon enemmän kaikille toisille viestimien kautta, koska monesti ei vain yksin huomaa jotain seikkaa, jonka toinen toiselta näkökannalta näkee selvästi.
 
 ## Mitä opittiin, mitä olisi haluttu oppia, mikä tuntui turhalta
 
