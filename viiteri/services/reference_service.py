@@ -20,22 +20,24 @@ class ReferenceService:
         """ Returns all references """
         return self._reference_repository.get_all_references()
     
-    def get_sorted_references(self, sort_type=None, reversed='desc'):
+    def get_references(self, sort_type: str, reversed: str, keywords: str):
         references = self._reference_repository.get_all_references()
+        references = self.get_filtered_references(keywords)
         if sort_type == 'author':
-            references.sort(key=lambda x: x[1].author.lower(), reverse=False if reversed == 'desc' else True)
+            references.sort(key=lambda x: x[1].author.lower(), reverse=True if reversed == 'desc' else False)
         elif sort_type == 'title':
-            references.sort(key=lambda x: x[1].title.lower(), reverse=False if reversed == 'desc' else True)
+            references.sort(key=lambda x: x[1].title.lower(), reverse=True if reversed == 'desc' else False)
         elif sort_type == 'year':
-            references.sort(key=lambda x: x[1].year, reverse=False if reversed == 'desc' else True)
+            references.sort(key=lambda x: x[1].year, reverse=True if reversed == 'desc' else False)
         elif sort_type == "type":
-            references.sort(key=lambda x: x[1].type, reverse=False if reversed == 'desc' else True)
+            references.sort(key=lambda x: x[1].type, reverse=True if reversed == 'desc' else False)
         return references
 
     def get_filtered_references(self, keywords: str) -> list[tuple[int, Reference]]:
         """ Returns references based on keyword search"""
         return keyword_filter_references(
-            keywords, self._reference_repository.get_all_references())
+            keywords, self._reference_repository.get_all_references())\
+            if keywords != '' else self._reference_repository.get_all_references()
 
     def create_reference(self, reference_type, **kwargs) -> int:
         """ Creates a new reference """

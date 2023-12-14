@@ -176,36 +176,36 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(str(context.exception), "Request timed out")
 
     def test_sort_by_author(self):
-        """ Test get_sorted_references with sort_type author """
+        """ Test get_references with sort_type author """
 
-        references = self.reference_service.get_sorted_references('author')
+        references = self.reference_service.get_references('author', 'asc', '')
 
         self.assertEqual(references[0][1].cite_key, "johinp")
         self.assertEqual(references[1][1].cite_key, "petpet")
         self.assertEqual(references[2][1].cite_key, "petkir")
     
     def test_sort_by_title(self):
-        """ Test get_sorted_references with sort_type title """
+        """ Test get_references with sort_type title """
 
-        references = self.reference_service.get_sorted_references('title')
+        references = self.reference_service.get_references('title', 'asc', '')
 
         self.assertEqual(references[0][1].cite_key, "johinp")
         self.assertEqual(references[1][1].cite_key, "petpet")
         self.assertEqual(references[2][1].cite_key, "petkir")
     
     def test_sort_by_year(self):
-        """ Test get_sorted_references with sort_type year """
+        """ Test get_references with sort_type year """
 
-        references = self.reference_service.get_sorted_references('year')
+        references = self.reference_service.get_references('year', 'asc', '')
 
         self.assertEqual(references[0][1].cite_key, "johinp")
         self.assertEqual(references[1][1].cite_key, "petpet")
         self.assertEqual(references[2][1].cite_key, "petkir")
     
-    def test_sort_ascending_order(self):
-        """ Test get_sorted_references in ascending order """
+    def test_sort_descending_order(self):
+        """ Test get_references in descending order """
 
-        references = self.reference_service.get_sorted_references('year', 'asc')
+        references = self.reference_service.get_references('year', 'desc', '')
 
         self.assertEqual(references[0][1].cite_key, "petkir")
         self.assertEqual(references[1][1].cite_key, "petpet")
