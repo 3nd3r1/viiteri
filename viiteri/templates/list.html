@@ -1,7 +1,7 @@
-{% extends "base.html" %} {% block title %}View Table{% endblock %} {% block
+{% extends "base.html" %} {% block title %}Search{% endblock %} {% block
 content %}
 <div>
-	<h2>All references in a table view with options</h2>
+	<br>
 	<form action="/list" method="get">
 		<input
 			type="text"
@@ -10,6 +10,7 @@ content %}
 		/>
 		<button type="submit">Search</button>
 		<a href="/list"><button type="button">Clear</button></a>
+		<button type="button" onclick="handleCopyAllBibTex()">Copy All BibTex</button>
 	</form>
 	<br />
 	<table class="view-table">
@@ -30,7 +31,16 @@ content %}
 			<td class="basic-info">{{ reference[1].title }}</td>
 			<td class="basic-info">{{ reference[1].author }}</td>
 			<td class="basic-info">{{ reference[1].year }}</td>
-			<td class="basic-info">{{ reference[1].type }}</td>
+			<td class="basic-info">
+				{{ reference[1].type }}
+				{% if reference[1].type == 'article' %}
+					📰
+				{% elif reference[1].type == 'book' %}
+					📚
+				{% elif reference[1].type == 'inproceedings' %}
+					🎙️
+				{% endif %}
+			</td>
 			<td class="expanded-row-content hide">
 				<table>
 					{% for field, value in reference[1].fields %}
@@ -98,6 +108,24 @@ content %}
 		);
 	}
 
+	function handleCopyAllBibTex() {
+        var bibtex_strings = [];
+
+        document.querySelectorAll('.copy-button').forEach(function(button) {
+            bibtex_strings.push(button.getAttribute('data-bibtex'));
+        });
+
+        var joined_bibtex_strings = bibtex_strings.join('\n\n');
+		navigator.clipboard.writeText(joined_bibtex_strings).then(
+			function () {
+				alert("Copied all BibTex to clipboard!");
+			},
+		).catch(
+			function (error) {
+				console.log(error)
+			}
+		);
+    }
 </script>
 
 {% endblock %}

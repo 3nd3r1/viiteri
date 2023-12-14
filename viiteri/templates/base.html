@@ -7,18 +7,6 @@
 			href="{{ url_for('static', filename='styles.css') }}"
 		/>
 		<title>{% block title %}{% endblock %} - Viiteri</title>
-		<style>
-			.alert.success {
-				padding: 15px;
-				background-color: #1f9141;
-				color: white;
-			}
-			.alert.error {
-				padding: 15px;
-				background-color: #c92a2a;
-				color: white;
-			}
-		</style>
 	</head>
 	<body>
 		<div>
@@ -27,12 +15,6 @@
 			if messages %} {% for category, message in messages %}
 			<div class="alert {{category}}">{{ message }}</div>
 			{% endfor %} {% endif %} {% endwith %}
-			<button
-				onclick="window.location.href='/'"
-				class="navigation-button"
-			>
-				Home
-			</button>
 			<button
 				onclick="window.location.href='/add'"
 				class="navigation-button"
@@ -43,15 +25,25 @@
 				onclick="window.location.href='/list'"
 				class="navigation-button"
 			>
-				View Table
+				Search
 			</button>
 			<button
 				onclick="window.location.href='/bibtex'"
 				class="navigation-button"
 			>
-				View BibTex
+				Raw BibTex
 			</button>
 		</div>
 		{% block content %}{% endblock %}
+		<script>
+			window.addEventListener('DOMContentLoaded', (event) => {
+				setTimeout(function() {
+					var alerts = document.querySelectorAll('.alert');
+					alerts.forEach(function(alert) {
+						alert.style.display = 'none';
+					});
+				}, 3000);
+			});
+		</script>
 	</body>
 </html>

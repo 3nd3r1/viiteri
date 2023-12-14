@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Submit{% endblock %}
 {% block content %}
-    <p>Fill fields with DOI</p>
+    <br>
     <form id="doi-form">
-        <input name="doi_fill" placeholder="DOI">
+        <input name="doi_fill" placeholder="Fill fields with DOI...">
         <input type="submit" value="Fill">
     </form>
     <br>
@@ -17,6 +17,37 @@
     {% include 'forms/article_submit_form.html' %}
     {% include 'forms/book_submit_form.html' %}
     {% include 'forms/inproceedings_submit_form.html' %}
+
+    <div class="submit-page-text">
+        <br>
+        <h2>Information</h2>
+        <p>
+            This is a management tool for
+            <a href="https://www.bibtex.com/g/bibtex-format/">BibTex</a> format
+            references. You can currently submit <i>article</i>, <i>book</i> and <i>inproceedings</i>
+            type references, search stored references and get their BibTex format versions.
+            There are <a href="https://www.bibtex.com/e/entry-types/">14 entry types</a>
+            in the BibTex format and we recommend getting acquainted with them first
+            if you are yet unfamiliar with BibTex.
+        </p>
+    
+        <p>
+            On the current <b>Submit</b> page you can to save a reference to the system, 
+            and then click on <b>Search</b> to search the stored references or
+            <b>Raw BibTex</b> for raw BibTex format of all the references.
+            Authors are separated in the BibTex format with the word
+            <a href="https://www.bibtex.com/f/author-field/">"and"</a>.
+        </p>
+        
+        <p>
+            (The website is a group project as part of the University of Helsinki
+            course
+            <a
+                href="https://studies.helsinki.fi/kurssit/toteutus/hy-opt-cur-2324-e4d8713d-d678-4dba-a41a-576f26e75ac0"
+                >Ohjelmistotuotanto</a
+            >, code TKT20006. The group in charge of this site is JEEOVI.)
+        </p>
+    </div>
 
     <script>
         function disableFormFields(form_fields, disable) {

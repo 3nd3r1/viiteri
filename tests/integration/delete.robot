@@ -20,13 +20,13 @@ Suite Teardown      Run Keywords
 User should be able to delete a reference
     [Documentation]    Käyttäjänä voin poistaa lisättyjä lähdeviitteitä #5
 
-    Go To View Table Page
+    Go To Search Page
 
     Click Delete Reference    Peten artikkeli    Petteri Orpo    2001
     Handle Alert
 
     Reference Deletion Should Be Confirmed
-    View Table Page Reference Count Should Be    1
+    Search Page Reference Count Should Be    1
     Reference Count In Database Should Be    1
 
 

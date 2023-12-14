@@ -15,7 +15,7 @@ Click Delete Reference
     [Arguments]    ${title}    ${author}    ${year}
     ${delete_button_locator} =    Get Delete Button Locator    ${title}    ${author}    ${year}
 
-    View Table Page Should Be Open
+    Search Page Should Be Open
 
     Click Reference    ${title}    ${author}    ${year}
     Click Element    ${delete_button_locator}

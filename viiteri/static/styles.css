@@ -13,13 +13,28 @@ body {
 	background-color: #5b9ac8;
 }
 
-.index-list {
-	font-size: 10px;
-	line-height: 1;
+.alert {
+	position: fixed;
+	top: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1000;
+	width: 50%;
+	padding: 15px;
+	font-size: 1.2em;
+	text-align: center;
+	border: 1px solid #ddd;
+	background-color: #f8f8f8;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-
-.index-list-description {
-	font-size: 10px;
+  
+.alert.success {
+	background-color: #1f9141;
+	color: white;
+}
+.alert.error {
+	background-color: #c92a2a;
+	color: white;
 }
 
 /* add.html css */
@@ -72,6 +87,10 @@ body {
 .submit-button:active {
 	background-color: #298e46;
 	box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+}
+
+.submit-page-text {
+    width: 700px;
 }
 
 /* list.html css */
