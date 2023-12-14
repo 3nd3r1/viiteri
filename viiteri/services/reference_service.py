@@ -21,6 +21,7 @@ class ReferenceService:
         return self._reference_repository.get_all_references()
 
     def get_sorted_references(self):
+        """ Returns references """
         return self._reference_repository.get_all_references()
 
     def get_references(self, sort_type: str, order: str, keywords: str):
