@@ -91,7 +91,7 @@ User Should Be Able To Sort Search Results By Year
     Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article
 
 User Should Be Able To Sort References By Title Descending
-    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet otsikon mukaan nousevassa järjestyksessä
+    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet otsikon mukaan laskevassa järjestyksessä
     Go To View Table Page
     Click Element    xpath=//th[contains(., 'Title ↕')]
     Click Element    xpath=//th[contains(., 'Title ↕')]
@@ -102,7 +102,7 @@ User Should Be Able To Sort References By Title Descending
     Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article
 
 User Should Be Able To Sort References By Author Descending
-    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet tekijän mukaan nousevassa järjestyksessä
+    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet tekijän mukaan laskevassa järjestyksessä
     Go To View Table Page
     Click Element    xpath=//th[contains(., 'Author ↕')]
     Click Element    xpath=//th[contains(., 'Author ↕')]
