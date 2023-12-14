@@ -11,10 +11,13 @@ blueprint = Blueprint("list_references", __name__)
 @blueprint.route("/list")
 def render_list():
     """ Render listing page """
-    search_query = request.args.get('search', "")
+    search_query = request.args.get('search')
     references = []
     try:
-        references = reference_service.get_filtered_references(search_query)
+        if search_query:
+            references = reference_service.get_filtered_references(search_query)
+        else:
+            references = reference_service.get_all_references()
     except SQLAlchemyError:
         flash("Database failed to get all references", "error")
     return render_template("list.html", references=references)
