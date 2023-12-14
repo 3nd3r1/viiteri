@@ -34,6 +34,3 @@ User should be able to delete a reference
 Add two test articles to database
     Add Article To Database    Maijan artikkeli    Maija    2011    Maijan lehti
     Add Article To Database    Peten artikkeli    Petteri Orpo    2001    Peten lehti
-
-Reference Deletion Should Be Confirmed
-    Notification should be visible with message and type    Reference removed successfully!    success

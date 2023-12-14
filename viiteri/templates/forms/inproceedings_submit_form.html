@@ -6,10 +6,21 @@
         <div><input type="text" class="form-field" name="author" {% if doi_data.author %} value="{{doi_data.author}}" {% endif %} placeholder="Author(s)" required></div>
         <div><input type="text" class="form-field" name="title" {% if doi_data.title %} value="{{doi_data.title}}" {% endif %} placeholder="Title" required></div>
         <div><input type="text" class="form-field" name="booktitle" {% if doi_data.booktitle %} value="{{doi_data.booktitle}}" {% endif %} placeholder="Conf. Proc. Book Title" required></div>
-        <div><input type="text" class="form-field" name="year" {% if doi_data.year %} value="{{doi_data.year}}" {% endif %} placeholder="Year" required></div>
+        <div><input type="number" class="form-field" name="year" {% if doi_data.year %} value="{{doi_data.year}}" {% endif %} placeholder="Year" required></div>
         
         <p><b>Optional fields</b></p>
 
+        <div><input type="text" class="form-field" name="editor" {% if doi_data.editor %} value="{{doi_data.editor}}" {% endif %} placeholder="Editor"></div>
+        <div><input type="text" class="form-field" name="volume" {% if doi_data.volume %} value="{{doi_data.volume}}" {% endif %} placeholder="Volume"></div>
+        <div><input type="text" class="form-field" name="number" {% if doi_data.number %} value="{{doi_data.number}}" {% endif %} placeholder="Number/Issue"></div>
+        <div><input type="text" class="form-field" name="series" {% if doi_data.series %} value="{{doi_data.series}}" {% endif %} placeholder="Series"></div>
+        <div><input type="text" class="form-field" name="pages" {% if doi_data.pages %} value="{{doi_data.pages}}" {% endif %} placeholder="Page(s)"></div>
+        <div><input type="text" class="form-field" name="address" {% if doi_data.address %} value="{{doi_data.address}}" {% endif %} placeholder="Address"></div>
+        <div><input type="text" class="form-field" name="month" {% if doi_data.month %} value="{{doi_data.month}}" {% endif %} placeholder="Month"></div>
+        <div><input type="text" class="form-field" name="organization" {% if doi_data.organization %} value="{{doi_data.organization}}" {% endif %} placeholder="Organization"></div>
+        <div><input type="text" class="form-field" name="publisher" {% if doi_data.publisher %} value="{{doi_data.publisher}}" {% endif %} placeholder="Publisher"></div>
+        <div><input type="text" class="form-field" name="note" {% if doi_data.note %} value="{{doi_data.note}}" {% endif %} placeholder="Additional note"></div>
+        <div><input type="text" class="form-field" name="annote" {% if doi_data.annote %} value="{{doi_data.annote}}" {% endif %} placeholder="Annote"></div>
         <div><input type="text" class="form-field" name="editor" {% if doi_data.editor %} value="{{doi_data.editor}}" {% endif %} placeholder="Editor"></div>
         <div><input type="text" class="form-field" name="volume" {% if doi_data.volume %} value="{{doi_data.volume}}" {% endif %} placeholder="Volume"></div>
         <div><input type="text" class="form-field" name="number" {% if doi_data.number %} value="{{doi_data.number}}" {% endif %} placeholder="Number/Issue"></div>

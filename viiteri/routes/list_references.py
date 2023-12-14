@@ -1,5 +1,5 @@
 """ viiteri/routes/list_references.py """
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template, flash, request
 from sqlalchemy.exc import SQLAlchemyError
 
 from viiteri.services.reference_service import reference_service
@@ -11,6 +11,7 @@ blueprint = Blueprint("list_references", __name__)
 @blueprint.route("/list")
 def render_list():
     """ Render listing page """
+    search_query = request.args.get('search')
     references = []
     try:
         references = reference_service.get_sorted_references()

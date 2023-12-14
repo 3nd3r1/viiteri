@@ -1,17 +1,24 @@
 *** Settings ***
 Resource    common.robot
+Resource    view.robot
 
 
 *** Keywords ***
-Click Delete Reference
+Get Delete Button Locator
     [Arguments]    ${title}    ${author}    ${year}
-    ${reference_row_locator} =    Set Variable
-    ...    xpath://tr[contains(@class,'reference-row')]//td[text()='${title}']/following-sibling::td[text()='${author}']/following-sibling::td[text()='${year}']/..
+    ${reference_row_locator} =    Get Reference Row Locator    ${title}    ${author}    ${year}
     ${delete_button_locator} =    Set Variable
     ...    ${reference_row_locator}/following-sibling::tr[@class='button-row']//td//button[@class='delete-button']
+    RETURN    ${delete_button_locator}
+
+Click Delete Reference
+    [Arguments]    ${title}    ${author}    ${year}
+    ${delete_button_locator} =    Get Delete Button Locator    ${title}    ${author}    ${year}
 
     View Table Page Should Be Open
 
-    Click Element    ${reference_row_locator}
-
+    Click Reference    ${title}    ${author}    ${year}
     Click Element    ${delete_button_locator}
+
+Reference Deletion Should Be Confirmed
+    Notification should be visible with message and type    Reference removed successfully!    success

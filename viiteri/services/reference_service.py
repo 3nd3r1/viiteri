@@ -5,6 +5,11 @@ from requests import get
 from requests.exceptions import Timeout
 from bibtexparser import loads
 
+from doi import find_doi_in_text, validate_doi
+from requests import get
+from requests.exceptions import Timeout
+from bibtexparser import loads
+
 from viiteri.repositories.reference_repository import reference_repository as default_repository
 from viiteri.entities.references import Reference
 from viiteri.utils.reference_factory import ReferenceFactory
@@ -16,6 +21,7 @@ class ReferenceService:
     def __init__(self, reference_repository=default_repository):
         self._reference_repository = reference_repository
 
+    def get_all_references(self) -> list[tuple[int, Reference]]:
     def get_all_references(self) -> list[tuple[int, Reference]]:
         """ Returns all references """
         return self._reference_repository.get_all_references()

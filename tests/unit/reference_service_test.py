@@ -5,6 +5,9 @@ import unittest
 from unittest.mock import patch, MagicMock
 from requests.exceptions import Timeout
 
+from unittest.mock import patch, MagicMock
+from requests.exceptions import Timeout
+
 from viiteri.entities.references import Article, Book, Inproceedings
 from viiteri.services.reference_service import ReferenceService
 
@@ -14,13 +17,25 @@ class ReferenceRepositoryStub:
 
     def __init__(self):
         self._references = [(1, Article(cite_key="petpet", author="Petteri",
+        self._references = [(1, Article(cite_key="petpet", author="Petteri",
                                     title="Petterin Kirja",
+                                    journal="Petterin Kirjakokoelma", year="2003")),
+                            (2, Book(cite_key="petkir", author="Petteri",
                                     journal="Petterin Kirjakokoelma", year="2003")),
                             (2, Book(cite_key="petkir", author="Petteri",
                                  editor="Petteri", title="Petterin Kirja vol 2",
                                  publisher="WSOY", year="2004")),
                             (3, Inproceedings(cite_key="johinp", author="John Doe",
+                                 publisher="WSOY", year="2004")),
+                            (3, Inproceedings(cite_key="johinp", author="John Doe",
                                           title="An Analysis of Example", booktitle="Sample Text",
+                                          year="2002", editor="Ex Ample"))]
+        self._id = len(self._references)
+
+    def _assign_id(self):
+        """ Assigns an id to a reference """
+        self._id += 1
+        return self._id
                                           year="2002", editor="Ex Ample"))]
         self._id = len(self._references)
 
@@ -35,6 +50,9 @@ class ReferenceRepositoryStub:
 
     def add_reference(self, reference):
         """ Stub method for add_reference """
+        ref = (self._assign_id(), reference)
+        self._references.append(ref)
+        return ref
         ref = (self._assign_id(), reference)
         self._references.append(ref)
         return ref
@@ -60,6 +78,9 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(references[0][1].cite_key, "petpet")
         self.assertEqual(references[1][1].cite_key, "petkir")
         self.assertEqual(references[2][1].cite_key, "johinp")
+        self.assertEqual(references[0][1].cite_key, "petpet")
+        self.assertEqual(references[1][1].cite_key, "petkir")
+        self.assertEqual(references[2][1].cite_key, "johinp")
 
     def test_create_reference(self):
         """ Test that create_reference adds a new reference """
@@ -72,6 +93,8 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(len(references), 4)
         self.assertEqual(type(references[3][1]), Article)
         self.assertEqual(references[3][1].cite_key, "petpet")
+        self.assertEqual(type(references[3][1]), Article)
+        self.assertEqual(references[3][1].cite_key, "petpet")
         self.reference_service.create_reference("book", cite_key="petkir", author="Petteri",
                                                 editor="Petteri", title="Petterin Kirja vol 2",
                                                 publisher="WSOY", year="2004")
@@ -79,11 +102,15 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(len(references), 5)
         self.assertEqual(type(references[4][1]), Book)
         self.assertEqual(references[4][1].cite_key, "petkir")
+        self.assertEqual(type(references[4][1]), Book)
+        self.assertEqual(references[4][1].cite_key, "petkir")
         self.reference_service.create_reference("inproceedings", cite_key="johinp", author="John Doe",
                                                 title="An Analysis of Example", booktitle="Sample Text",
                                                 year="2002", editor="Ex Ample")
         references = self.reference_service.get_all_references()
         self.assertEqual(len(references), 6)
+        self.assertEqual(type(references[5][1]), Inproceedings)
+        self.assertEqual(references[5][1].cite_key, "johinp")
         self.assertEqual(type(references[5][1]), Inproceedings)
         self.assertEqual(references[5][1].cite_key, "johinp")
 
@@ -94,11 +121,15 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(len(references), 2)
         self.assertEqual(references[0][1].cite_key, "petkir")
         self.assertEqual(references[1][1].cite_key, "johinp")
+        self.assertEqual(references[0][1].cite_key, "petkir")
+        self.assertEqual(references[1][1].cite_key, "johinp")
         self.reference_service.remove_reference(0)
         references = self.reference_service.get_all_references()
         self.assertEqual(len(references), 1)
         self.assertEqual(references[0][1].cite_key, "johinp")
+        self.assertEqual(references[0][1].cite_key, "johinp")
         self.reference_service.remove_reference(0)
+        references = self.reference_service.get_all_references() 
         references = self.reference_service.get_all_references() 
         self.assertEqual(len(references), 0)
 
