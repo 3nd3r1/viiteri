@@ -54,31 +54,31 @@ User Should Be Able To Search For References Using And Operator
 
 User Should Be Able To Search For References With Space Inbetween
     [Documentation]    Käyttäjänä voin rajoittaa lähdeviitteitä avainsanan avulla #4
-    Go To View Table Page
+    Go To Search Page
 
     Input And Submit Search Term    Petteri Orpo
 
-    View Table Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
+    Search Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
 
 User Should Be Able To Sort References By Year Ascending
     [Documentation]    Käyttäjänä voin järjestää lähdeviitteet vuoden mukaan nousevassa järjestyksessä
-    Go To View Table Page
+    Go To Search Page
     Click Element    xpath=//th[contains(., 'Year ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
 
-    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article
-    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article
+    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
+    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
 
 User Should Be Able To Sort References By Year Descending
     [Documentation]    Käyttäjänä voin järjestää lähdeviitteet vuoden mukaan laskevassa järjestyksessä
-    Go To View Table Page
+    Go To Search Page
     Click Element    xpath=//th[contains(., 'Year ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
     
-    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article
-    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article
+    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
+    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
 
 User Should Be Able To Sort Search Results By Year
     [Documentation]    Käyttäjänä voin hakea viitteitä ja järjestää tulokset vuoden mukaan
@@ -87,30 +87,30 @@ User Should Be Able To Sort Search Results By Year
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
 
-    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article
-    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article
+    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
+    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
 
 User Should Be Able To Sort References By Title Descending
     [Documentation]    Käyttäjänä voin järjestää lähdeviitteet otsikon mukaan laskevassa järjestyksessä
-    Go To View Table Page
+    Go To Search Page
     Click Element    xpath=//th[contains(., 'Title ↕')]
     Click Element    xpath=//th[contains(., 'Title ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
     
-    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article
-    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article
+    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
+    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
 
 User Should Be Able To Sort References By Author Descending
     [Documentation]    Käyttäjänä voin järjestää lähdeviitteet tekijän mukaan laskevassa järjestyksessä
-    Go To View Table Page
+    Go To Search Page
     Click Element    xpath=//th[contains(., 'Author ↕')]
     Click Element    xpath=//th[contains(., 'Author ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
     
-    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article
-    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article
+    Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
+    Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
 
 User should be able to see all added references in bibtex format
     [Documentation]    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet bibtex-muodossa. #60
