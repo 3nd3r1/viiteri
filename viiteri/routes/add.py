@@ -8,7 +8,7 @@ from viiteri.services.reference_service import reference_service
 
 blueprint = Blueprint("add", __name__)
 
-
+@blueprint.route("/")
 @blueprint.route("/add", methods=["GET", "POST"])
 def add_reference():
     """ Render page for adding a new reference """

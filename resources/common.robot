@@ -8,8 +8,8 @@ ${SERVER}               localhost:5001
 ${DELAY}                0 seconds
 ${HOME_URL}             http://${SERVER}
 ${ADD_URL}              ${HOME_URL}/add
-${VIEW_TABLE_URL}       ${HOME_URL}/list
-${VIEW_BIBTEX_URL}      ${HOME_URL}/bibtex
+${SEARCH_URL}       ${HOME_URL}/list
+${RAW_BIBTEX_URL}      ${HOME_URL}/bibtex
 
 
 *** Keywords ***
@@ -39,11 +39,11 @@ Home Page Should Be Open
 Add Page Should Be Open
     Title Should Be    Submit - Viiteri
 
-View Table Page Should Be Open
-    Title Should Be    View Table - Viiteri
+Search Page Should Be Open
+    Title Should Be    Search - Viiteri
 
-View BibTex Page Should Be Open
-    Title Should Be    View BibTex - Viiteri
+Raw BibTex Page Should Be Open
+    Title Should Be    Raw BibTex - Viiteri
 
 Go To Home Page
     Go To    ${HOME_URL}
@@ -51,8 +51,8 @@ Go To Home Page
 Go To Add Page
     Go To    ${ADD_URL}
 
-Go To View Table Page
-    Go To    ${VIEW_TABLE_URL}
+Go To Search Page
+    Go To    ${SEARCH_URL}
 
-Go To View Bibtex Page
-    Go To    ${VIEW_BIBTEX_URL}
+Go To Raw BibTex Page
+    Go To    ${RAW_BIBTEX_URL}

@@ -3,7 +3,7 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 
-from viiteri.routes import index, add, list_references, bibtex, remove
+from viiteri.routes import add, list_references, bibtex, remove
 from viiteri.utils.db import db
 
 load_dotenv()
@@ -19,7 +19,6 @@ def create_app():
     db.init_app(app)
 
     with app.app_context():
-        app.register_blueprint(index.blueprint)
         app.register_blueprint(add.blueprint)
         app.register_blueprint(list_references.blueprint)
         app.register_blueprint(bibtex.blueprint)

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Submit{% endblock %}
 {% block content %}
-    <p>Fill fields with DOI</p>
+    <br>
     <form id="doi-form">
-        <input name="doi_fill" placeholder="DOI">
+        <input name="doi_fill" placeholder="Fill fields with DOI...">
         <input type="submit" value="Fill">
     </form>
     <br>
@@ -11,21 +11,46 @@
     <select id="form_select" onchange="switchForm(this.value)">
         <option value="article" {% if last_ref_type == "article" %}selected{% endif %}>Article</option>
         <option value="book" {% if last_ref_type == "book" %}selected{% endif %}>Book</option>
-        <!-- <option value="booklet">Booklet</option> -->
-        <!-- <option value="conference">Conference</option> -->
-        <!-- <option value="inbook">Inbook</option> -->
-        <!-- <option value="incollection">Incollection</option> -->
         <option value="inproceedings" {% if last_ref_type == "inproceedings" %}selected{% endif %}>Inproceedings</option>
-        <!-- <option value="manual">Manual</option> -->
-        <!-- <option value="mastersthesis">Mastersthesis</option> -->
-        <!-- <option value="misc">Misc</option> -->
-        <!-- <option value="phdthesis">Phdthesis</option> -->
-        <!-- <option value="proceedings">Proceedings</option> -->
-        <!-- <option value="techreport">Techreport</option> -->
-        <!-- <option value="unpublished">Unpublished</option> -->
     </select>
 
-    {% include 'forms_handler.html' %}
+    {% include 'forms/article_submit_form.html' %}
+    {% include 'forms/book_submit_form.html' %}
+    {% include 'forms/inproceedings_submit_form.html' %}
+
+    <div class="submit-page-text">
+        <br>
+        <h2>Information</h2>
+        <p>
+            This is a management tool for
+            <a href="https://www.bibtex.com/g/bibtex-format/">BibTex</a> format
+            references. You can currently submit <i>article</i>, <i>book</i> and <i>inproceedings</i>
+            type references, search stored references and get their BibTex format versions.
+            There are <a href="https://www.bibtex.com/e/entry-types/">14 entry types</a>
+            in the BibTex format and we recommend getting acquainted with them first
+            if you are yet unfamiliar with BibTex.
+        </p>
+    
+        <p>
+            On the current <b>Submit</b> page you can save a reference to the system, 
+            and then click on <b>Search</b> to search the stored references or
+            <b>Raw BibTex</b> for raw BibTex format of all the references.
+            Authors are separated in the BibTex format with the word
+            <a href="https://www.bibtex.com/f/author-field/">"and"</a>.
+            You can search for references containing either keyword by utilizing
+            comma like so: keyword1, keyword2, or both by adding & before
+            the second keyword like so: keyword1, &keyword2.
+        </p>
+        
+        <p>
+            (The website is a group project as part of the University of Helsinki
+            course
+            <a
+                href="https://studies.helsinki.fi/kurssit/toteutus/hy-opt-cur-2324-e4d8713d-d678-4dba-a41a-576f26e75ac0"
+                >Ohjelmistotuotanto</a
+            >, code TKT20006. The group in charge of this site is JEEOVI.)
+        </p>
+    </div>
 
     <script>
         function disableFormFields(form_fields, disable) {
@@ -36,9 +61,7 @@
             }
         function switchForm(selectedForm) {
             var forms = ['article', 'book', 'inproceedings'];
-            /* Final version: var forms = ['article', 'book', 'booklet', 'conference', 'inbook', 
-            'incollection', 'inproceedings', 'manual', 'mastersthesis', 'misc', 'phdthesis', 
-            'proceedings', 'techreport', 'unpublished']; */
+
             forms.forEach(function(formId) {
                 formDoc = document.getElementById(formId);
                 formDoc.style.display = 'none';
