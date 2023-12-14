@@ -19,18 +19,21 @@ class ReferenceService:
     def get_all_references(self) -> list[tuple[int, Reference]]:
         """ Returns all references """
         return self._reference_repository.get_all_references()
-    
-    def get_references(self, sort_type: str, reversed: str, keywords: str):
+
+    def get_references(self, sort_type: str, order: str, keywords: str):
+        """ Returns references """
         references = self._reference_repository.get_all_references()
         references = self.get_filtered_references(keywords)
         if sort_type == 'author':
-            references.sort(key=lambda x: x[1].author.lower(), reverse=True if reversed == 'desc' else False)
+            references.sort(key=lambda x: x[1].author.lower(),
+                            reverse= order == 'desc')
         elif sort_type == 'title':
-            references.sort(key=lambda x: x[1].title.lower(), reverse=True if reversed == 'desc' else False)
+            references.sort(key=lambda x: x[1].title.lower(),
+                            reverse= order == 'desc')
         elif sort_type == 'year':
-            references.sort(key=lambda x: x[1].year, reverse=True if reversed == 'desc' else False)
+            references.sort(key=lambda x: x[1].year, reverse= order == 'desc')
         elif sort_type == "type":
-            references.sort(key=lambda x: x[1].type, reverse=True if reversed == 'desc' else False)
+            references.sort(key=lambda x: x[1].type, reverse= order == 'desc')
         return references
 
     def get_filtered_references(self, keywords: str) -> list[tuple[int, Reference]]:
