@@ -8,19 +8,19 @@ Ryhmän jäsenet:
 - Oskar Ruokolainen
 - Emil Malk
 
-## Sprintien aikana kohdatut ongelmat
+## Sprinttien aikana kohdatut ongelmat
 
 ### Sprint 1
 
 Ensimmäinen sprint sujui ryhmältä kohtalaisesti. Arvostelukriteerit täyttyivät yhtä lukuunottamatta ja kaikki sprintiin valitut user storyt toteutettiin hyväksymiskriteerien mukaisesti.
 
-Sprint ja samalla koko projekti suunniteltiin kattavasti tapaamisessa, mikä selkeytti työskentelyä. Tästäkin huolimatta ryhmän työskentelyssä oli ongelmia. Työn jakautuminen ajallisesti painuttui sprintin loppupäähän ja sovelluksen toimiva versio saatiin kasaan vain minuutteja ennen asiakastapaamista. Teknisiä ongelmia esiintyi tietokannan käytössä. Ryhmän työskentelyä hankaloitti yhden jäsenen sairastumisen aiheuttama työmäärän uudelleenjakautuminen. Edellämainitut ongelmat johtuivat pitkälti ryhmän kommunikaation puutteesta, jota pyrittiin korjaamaan seuraavissa sprinteissä.
+Sprint ja samalla koko projekti suunniteltiin kattavasti tapaamisessa, mikä selkeytti työskentelyä. Tästäkin huolimatta ryhmän työskentelyssä oli ongelmia. Työn jakautuminen ajallisesti painottui sprintin loppupäähän ja sovelluksen toimiva versio saatiin kasaan vain minuutteja ennen asiakastapaamista. Teknisiä ongelmia esiintyi tietokannan käytössä. Ryhmän työskentelyä hankaloitti yhden jäsenen sairastumisen aiheuttama työmäärän uudelleenjakautuminen. Edellä mainitut ongelmat johtuivat pitkälti ryhmän kommunikaation puutteesta, jota pyrittiin korjaamaan seuraavissa sprinteissä.
 
 ### Sprint 2
 
 Toinen sprint sujui ryhmältä paremmin kuin ensimmäinen. Arvostelukriteerit täyttyivät pääosin ja kaikki sprintiin valitut user storyt toteutettiin hyväksymiskriteerien mukaisesti.
 
-Sprintissä työn jakautuminen oli ajallisesti tasaisempaa, mutta määrällisesti edelleen osittain epäselvää. Arvosteltavista asioista jäi tämän vuoksi saamatta valmiiksi robot-testit ja uusi release. Robot-testien toimivuuden kanssa oli myös teknisiä ongelmia. Retrospektiivissä sovittiin työn ajallisen jakamisen tasoittamisesta ja viikottaisen asiakastapaamispäivän rajoittamisesta vain testien tekemiseen. Keskustelua retrospektiivissä käytiin myös erityisesti kommunikaatioon liittyen ja sen lisäksi todettiin, että parikoodaus on hyvä ja toimiva työskesntelytapa.
+Sprintissä työn jakautuminen oli ajallisesti tasaisempaa, mutta määrällisesti edelleen osittain epäselvää. Arvosteltavista asioista jäi tämän vuoksi saamatta valmiiksi robot-testit ja uusi release. Robot-testien toimivuuden kanssa oli myös teknisiä ongelmia. Retrospektiivissä sovittiin työn ajallisen jakamisen tasoittamisesta ja viikoittaisen asiakastapaamispäivän rajoittamisesta vain testien tekemiseen. Keskustelua retrospektiivissä käytiin myös erityisesti kommunikaatioon liittyen ja sen lisäksi todettiin, että parikoodaus on hyvä ja toimiva työskentelytapa.
 Ryhmä kehitti kommunikaatiotaan, joskin sen puute oli edelleen suurin syy ilmenneisiin ongelmiin.
 
 ### Sprint 3
@@ -31,6 +31,9 @@ Sprint alkoi kattavalla suunnittelutapaamisella, jonka ansiosta työtehtävät o
 
 ### Sprint 4
 
+Neljäs sprintti sujui ryhmältä hyvin. Arvostelukriteerit täyttyivät ja user storyt toteutettiin hyväksymiskriteerien mukaisesti, myös yksi bonus-story, jonka toteutumista ei alun perin varmistettu asiakkaalle.
+
+Sprinttiin mennessä työskentelytavat ja -käytänteet olivat hioutuneet ryhmällä varsin toimiviksi, eikä isompia ongelmia esiintynyt. Työnjako oli jo aikaisemmistakin sprinteistä lähtien tehty selkeäksi, mutta tällä kertaa ryhmäläiset auttoivat aktiivisesti toisiaan ja toimivat yhteen hiileen puhaltavana kokonaisuutena. Teknisiä ongelmia esiintyi sort- ja filter-ominaisuuksien kehittämisessä. Yhteistyön kautta näistäkin ongelmista selvittiin ja saatiin ominaisuudet valmiiksi ennen aikarajaa. Vielä tässä neljännessäkin sprintissä osa työstä tapahtui varsin myöhään, joskin tällä kertaa tämä johtui huolellisuudesta, koska kyseessä oli loppupalautus. 
 
 ## Mikä sujui hyvin, mitä pitäisi parantaa?
 
