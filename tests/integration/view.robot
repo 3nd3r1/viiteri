@@ -15,7 +15,7 @@ Suite Teardown      Run Keywords
 
 
 *** Test Cases ***
-User should be able to see all added references in table format
+User Should Be Able To See All Added References In Table Format
     [Documentation]    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet siistissä muodossa #36
     ...    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet. #2
     ...    Käyttäjänä pystyn näkemään lisäämäni lähdeviitteet taulukkomaisessa muodossa #63
@@ -61,7 +61,7 @@ User Should Be Able To Search For References With Space Inbetween
     Search Page Should Contain Reference    Peten artikkeli    Petteri Orpo    2001
 
 User Should Be Able To Sort References By Year Ascending
-    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet vuoden mukaan nousevassa järjestyksessä
+    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet kenttien (title, author, year) mukaan #100
     Go To Search Page
     Click Element    xpath=//th[contains(., 'Year ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
@@ -71,17 +71,17 @@ User Should Be Able To Sort References By Year Ascending
     Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
 
 User Should Be Able To Sort References By Year Descending
-    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet vuoden mukaan laskevassa järjestyksessä
+    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet kenttien (title, author, year) mukaan #100
     Go To Search Page
     Click Element    xpath=//th[contains(., 'Year ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
-    
+
     Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
     Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
 
 User Should Be Able To Sort Search Results By Year
-    [Documentation]    Käyttäjänä voin hakea viitteitä ja järjestää tulokset vuoden mukaan
+    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet kenttien (title, author, year) mukaan #100
     Input And Submit Search Term    pete, maija
     Click Element    xpath=//th[contains(., 'Year ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
@@ -91,28 +91,28 @@ User Should Be Able To Sort Search Results By Year
     Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
 
 User Should Be Able To Sort References By Title Descending
-    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet otsikon mukaan laskevassa järjestyksessä
+    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet kenttien (title, author, year) mukaan #100
     Go To Search Page
     Click Element    xpath=//th[contains(., 'Title ↕')]
     Click Element    xpath=//th[contains(., 'Title ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
-    
+
     Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
     Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
 
 User Should Be Able To Sort References By Author Descending
-    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet tekijän mukaan laskevassa järjestyksessä
+    [Documentation]    Käyttäjänä voin järjestää lähdeviitteet kenttien (title, author, year) mukaan #100
     Go To Search Page
     Click Element    xpath=//th[contains(., 'Author ↕')]
     Click Element    xpath=//th[contains(., 'Author ↕')]
     ${first_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[1]
     ${second_reference} =    Get Text    xpath=(//tr[@class='reference-row'])[2]
-    
+
     Should Be Equal As Strings    ${second_reference}    Maijan artikkeli Maija 2011 article 📰
     Should Be Equal As Strings    ${first_reference}    Peten artikkeli Petteri Orpo 2001 article 📰
 
-User should be able to see all added references in bibtex format
+User Should Be Able To See All Added References In Bibtex Format
     [Documentation]    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet bibtex-muodossa. #60
     ...    Käyttäjänä pystyn näkemään kaikki lisätyt lähdeviitteet oikein sisennetyssä bibtex muodossa #99
 
@@ -121,7 +121,7 @@ User should be able to see all added references in bibtex format
     Raw BibTex Page Should Contain Reference    article    Maijan artikkeli    Maija    2011
     Raw BibTex Page Should Contain Reference    article    Peten artikkeli    Petteri Orpo    2001
 
-User should be able to click on a reference to open an expanded view of the reference details, which are presented in a neat format
+User Should Be Able To Click On A Reference To Open An Expanded View Of The Reference Details, Which Are Presented In A Neat Format
     [Documentation]    Käyttäjänä pystyn klikkaamaan lähdeviitelistauksesta yksittäistä viitettä
     ...    avatakseni suuremman näkymän viitteen tietoihin, joka on siistissä muodossa #65
 
@@ -142,8 +142,3 @@ Add two test articles to database
     Add Article To Database    Peten artikkeli    Petteri Orpo    2001    Peten lehti
 
     Reference Count In Database Should Be    2
-
-Input And Submit Search Term
-    [Arguments]    ${searchTerm}
-    Input Text    name=search    ${searchTerm}
-    Click Button    xpath=//button[contains(text(),'Search')]

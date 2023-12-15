@@ -57,7 +57,6 @@ class TestReferenceService(unittest.TestCase):
         references = self.reference_service.get_all_references()
 
         self.assertEqual(len(references), 3)
-        self.assertEqual(len(references), 3)
         self.assertEqual(references[0][1].cite_key, "petpet")
         self.assertEqual(references[1][1].cite_key, "petkir")
         self.assertEqual(references[2][1].cite_key, "johinp")
