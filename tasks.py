@@ -6,11 +6,6 @@ from invoke.tasks import task
 
 
 @task
-def start(ctx):
-    ctx.run("gunicorn -w 4 'viiteri.app:create_app()'")
-
-
-@task
 def debug(ctx):
     if sys.platform.startswith("win"):
         ctx.run("py viiteri/index.py")
