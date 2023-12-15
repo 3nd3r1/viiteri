@@ -6,13 +6,13 @@
 		"RUN pip install --no-cache --upgrade poetry",
 		"RUN mkdir -p /usr/src/app",
 		"WORKDIR /usr/src/app",
-		"COPY ./pyproject.toml ./poetry.lock* /usr/src/app/",
+		"COPY ./pyproject.toml ./poetry.lock* ./README.md /usr/src/app/",
 		"RUN poetry config virtualenvs.create false",
 		"RUN poetry install --without dev",
 		"COPY ./ /usr/src/app",
 		"ENV PORT 80",
 		"EXPOSE 80",
 		"CMD [ \"python\", \"viiteri/utils/initialize_db.py\" ]",
-		"CMD [ \"gunicorn\", \"-w\", \"4\", \"'viiteri.app:create_app()'\", \"--bind\", \"0.0.0.0:${PORT}\" ]"
+		"CMD [ \"gunicorn\", \"-w\", \"4\", \"'viiteri.app:create_app()'\", \"--bind\", \"0.0.0.0:80\" ]"
 	]
 }
