@@ -22,7 +22,8 @@ class TestReferenceRepository(unittest.TestCase):
                               editor="Petteri", title="Petterin Kirja vol 2",
                               publisher="WSOY", year="2004")
         self.test_inproceedings = Inproceedings(cite_key="johinp", author="John Doe",
-                                                title="An Analysis of Example", booktitle="Sample Text",
+                                                title="An Analysis of Example",
+                                                booktitle="Sample Text",
                                                 year="2002", editor="Ex Ample")
 
     def test_add_reference(self):
@@ -38,7 +39,7 @@ class TestReferenceRepository(unittest.TestCase):
         self.assertEqual(references[0][0], ref_id1)
         self.assertEqual(references[1][0], ref_id2)
         self.assertEqual(references[2][0], ref_id3)
-        
+
         # testataan, että viitteen sisältö on oikea
         self.assertEqual(references[0][1].cite_key, "petpet")
         self.assertEqual(references[1][1].cite_key, "petkir")
@@ -54,10 +55,11 @@ class TestReferenceRepository(unittest.TestCase):
 
     def test_remove_reference(self):
         """ Test removing a reference from the repository """
-        ref_id_to_remove = reference_repository.add_reference(self.test_article)
+        ref_id_to_remove = reference_repository.add_reference(
+            self.test_article)
         ref_id1 = reference_repository.add_reference(self.test_book)
         ref_id2 = reference_repository.add_reference(self.test_inproceedings)
-        
+
         reference_repository.remove_reference(ref_id_to_remove)
         references = reference_repository.get_all_references()
 

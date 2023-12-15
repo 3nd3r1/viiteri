@@ -1,12 +1,17 @@
+""" tests/unit/utils_test.py """""
 import unittest
 
 from viiteri.utils.filter import lex_keywords, Token
 
-class TestFilter(unittest.TestCase):
-    """ Test class for filter functions """
+
+class TestUtils(unittest.TestCase):
+    """ Test class for utils """
+
     def setUp(self):
         self.query_string = "Maija,teppo,&Katja"
-    def test_lex_keywords(self):
+
+    def test_filter_lex_keywords(self):
+        """ Test lex_keywords function """
         expected = [
             (Token.OR, "maija"),
             (Token.OR, "teppo"),

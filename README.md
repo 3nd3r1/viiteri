@@ -69,6 +69,7 @@ Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten l
 
 -   [Definition of Done](./docs/definition_of_done.md)
 -   [Retrospektiivit](./RETRO.md)
+-   [Loppuraportti](./REPORT.md)
 -   [Product Backlog](https://github.com/users/3nd3r1/projects/2/views/1)
 -   [Sprint 1 Task Board](https://github.com/users/3nd3r1/projects/1/views/1)
 -   [Sprint 2 Task Board](https://github.com/users/3nd3r1/projects/3/views/1)

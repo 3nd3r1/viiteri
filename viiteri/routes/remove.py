@@ -17,4 +17,4 @@ def remove_reference():
             flash("Reference removed successfully!", "success")
         except SQLAlchemyError:
             flash("Database failed to remove reference", "error")
-    return redirect("/list")
+    return redirect("/search")

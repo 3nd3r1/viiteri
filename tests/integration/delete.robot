@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation       Integraatio- ja hyväksymistestaus lähdeviitteiden poistamiselle
 
-Resource            ../../resources/common.robot
 Resource            ../../resources/delete.robot
 Resource            ../../resources/view.robot
 
@@ -17,7 +16,7 @@ Suite Teardown      Run Keywords
 
 
 *** Test Cases ***
-User should be able to delete a reference
+User Should Be Able To Delete A Reference
     [Documentation]    Käyttäjänä voin poistaa lisättyjä lähdeviitteitä #5
 
     Go To Search Page

@@ -8,8 +8,8 @@ ${SERVER}               localhost:5001
 ${DELAY}                0 seconds
 ${HOME_URL}             http://${SERVER}
 ${ADD_URL}              ${HOME_URL}/add
-${SEARCH_URL}       ${HOME_URL}/list
-${RAW_BIBTEX_URL}      ${HOME_URL}/bibtex
+${SEARCH_URL}           ${HOME_URL}/search
+${RAW_BIBTEX_URL}       ${HOME_URL}/bibtex
 
 
 *** Keywords ***

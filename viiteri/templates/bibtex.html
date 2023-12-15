@@ -13,13 +13,17 @@ content %}
 
 <script>
 	function copyText() {
-		var copy_text_area = document.createElement("textarea");
-		var copied_text = document.getElementById("bibtex-output").innerText;
-		copy_text_area.value = copied_text;
-		document.body.appendChild(copy_text_area);
-		copy_text_area.select();
-		document.execCommand("copy");
-		document.body.removeChild(copy_text_area);
+		var bibtex = document.getElementById("bibtex-output").innerText;
+
+		navigator.clipboard.writeText(bibtex).then(
+                function () {
+                    alert("Copied all BibTex to clipboard!");
+                },
+            ).catch(
+                function (error) {
+                    console.log(error)
+                }
+            );
 	}
 </script>
 

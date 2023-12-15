@@ -4,6 +4,10 @@ Resource    common.robot
 
 *** Keywords ***
 # Search Keywords -----------------------------------------------------------
+Input And Submit Search Term
+    [Arguments]    ${searchTerm}
+    Input Text    name=search    ${searchTerm}
+    Click Button    xpath=//button[contains(text(),'Search')]
 
 Search Page Should Contain Reference
     [Arguments]    ${title}    ${author}    ${year}
