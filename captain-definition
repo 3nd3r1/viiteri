@@ -2,11 +2,12 @@
 	"schemaVersion": 2,
 	"dockerfileLines": [
 		"FROM library/python:3.10-alpine",
+		"RUN apk add build-base",
 		"RUN pip install --no-cache --upgrade poetry==1.6.1 psycopg2-binary",
 		"RUN mkdir -p /usr/src/app",
 		"WORKDIR /usr/src/app",
 		"COPY ./pyproject.toml ./poetry.lock* /usr/src/app/",
-		"RUN poetry install --no-dev",
+		"RUN poetry install --only main",
 		"COPY ./ /usr/src/app",
 		"ENV PORT 80",
 		"EXPOSE 80",
