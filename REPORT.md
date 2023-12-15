@@ -18,14 +18,16 @@ Sprint ja samalla koko projekti suunniteltiin kattavasti tapaamisessa, mikä sel
 
 ### Sprint 2
 
-Toinen sprint sujui ryhmältä kohtalaisesti. Arvostelukriteerit täyttyivät pääosin ja kaikki sprintiin valitut user storyt toteutettiin hyväksymiskriteerien mukaisesti.
+Toinen sprint sujui ryhmältä paremmin kuin ensimmäinen. Arvostelukriteerit täyttyivät pääosin ja kaikki sprintiin valitut user storyt toteutettiin hyväksymiskriteerien mukaisesti.
 
-Toinen sprint sujui ryhmältä paremmin kuin ensimmäinen. Työn jakautuminen oli ajallisesti tasaisempaa, mutta määrällisesti edelleen osittain epäselvää. Arvosteltavista asioista jäi tämän vuoksi saamatta valmiiksi robot-testit ja uusi release. Robot-testien toimivuuden kanssa oli myös teknisiä ongelmia. Retrospektiivissä sovittiin työn ajallisen jakamisen tasoittamisesta ja viikottaisen asiakastapaamispäivän rajoittamisesta vain testien tekemiseen.
+Sprintissä työn jakautuminen oli ajallisesti tasaisempaa, mutta määrällisesti edelleen osittain epäselvää. Arvosteltavista asioista jäi tämän vuoksi saamatta valmiiksi robot-testit ja uusi release. Robot-testien toimivuuden kanssa oli myös teknisiä ongelmia. Retrospektiivissä sovittiin työn ajallisen jakamisen tasoittamisesta ja viikottaisen asiakastapaamispäivän rajoittamisesta vain testien tekemiseen. Keskustelua retrospektiivissä käytiin myös erityisesti kommunikaatioon liittyen ja sen lisäksi todettiin, että parikoodaus on hyvä ja toimiva työskesntelytapa.
 Ryhmä kehitti kommunikaatiotaan, joskin sen puute oli edelleen suurin syy ilmenneisiin ongelmiin.
 
 ### Sprint 3
 
+Kolmannessa sprintissä työskentely alkoi vähitellen sujuvoitua. Arvostelukriteerit täyttyivät lähes kautta linjan ja sprinttiin valitut user storyt toteutettiin hyväksymiskriteerien mukaisesti.
 
+Sprint alkoi kattavalla suunnittelutapaamisella, jonka ansiosta työtehtävät oli jaettu selkeästi ja user storyt valmistuivat testeineen suurimmaksi osaksi hyvissä ajoin siitäkin huolimatta, että tälläkin viikolla yksi ryhmän jäsenistä oli koko sprintin kipeänä ja ei pystynyt työskentelemään projektissa. Aiemmista viikoista oppineina ryhmä kehitti kommunikaatiotaan. Ryhmän jäsenet antoivat selkeitä ilmoituksia muille oman työnsä vaiheista vähentäen epätietoisuutta ja osasivat pyytää apua, kun sitä tarvitsivat. Harmia sprintin loppua kohti aiheutti pieni osa integraatiotestauksesta, jonka tekninen toteutus oli haastava. Tästä syystä release-version julkaiseminen tehtiin vain hetki ennen asiakastapaamista. Asiakastapaamiseen ryhmä asteli tyytyväisenä ja hyvillä mielin: työt oli tehty hyvin ja ajallaan. Tästä tunteesta huolimatta asiakastapaaminen ei ollut erityisen onnistunut. Kävi ilmi, että hetkeä aiemmin tehty julkaisu ei ollut ehtinyt kokonaisuudessaan lataantumaan nettiin ja varasuunnitelman puuttuessa aikaa tuhraantui paikallisen version auki saamiseen. Asiakas ei tätä takeltelua erityisesti arvostanut, mutta hyvän ryhmähengen ja tsemppauksen ansiosta ryhmä aloitti viimeisen sprintin päättäväisenä ja intoa puhkuen: Tästä tulisi kaikkien aikojen sprint!   
 
 ### Sprint 4
 
