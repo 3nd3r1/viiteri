@@ -44,3 +44,5 @@ Parannettavaa oli synergia eri taskien välillä, eli ei pelkästään yleinen k
 ## Mitä opittiin, mitä olisi haluttu oppia, mikä tuntui turhalta
 
 Projektin aikana opimme paljon ohjelmistotuotannon käytännön ongelmista ja niiden ratkaisusta. Teorian soveltaminen käytännössä paransi myös sen ymmärrystä. Erityisesti kommunikaatio parani projektin myötä, kun opimme hiljalleen ymmärtämään läpinäkyvyyden periaatteen tärkeyden, sekä keinoja sen toteuttamiseen. Ohjelman ja sen osien suunnittelussa on vielä paljon opittavaa, vaikka ryhmä siitä suoriutuikin kunniallisesti. Lisäksi opimme lukuisia pieniä käytännön seikkoja muun muassa siitä, mitkä ominaisuudet kannattaa toteuttaa samassa branchissa.
+
+Oikeastaan mikään prosessiin liittyvistä asioista ei tuntunut turhalta. Tämä oli monelle meistä ensimmäinen tai yksi ensimmäisistä ryhmäprojekteista, joten oli erittäin hyödyllinen kokemus päästä työskentelemään muiden ihmisten kanssa. Kokemukset toki vaihtelevat paljon eri ihmisten ja ryhmien välillä, mutta opimme jatkuvasti lisää sekä voimme hyödyntää tietämystämme ja kokemuksiamme uusissa projekteissa.
