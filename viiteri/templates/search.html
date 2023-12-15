@@ -59,6 +59,10 @@
                 </td>
                 <td class="expanded-row-content hide">
                     <table>
+                        <tr>
+                            <td><strong>Citation Key</strong></td>
+                            <td>{{ reference[1].cite_key }}</td>
+                        </tr>
                         {% for field, value in reference[1].fields %}
                         <tr>
                             <td><strong>{{field.capitalize()}}</strong></td>
