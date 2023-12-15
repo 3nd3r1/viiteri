@@ -11,7 +11,7 @@
 		"COPY ./ /usr/src/app",
 		"ENV PORT 80",
 		"EXPOSE 80",
-		"RUN python viiteri/utils/initialize_db.py",
+		"RUN poetry run python viiteri/utils/initialize_db.py",
 		"CMD [ \"gunicorn\", \"-w\", \"4\", \"'viiteri.app:create_app()'\" ]"
 	]
 }
