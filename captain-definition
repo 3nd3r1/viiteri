@@ -1,0 +1,16 @@
+{
+	"schemaVersion": 2,
+	"dockerfileLines": [
+		"FROM library/python:3.10-alpine",
+		"RUN pip install --no-cache --upgrade poetry==1.6.1",
+		"RUN mkdir -p /usr/src/app",
+		"WORKDIR /usr/src/app",
+		"COPY ./pyproject.toml ./poetry.lock* /usr/src/app/",
+		"RUN poetry install --no-dev",
+		"COPY ./ /usr/src/app",
+		"ENV PORT 80",
+		"EXPOSE 80",
+		"CMD [ \"poetry\", \"run\", \"invoke\", \"init-db\" ]",
+		"CMD [ \"poetry\", \"run\", \"invoke\", \"start\" ]"
+	]
+}
