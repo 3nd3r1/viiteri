@@ -22,7 +22,7 @@ Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten l
 <p align="center">
     <a href="https://ohjelmistotuotanto-hy.github.io/speksi/">Speksi</a>
     ·
-    <a href="https://viiteri.onrender.com/">Live Demo</a>
+    <a href="https://viiteri-page.host.ender.fi/">Live Demo</a>
 </p>
 
 ## Kuvakaappaus
