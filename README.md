@@ -27,7 +27,7 @@ Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten l
 
 ## Kuvakaappaus
 
-![Preview](./docs/assets/preview.jpg)
+![Preview](./docs/assets/preview.png)
 
 ## Käyttöohje
 
