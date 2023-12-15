@@ -7,58 +7,43 @@
 			href="{{ url_for('static', filename='styles.css') }}"
 		/>
 		<title>{% block title %}{% endblock %} - Viiteri</title>
-		<style>
-			.alert.success {
-				padding: 15px;
-				background-color: #1f9141;
-				color: white;
-			}
-			.alert.error {
-				padding: 15px;
-				background-color: #c92a2a;
-				color: white;
-			}
-		</style>
 	</head>
 	<body>
 		<div>
 			<h1>Viiteri BibTex Reference Management Tool</h1>
-			<!-- {% for message in get_flashed_messages() %}
-			<div class="flash">{{ message }}</div>
-			{% endfor %} -->
-			{% with messages = get_flashed_messages(with_categories=true) %}
-				{% if messages %}
-					{% for category, message in messages %}
-						<div class="alert {{category}}"> {{ message }} </div>
-					{% endfor %}
-				{% endif %}
-			{% endwith %}
-			<button
-				onclick="window.location.href='/'"
-				class="navigation-button"
-			>
-				Home
-			</button>
+			{% with messages = get_flashed_messages(with_categories=true) %} {%
+			if messages %} {% for category, message in messages %}
+			<div class="alert {{category}}">{{ message }}</div>
+			{% endfor %} {% endif %} {% endwith %}
 			<button
 				onclick="window.location.href='/add'"
 				class="navigation-button"
 			>
 				Submit
 			</button>
-			<!-- Tämä voi olla myöhemmin "Search" tms. -->
 			<button
-				onclick="window.location.href='/list'"
+				onclick="window.location.href='/search'"
 				class="navigation-button"
 			>
-				View Table
+				Search
 			</button>
 			<button
 				onclick="window.location.href='/bibtex'"
 				class="navigation-button"
 			>
-				View BibTex
+				Raw BibTex
 			</button>
 		</div>
 		{% block content %}{% endblock %}
+		<script>
+			window.addEventListener('DOMContentLoaded', (event) => {
+				setTimeout(function() {
+					var alerts = document.querySelectorAll('.alert');
+					alerts.forEach(function(alert) {
+						alert.style.display = 'none';
+					});
+				}, 3000);
+			});
+		</script>
 	</body>
 </html>

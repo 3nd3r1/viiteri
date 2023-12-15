@@ -6,6 +6,6 @@ labels: user story
 assignees: ""
 ---
 
-## Hyväksymiskriteerit
+## Hyväksymistestit
 
--
+-   Linkki robot-testeihin tähän

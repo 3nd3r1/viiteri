@@ -1,35 +1,30 @@
-{% extends "base.html" %} {% block title %}View BibTex{% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title %}Raw BibTex{% endblock %} {% block
+content %}
 <div>
-	<h2>All references in raw BibTex format</h2>
+	<br>
+	<button id="copy-button" onclick="copyText()">Copy all to clipboard</button>
 
-	<button id="copy-button" onclick="copyText()">
-		Copy all to clipboard
-	</button>
-
-    <textarea id="textarea">
-        {% for reference in references %}
-            {{ reference[1].format_bibtex() }}
-        {% endfor %}
-    </textarea>
-
+	<pre id="bibtex-output" style="border: 1px solid lightgrey">
+{% for reference in references %}
+{{ reference[1].format_bibtex() }}
+{% endfor %}
+    </pre>
 </div>
 
 <script>
-    window.onload = function() {
-        updateTextarea();
-    };
+	function copyText() {
+		var bibtex = document.getElementById("bibtex-output").innerText;
 
-    function updateTextarea() {
-        var references_text = document.getElementById('textarea').value;
-        document.getElementById('textarea').value = references_text;
-    }
-
-    function copyText() {
-        var text_area = document.getElementById('textarea');
-        text_area.select();
-        document.execCommand('copy');
-    }
+		navigator.clipboard.writeText(bibtex).then(
+                function () {
+                    alert("Copied all BibTex to clipboard!");
+                },
+            ).catch(
+                function (error) {
+                    console.log(error)
+                }
+            );
+	}
 </script>
 
 {% endblock %}

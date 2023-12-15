@@ -1,5 +1,5 @@
 """ viiteri/entities/references/reference.py """
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Reference(ABC):
@@ -12,9 +12,25 @@ class Reference(ABC):
     def __str__(self):
         return str(self.__dict__)
 
-    @abstractmethod
     def format_bibtex(self):
-        """ Return BibTeX formatted reference """
+        """Return BibTeX formatted reference."""
+        formatted_rows = [f"@{self.type}{{{self.cite_key},"]
+
+        for field, value in self.fields:
+
+            value_str = '"' + value + '"' if isinstance(value, str) else value
+            formatted_rows.append(f"    {field} = {value_str},")
+
+        formatted_rows[-1] = formatted_rows[-1][:-1]  # Remove last comma
+        formatted_rows.append("}")
+
+        return "\n".join(formatted_rows)
+
+    @property
+    def fields(self):
+        """ Return reference fields """
+        return [(field, value) for field, value
+                in self.__dict__.items() if not field.startswith("_") and value]
 
     @property
     def cite_key(self):

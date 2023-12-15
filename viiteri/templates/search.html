@@ -1,0 +1,150 @@
+{% extends "base.html" %} {% block title %}Search{% endblock %} {% block
+    content %}
+    <div>
+        <br>
+        <form action="/search" method="get">
+            <input
+                type="text"
+                name="search"
+                placeholder="Search for references..."
+            />
+            <button type="submit">Search</button>
+            <a href="/search"><button type="button">Clear</button></a>
+            <button type="button" onclick="handleCopyAllBibTex()">Copy All BibTex</button>
+        </form>
+        <br />
+        <table class="view-table">
+            <tr>
+                <th class="sortable-header">
+                    <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=title&order={{ 'desc' if request.args.get('sort') == 'title' and request.args.get('order') != 'desc' else 'asc' }}">
+                        Title ↕
+                    </a>
+                </th>
+                <th class="sortable-header">
+                    <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=author&order={{ 'desc' if request.args.get('sort') == 'author' and request.args.get('order') != 'desc' else 'asc' }}">
+                        Author ↕
+                    </a>
+                </th>
+                <th class="sortable-header">
+                    <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=year&order={{ 'desc' if request.args.get('sort') == 'year' and request.args.get('order') != 'desc' else 'asc' }}">
+                        Year ↕
+                    </a>
+                </th>
+                <th class="sortable-header">
+                    <a href="?{{ 'search=' + search_query + '&' if search_query else '' }}sort=type&order={{ 'desc' if request.args.get('sort') == 'type' and request.args.get('order') != 'desc' else 'asc' }}">
+                        Type ↕
+                    </a>
+                </th>
+            </tr>
+            {% for reference in references %}
+            <tr
+                class="reference-row"
+                onclick="toggleDetails(this)"
+                data-title="{{ reference[1].title }}"
+                data-author="{{ reference[1].author }}"
+                data-year="{{ reference[1].year }}"
+            >
+                <td class="basic-info">{{ reference[1].title }}</td>
+                <td class="basic-info">{{ reference[1].author }}</td>
+                <td class="basic-info">{{ reference[1].year }}</td>
+                <td class="basic-info">
+                    {{ reference[1].type }}
+                    {% if reference[1].type == 'article' %}
+                        📰
+                    {% elif reference[1].type == 'book' %}
+                        📚
+                    {% elif reference[1].type == 'inproceedings' %}
+                        🎙️
+                    {% endif %}
+                </td>
+                <td class="expanded-row-content hide">
+                    <table>
+                        <tr>
+                            <td><strong>Citation Key</strong></td>
+                            <td>{{ reference[1].cite_key }}</td>
+                        </tr>
+                        {% for field, value in reference[1].fields %}
+                        <tr>
+                            <td><strong>{{field.capitalize()}}</strong></td>
+                            <td>{{value}}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="2">
+                                <div style="display: flex; flex-wrap: wrap">
+                                    <button
+                                        class="button copy-button"
+                                        data-bibtex="{{ reference[1].format_bibtex() }}"
+                                        onclick="handleCopyButtonClick(this)"
+                                    >
+                                        Copy BibTex to clipboard
+                                    </button>
+                                    <form
+                                        id="delete_reference_form_{{ reference[0] }}"
+                                        action="/remove"
+                                        onsubmit="return window.confirm('Confirm you want to delete this reference?')"
+                                        method="POST"
+                                    >
+                                        <input
+                                            type="hidden"
+                                            style="display: none"
+                                            name="reference_id"
+                                            value="{{ reference[0] }}"
+                                        />
+                                        <input
+                                            type="submit"
+                                            class="button delete-button"
+                                            value="Delete Reference"
+                                        />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+    
+            {% endfor %}
+        </table>
+    </div>
+    
+    <script>
+        function toggleDetails(row) {
+            row.getElementsByClassName("expanded-row-content")[0].classList.toggle(
+                "hide"
+            );
+        }
+    
+        function handleCopyButtonClick(button) {
+            var bibtexString = button.getAttribute("data-bibtex");
+            navigator.clipboard.writeText(bibtexString).then(
+                function () {
+                    alert("Copied BibTex to clipboard!");
+                },
+            ).catch(
+                function (error) {
+                    console.log(error)
+                }
+            );
+        }
+    
+        function handleCopyAllBibTex() {
+            var bibtex_strings = [];
+    
+            document.querySelectorAll('.copy-button').forEach(function(button) {
+                bibtex_strings.push(button.getAttribute('data-bibtex'));
+            });
+    
+            var joined_bibtex_strings = bibtex_strings.join('\n\n');
+            navigator.clipboard.writeText(joined_bibtex_strings).then(
+                function () {
+                    alert("Copied all BibTex to clipboard!");
+                },
+            ).catch(
+                function (error) {
+                    console.log(error)
+                }
+            );
+        }
+    </script>
+{% endblock %}
