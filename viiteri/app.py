@@ -13,6 +13,7 @@ def create_app():
     """ Flask app factory """
     app = Flask(__name__)
 
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"pool_pre_ping": True}
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
         "DATABASE_URL", "postgresql://postgres:postgres@localhost:5432")
     app.config["SECRET_KEY"] = os.urandom(12).hex()
