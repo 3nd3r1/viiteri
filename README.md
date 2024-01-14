@@ -17,61 +17,64 @@
 </p>
 
 <p align="center">
-Viiteri on käyttäjäystävällinen BibTeX-viitehallintatyökalu akateemisten lähteiden hallintaan ja niiden yhdistämiseen LaTeX-dokumentteihin, tukien monia viitetyyppejä, kuten artikkeleita ja kirjoja.
+Viiteri is a user-friendly BibTeX reference management tool designed for managing academic sources and integrating them into LaTeX documents. It supports various reference types, including articles and books.
 </p>
 <p align="center">
-    <a href="https://ohjelmistotuotanto-hy.github.io/speksi/">Speksi</a>
+    <a href="https://ohjelmistotuotanto-hy.github.io/speksi/">Specs</a>
     ·
-    <a href="https://viiteri-page.host.ender.fi/">Live Demo</a>
+    <a href="https://viiteri.onrender.com/">Live Demo</a>
 </p>
 
-## Kuvakaappaus
+## Preview
 
-![Preview](./docs/assets/preview.png)
+![Preview](./docs/assets/preview.jpg)
 
-## Käyttöohje
+## Running locally
 
-1. **Varmista, että Poetry on Asennettu:**
-   Jos sinulla ei ole Poetrya asennettuna, asenna se Poetryn virallisilta verkkosivuilta: [Poetry Installation](https://python-poetry.org/docs/).
+1. **Ensure Poetry is Installed:**
+   If you don't have Poetry installed, install it from the official Poetry website: [Poetry Installation](https://python-poetry.org/docs/).
 
-2. **Kloonaa Viiteri Repositorio:**
-    - Avaa komentokehote tai pääte ja suorita seuraava komento:
-    ```
-    git clone https://github.com/your-username/viiteri.git
-    ```
-    - Siirry luotuun hakemistoon
-    ```
-    cd viiteri
-    ```
-3. **Asenna Riippuvuudet Poetryn Avulla**
-    - Asenna riippuvuudet suorittamalla komento:
-    ```
-    poetry install
-    ```
-4. **Alusta tietokanta**
-    - Varmista, että PostgreSQL on asennettu. Jos ei asenna se verkkosivulta: [PostgreSQL Downloads](https://www.postgresql.org/download/)
-    - Alusta tietokanta suorittamalla komento:
-    ```
-    poetry run invoke init-db
-    ```
-5. **Käynnistä Sovellus Debug-Tilassa**
-    - Käynnistä Viiteri debug-tilassa suorittamalla komento:
-    ```
-    poetry run invoke debug
-    ```
-6. **Avaa nettisivu**
-    - Kun sovellus on käynnistetty, voit käyttää sitä selaimessasi osoitteessa:
-    ```
-    http://localhost:5001
-    ```
+2. **Clone the Viiteri Repository:**
+   - Open a terminal or command prompt and run the following command:
+     ```
+     git clone https://github.com/your-username/viiteri.git
+     ```
+     - Navigate to the created directory
+       ```
+       cd viiteri
+       ```
 
-## Kehitys
+3. **Install Dependencies Using Poetry**
+   - Install dependencies by running the command:
+     ```
+     poetry install
+     ```
 
--   [Definition of Done](./docs/definition_of_done.md)
--   [Retrospektiivit](./RETRO.md)
--   [Loppuraportti](./REPORT.md)
--   [Product Backlog](https://github.com/users/3nd3r1/projects/2/views/1)
--   [Sprint 1 Task Board](https://github.com/users/3nd3r1/projects/1/views/1)
--   [Sprint 2 Task Board](https://github.com/users/3nd3r1/projects/3/views/1)
--   [Sprint 3 Task Board](https://github.com/users/3nd3r1/projects/4/views/1)
--   [Sprint 4 Task Board](https://github.com/users/3nd3r1/projects/5/views/1)
+4. **Initialize the Database**
+   - Ensure PostgreSQL is installed. If not, install it from the website: [PostgreSQL Downloads](https://www.postgresql.org/download/)
+     - Initialize the database by running the command:
+       ```
+       poetry run invoke init-db
+       ```
+
+5. **Run the Application in Debug Mode**
+   - Start Viiteri in debug mode by running the command:
+     ```
+     poetry run invoke debug
+     ```
+
+6. **Open the Website**
+   - Once the application is running, access it in your browser at:
+     ```
+     http://localhost:5001
+     ```
+
+## Development (In Finnish)
+
+- [Definition of Done](./docs/definition_of_done.md)
+- [Retrospektiivit](./RETRO.md)
+- [Product Backlog](https://github.com/users/3nd3r1/projects/2/views/1)
+- [Sprint 1 Task Board](https://github.com/users/3nd3r1/projects/1/views/1)
+- [Sprint 2 Task Board](https://github.com/users/3nd3r1/projects/3/views/1)
+- [Sprint 3 Task Board](https://github.com/users/3nd3r1/projects/4/views/1)
+- [Sprint 4 Task Board](https://github.com/users/3nd3r1/projects/5/views/1)
