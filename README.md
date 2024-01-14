@@ -27,7 +27,7 @@ Viiteri is a user-friendly BibTeX reference management tool designed for managin
 
 ## Preview
 
-![Preview](./docs/assets/preview.jpg)
+![Preview](./docs/assets/preview.png)
 
 ## Running locally
 
@@ -35,36 +35,36 @@ Viiteri is a user-friendly BibTeX reference management tool designed for managin
    If you don't have Poetry installed, install it from the official Poetry website: [Poetry Installation](https://python-poetry.org/docs/).
 
 2. **Clone the Viiteri Repository:**
-   - Open a terminal or command prompt and run the following command:
-     ```
-     git clone https://github.com/your-username/viiteri.git
-     ```
-     - Navigate to the created directory
-       ```
-       cd viiteri
-       ```
+- Open a terminal or command prompt and run the following command:
+    ```
+    git clone https://github.com/your-username/viiteri.git
+    ```
+- Navigate to the created directory
+    ```
+    cd viiteri
+    ```
 
 3. **Install Dependencies Using Poetry**
-   - Install dependencies by running the command:
+- Install dependencies by running the command:
      ```
      poetry install
      ```
 
 4. **Initialize the Database**
-   - Ensure PostgreSQL is installed. If not, install it from the website: [PostgreSQL Downloads](https://www.postgresql.org/download/)
-     - Initialize the database by running the command:
-       ```
-       poetry run invoke init-db
-       ```
+- Ensure PostgreSQL is installed. If not, install it from the website: [PostgreSQL Downloads](https://www.postgresql.org/download/)
+- Initialize the database by running the command:
+    ```
+    poetry run invoke init-db
+    ```
 
 5. **Run the Application in Debug Mode**
-   - Start Viiteri in debug mode by running the command:
-     ```
-     poetry run invoke debug
-     ```
+- Start Viiteri in debug mode by running the command:
+    ```
+    poetry run invoke debug
+    ```
 
 6. **Open the Website**
-   - Once the application is running, access it in your browser at:
+- Once the application is running, access it in your browser at:
      ```
      http://localhost:5001
      ```
