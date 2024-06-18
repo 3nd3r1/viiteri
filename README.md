@@ -4,8 +4,8 @@
     <a href="https://github.com/3nd3r1/ohtu-miniprojekti/actions/workflows/main.yml" alt="Continuous Integration">
         <img src="https://github.com/3nd3r1/ohtu-miniprojekti/actions/workflows/main.yml/badge.svg"/>
     </a>
-    <a href="https://codecov.io/gh/3nd3r1/ohtu-miniprojekti" alt="Codecov">
-        <img src="https://codecov.io/gh/3nd3r1/ohtu-miniprojekti/graph/badge.svg?token=LB9DOS5ALB"/>
+    <a href="https://codecov.io/github/3nd3r1/viiteri" > 
+        <img src="https://codecov.io/github/3nd3r1/viiteri/graph/badge.svg?token=LB9DOS5ALB"/> 
     </a>
     <a href="https://github.com/3nd3r1/ohtu-miniprojekti/blob/main/LICENSE" alt="License">
         <img src="https://img.shields.io/github/license/3nd3r1/ohtu-miniprojekti"/>
