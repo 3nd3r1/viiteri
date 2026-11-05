@@ -22,7 +22,7 @@ Viiteri is a user-friendly BibTeX reference management tool designed for managin
 <p align="center">
     <a href="https://ohjelmistotuotanto-hy.github.io/speksi/">Specs</a>
     ·
-    <a href="https://viiteri-page.host.ender.fi/">Live Demo</a>
+    <a href="https://viiteri-page.eros.ender.fi/">Live Demo</a>
 </p>
 
 ## Preview
